@@ -31,4 +31,10 @@ class Booking extends Model
         'Active' => 'Active',
         'Closed' => 'Closed',
     ];
+
+    // A Booking belongsTo User
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

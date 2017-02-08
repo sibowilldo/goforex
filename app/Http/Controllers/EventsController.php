@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventsFormRequest;
+use Auth;
 
 class EventsController extends Controller
 {
@@ -27,7 +29,8 @@ class EventsController extends Controller
     public function index()
     {
         //
-        return view('events.index');
+        $events = Event::get();
+        return view('events.index', compact(['events']));
     }
 
     /**
@@ -38,6 +41,7 @@ class EventsController extends Controller
     public function create()
     {
         //
+        return view('events.create');
     }
 
     /**
@@ -46,9 +50,17 @@ class EventsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventsFormRequest $request)
     {
-        //
+        $event = $request->all();
+        $event['status_is'] = 'Pending';
+        $event['reference'] = str_random(7);
+//        dd($event);
+        Event::create($event);
+        flash('You have successfully created and Event.', 'success');
+
+        $events = Event::get();
+        return view('events.index', compact(['events']));
     }
 
     /**

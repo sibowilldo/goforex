@@ -73,4 +73,17 @@ class User extends Authenticatable
             Role::whereName($role)->firstOrFail()
         );
     }
+
+
+    // A User has many Bookings
+    public function booking()
+    {
+        return $this->hasMany('App\Booking');
+    }
+
+    // A User has many Events
+    public function event()
+    {
+        return $this->hasMany('App\Events');
+    }
 }

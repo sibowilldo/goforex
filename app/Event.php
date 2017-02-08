@@ -22,6 +22,8 @@ class Event extends Model
         'number_of_seats',
         'start_date',
         'end_date',
+        'start_time',
+        'end_time',
         'status_is',
     ];
 
@@ -33,7 +35,15 @@ class Event extends Model
      */
     public static $statuses = [
         'FullyBooked' => 'FullyBooked',
+        'Pending' => 'Pending',
         'Open' => 'Open',
         'Closed' => 'Closed',
     ];
+
+    // A Booking belongsTo User
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }

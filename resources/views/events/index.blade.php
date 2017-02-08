@@ -1,5 +1,63 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">All Events <b><a href="{{ url('events/create') }}" class="btn" rel="tooltip" title="View">
+
+                        [ + ]</a></b></h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td></td>
+                            <th>Reference</th>
+                            <th>Name</th>
+                            <th>Host</th>
+                            <th>Number Of Seats</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($events as $event)
+                            <tr>
+                                <td class='hidden-350'>{{ $event->id }}</td>
+                                <td>{{ $event->reference }}</td>
+                                <td>{{ $event->name }}</td>
+                                <td>{{ $event->host }}</td>
+                                <td>{{ $event->number_of_seats }}</td>
+                                <td>{{ $event->start_date }}</td>
+                                <td>{{ $event->end_date }}</td>
+                                <td>{{ $event->status_is }}</td>
+                                <td>{{ $event->created_at }}</td>
+                                <td>{{ $event->updated_at }}</td>
+                                <td>
+                                    {!! Form::open(['method'=>'DELETE', 'url'=>'events/'.$event->id]) !!}
+                                    <a href="{{ url('events', $event->id) }}" class="btn" rel="tooltip" title="View">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                    <a href="{{ url('events/'.$event->id.'/edit') }}" class="btn" rel="tooltip"
+                                       title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    {!! Form::submit('&#xf00d;', ['class'=>'btn fa fa-remove']) !!}
+                                    {!! Form::close() !!}
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
