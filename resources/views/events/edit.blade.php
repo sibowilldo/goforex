@@ -1,24 +1,18 @@
-@extends('backend.master')
+@extends('layouts.app')
 
 @section('content')
-	@include('backend.page-header', ['header'=>'Edit: '.$user->name, 'level'=>'users' ,'resource'=>'Edit'])
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Make Changes</h3>
+                </div>
 
-	<!-- Main content -->
-    <section class="content">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="box box-primary">
-					<div class="box-header with-border">
-		            	<h3 class="box-title">Make Changes</h3>
-		            </div>	
-
-					{!! Form::model($user, ['method'=>'PATCH', 'url'=>'users/'.$user->id, 'role'=>'form']) !!}
-						@include('backend.users._form', ['buttonText'=>'Update changes'])
-					{!! Form::close() !!}
-					
-					@include('errors.forms')
-				</div>
-			</div>
-		</div>
-	</section>
+                @include('errors.forms')
+                {!! Form::model($event, ['method'=>'PATCH', 'url'=>'events/'.$event->id, 'role'=>'form']) !!}
+                @include('events._form', ['buttonText'=>'Update changes'])
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
 @stop

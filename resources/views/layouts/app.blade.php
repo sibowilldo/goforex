@@ -12,6 +12,7 @@
 
     <!-- Styles -->
 {{ Html::style('css/app.css') }}
+{{ Html::style('css/font-awesome.min.css') }}
 
 
 <!-- Scripts -->

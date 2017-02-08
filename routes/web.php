@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::resource('events','EventsController');
 
+Route::get('/events/{id}/submitEvent', 'EventsController@submitEvent');
+
 Route::get('/home', 'HomeController@index');
 
 // Verification function of HomeController

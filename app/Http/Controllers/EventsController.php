@@ -72,6 +72,7 @@ class EventsController extends Controller
     public function show(Event $event)
     {
         //
+        return view('events.show', compact(['event']));
     }
 
     /**
@@ -83,6 +84,7 @@ class EventsController extends Controller
     public function edit(Event $event)
     {
         //
+        return view('events.edit', compact(['event']));
     }
 
     /**
@@ -92,9 +94,13 @@ class EventsController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(EventsFormRequest $request, Event $event)
     {
         //
+        // Update the existing account
+        $event->update($request->all());
+        flash('Event has been updated!', 'success');
+        return redirect('events');
     }
 
     /**
@@ -106,5 +112,28 @@ class EventsController extends Controller
     public function destroy(Event $event)
     {
         //
+        if ($event->status_is == 'Pending'){
+            // Delete a account
+            $event->delete();
+            flash('Event has been deleted!', 'success');
+            $events = Event::get();
+            return view('events.index', compact(['events']));
+        }else{
+            flash('You can only delete an event that\'s Pending', 'danger');
+        }
+    }
+
+
+    public function submitEvent($id){
+        $event = Event::where('id',$id)->first();
+        if ($event){
+            $event->update(['status_is'=>'Open']);
+            flash('Event is now open and members can book it!', 'success');
+        }else{
+            flash('The event you are looking for is invalid.', 'danger');
+        }
+
+        $events = Event::get();
+        return view('events.index', compact(['events']));
     }
 }

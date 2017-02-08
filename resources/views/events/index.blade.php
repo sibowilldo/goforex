@@ -2,12 +2,13 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-10 col-md-offset-1">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Events <b><a href="{{ url('events/create') }}" class="btn" rel="tooltip" title="View">
+                    <h3 class="box-title">All Events <b><a href="{{ url('events/create') }}" class="btn" rel="tooltip"
+                                                           title="View">
 
-                        [ + ]</a></b></h3>
+                                [ + ]</a></b></h3>
                 </div>
                 <div class="box-body">
                     <table class="table table-bordered table-striped">
@@ -40,16 +41,21 @@
                                 <td>{{ $event->created_at }}</td>
                                 <td>{{ $event->updated_at }}</td>
                                 <td>
-                                    {!! Form::open(['method'=>'DELETE', 'url'=>'events/'.$event->id]) !!}
                                     <a href="{{ url('events', $event->id) }}" class="btn" rel="tooltip" title="View">
-                                        <i class="fa fa-search"></i>
+                                        <b>Show</b>
                                     </a>
                                     <a href="{{ url('events/'.$event->id.'/edit') }}" class="btn" rel="tooltip"
                                        title="Edit">
-                                        <i class="fa fa-edit"></i>
+                                        <b>Edit</b>
                                     </a>
-                                    {!! Form::submit('&#xf00d;', ['class'=>'btn fa fa-remove']) !!}
-                                    {!! Form::close() !!}
+                                    @if($event->status_is == 'Pending')
+                                        <a href="{{ url('events/'.$event->id.'/submitEvent') }}" class="btn" rel="tooltip"
+                                           title="Edit">
+                                            <b>Submit</b>
+                                        </a>
+                                    @elseif($event->status_is == 'Open')
+                                        <b>Open</b>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
