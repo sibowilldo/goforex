@@ -17,6 +17,7 @@ class Booking extends Model
         'reference',
         'user_id',
         'event_id',
+        'proof_of_payment',
         'status_is',
     ];
 
@@ -27,9 +28,9 @@ class Booking extends Model
      * @var array
      */
     public static $statuses = [
-        'Inactive' => 'Inactive',
-        'Active' => 'Active',
-        'Closed' => 'Closed',
+        'Paid' => 'Paid',
+        'Pending' => 'Pending',
+        'Rejected' => 'Rejected',
     ];
 
     // A Booking belongsTo User

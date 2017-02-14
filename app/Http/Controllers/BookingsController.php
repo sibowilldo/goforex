@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Event;
+use Auth;
 use Illuminate\Http\Request;
 
 class BookingsController extends Controller
@@ -26,6 +28,41 @@ class BookingsController extends Controller
     public function create()
     {
         //
+    }
+
+    /**
+     * Creates a new booking for logged in user using the event id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createEventBooking($eventId)
+    {
+        //
+        $event = Event::where('id', $eventId)->first();
+
+        // Get all signals
+        $attendees = explode(',', $event->attendees);
+        if(count($attendees) > 0 && $attendees[0] != ""){
+            if (count($attendees) == $event->number_of_seats || $event->status_is == "FullyBooked"){
+                flash("Sorry this event is fully booked.","danger");
+                return redirect('/home');
+            }else{
+                array_push($attendees, Auth::user()->id);
+                $event->attendees = implode(',', $attendees);
+                $event->save();
+            }
+        }else{
+            $event->update(['attendees'=>Auth::user()->id]);
+        }
+
+
+        Booking::create(['user_id'=>Auth::user()->id,
+                        'event_id'=>$eventId,
+                        'reference'=>'BO'.str_random(9),
+                        'status_is'=>'Pending']);
+
+        flash("You have successfully created a booking, please make payment to get approval.","success");
+        return redirect('/home');
     }
 
     /**

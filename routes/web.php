@@ -19,6 +19,14 @@ Auth::routes();
 
 Route::resource('events','EventsController');
 
+Route::resource('bookings','BookingsController');
+
+Route::get('/view-event/{id}', 'HomeController@viewEvent');
+
+Route::post('imageUploadForm', 'HomeController@updateProofOfPayment' );
+
+Route::get('/booking/create-event-booking/{id}', 'BookingsController@createEventBooking');
+
 Route::get('/events/{id}/submitEvent', 'EventsController@submitEvent');
 
 Route::get('/home', 'HomeController@index');

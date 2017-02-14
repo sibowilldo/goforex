@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use Illuminate\Http\Request;
 use App\Http\Requests\VerifyFormRequest;
 use Auth;
@@ -30,10 +31,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role->first()->name == 'admin'){
+        if (Auth::user()->role->first()->name == 'admin' && Auth::user()->verified == 1) {
             return Redirect('/events');
         }
-        return view('home');
+
+        $allEvents = Event::whereNotIn('status_is', ['Pending'])->get();
+//        dd($allEvents);
+        $bookings = Booking::where('user_id', Auth::user()->id)->get();
+
+        return view('home', compact(['allEvents', 'bookings']));
     }
 
     /**
@@ -66,11 +72,36 @@ class HomeController extends Controller
                 $message->from('noreply@innobrand.co.za');
                 $message->to($email, $name)->subject('GoForex Profile Complete');
             });
-            flash('Your profile has been verified and is complete!', 'success' );
-        }else{
-            flash('The code you submitted is incorrect, please try again.', 'danger' );
+            flash('Your profile has been verified and is complete!', 'success');
+        } else {
+            flash('The code you submitted is incorrect, please try again.', 'danger');
         }
 
         return redirect('/home');
+    }
+
+    public function viewEvent($eventId)
+    {
+        $event = Event::where('id', $eventId)->first();
+        $booking = Booking::where('event_id', $eventId)->first();
+        return view('view-event', compact(['event', 'booking']));
+    }
+
+    public function updateProofOfPayment(Request $request)
+    {
+        // Get the file from the request
+        $file = $request->file('image');
+
+        // Get the contents of the file
+        $contents = $file->openFile()->fread($file->getSize());
+
+        // Store the contents to the database
+        $booking = Booking::where('event_id', $request['eventId'])->first();
+        $booking->proof_of_payment = $contents;
+        $booking->save();
+
+        $event = Event::where('id',$request['eventId'])->first();
+
+        return view('view-event', compact(['event']));
     }
 }

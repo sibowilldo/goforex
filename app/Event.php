@@ -20,6 +20,7 @@ class Event extends Model
         'address',
         'description',
         'number_of_seats',
+        'attendees',
         'start_date',
         'end_date',
         'start_time',
@@ -45,5 +46,7 @@ class Event extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+
 
 }
