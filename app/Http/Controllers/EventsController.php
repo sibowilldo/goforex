@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Event;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventsFormRequest;
@@ -72,7 +73,14 @@ class EventsController extends Controller
     public function show(Event $event)
     {
         //
-        return view('events.show', compact(['event']));
+
+        $attendees = explode(',', $event->attendees);
+
+        $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
+
+//        dd($users);
+
+        return view('events.show', compact(['event', 'bookings']));
     }
 
     /**

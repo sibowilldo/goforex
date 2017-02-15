@@ -40,7 +40,6 @@ class BookingsController extends Controller
         //
         $event = Event::where('id', $eventId)->first();
 
-        // Get all signals
         $attendees = explode(',', $event->attendees);
         if(count($attendees) > 0 && $attendees[0] != ""){
             if (count($attendees) == $event->number_of_seats || $event->status_is == "FullyBooked"){
@@ -119,5 +118,33 @@ class BookingsController extends Controller
     public function destroy(Booking $booking)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Booking  $booking
+     * @return \Illuminate\Http\Response
+     */
+    public function approve($bookingId)
+    {
+        //
+        $booking = Booking::where('id', $bookingId)->first();
+        if ($booking){
+            $booking->update(['status_is'=>'Paid']);
+
+            $event = Event::where('id', $booking->event_id)->first();
+
+            $attendees = explode(',', $event->attendees);
+
+            $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
+
+            flash("Booking approved successfully.", "success");
+
+            return view('events.show', compact(['event', 'bookings']));
+
+        }else {
+            flash("There booking you are searching for doesn't exist.", "danger");
+        }
     }
 }

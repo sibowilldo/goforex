@@ -5,7 +5,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="box">
                 <div class="box-content">
-                    <table id="user" class="table table-bordered table-striped table-force-topborder"
+                    <table id="event" class="table table-bordered table-striped table-force-topborder"
                            style="clear: both">
                         <tbody>
                         <tr>
@@ -23,7 +23,7 @@
                         <tr>
                             <td width="25%">Name</td>
                             <td width="50%">
-                               {{ $event->name }}
+                                {{ $event->name }}
                             </td>
                         </tr>
                         <tr>
@@ -48,6 +48,12 @@
                             <td>Number Of Seats</td>
                             <td>
                                 {{ $event->number_of_seats }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Number Of Attendees</td>
+                            <td>
+                                {{ count(explode(',', $event->attendees)) }}
                             </td>
                         </tr>
                         <tr>
@@ -92,6 +98,63 @@
                                 {{ $event->updated_at }}
                             </td>
                         </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"><b>User Bookings </b></h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Username</th>
+                            <th>Proof Of Payment</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($bookings as $booking)
+                            <tr>
+                                <td>{{ $booking->reference }}</td>
+                                <td>{{ $booking->user->username }}</td>
+                                <td>Proof of payment here</td>
+                                <td>{{ $booking->status_is }}</td>
+                                <td>{{ $booking->created_at }}</td>
+                                <td>
+                                    @if($booking->status_is == 'Pending')
+                                        @if($booking->proof_of_payment != null)
+                                            <a href="{{ url('booking/'.$booking->id.'/approve') }}" class="btn"
+                                               rel="tooltip"
+                                               title="Edit">
+                                                <b>Approve</b>
+                                            </a> /
+                                            <a href="{{ url('booking/'.$booking->id.'/decline') }}" class="btn"
+                                               rel="tooltip"
+                                               title="Edit">
+                                                <b>Decline</b>
+                                            </a>
+
+                                        @else
+                                            <b>Pending</b>
+                                        @endif
+                                    @elseif($booking->status_is == 'Paid')
+                                        <b>Approved</b>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

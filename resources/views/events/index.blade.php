@@ -14,11 +14,10 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <td></td>
                             <th>Reference</th>
                             <th>Name</th>
                             <th>Host</th>
-                            <th>Number Of Seats</th>
+                            <th>Attendees</th>
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Status</th>
@@ -30,11 +29,18 @@
                         <tbody>
                         @foreach($events as $event)
                             <tr>
-                                <td class='hidden-350'>{{ $event->id }}</td>
                                 <td>{{ $event->reference }}</td>
                                 <td>{{ $event->name }}</td>
                                 <td>{{ $event->host }}</td>
-                                <td>{{ $event->number_of_seats }}</td>
+
+                                @if(count(explode(',', $event->attendees)) > 0 && explode(',', $event->attendees)[0] != "")
+                                    <td>  {{ count(explode(',', $event->attendees)) }}
+                                        / {{ $event->number_of_seats }}</td>
+                                @else
+                                    <td> 0
+                                        / {{ $event->number_of_seats }}</td>
+                                @endif
+                                
                                 <td>{{ $event->start_date }}</td>
                                 <td>{{ $event->end_date }}</td>
                                 <td>{{ $event->status_is }}</td>
@@ -49,7 +55,8 @@
                                         <b>Edit</b>
                                     </a>
                                     @if($event->status_is == 'Pending')
-                                        <a href="{{ url('events/'.$event->id.'/submitEvent') }}" class="btn" rel="tooltip"
+                                        <a href="{{ url('events/'.$event->id.'/submitEvent') }}" class="btn"
+                                           rel="tooltip"
                                            title="Edit">
                                             <b>Submit</b>
                                         </a>

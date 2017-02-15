@@ -21,6 +21,10 @@ Route::resource('events','EventsController');
 
 Route::resource('bookings','BookingsController');
 
+Route::get('booking/{bookingId}/approve','BookingsController@approve');
+
+Route::get('booking/{bookingId}/decline','BookingsController@decline');
+
 Route::get('/view-event/{id}', 'HomeController@viewEvent');
 
 Route::post('imageUploadForm', 'HomeController@updateProofOfPayment' );
