@@ -25,6 +25,8 @@ Route::get('/view-event/{id}', 'HomeController@viewEvent');
 
 Route::post('imageUploadForm', 'HomeController@updateProofOfPayment' );
 
+Route::post('proofOfPayment/{bookingId}', 'HomeController@proofOfPayment' );
+
 Route::get('/booking/create-event-booking/{id}', 'BookingsController@createEventBooking');
 
 Route::get('/events/{id}/submitEvent', 'EventsController@submitEvent');

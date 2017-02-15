@@ -101,8 +101,31 @@
                         <div class="box-content">
                             @if(in_array(Auth::user()->id,explode(',', $event->attendees)))
                                 @if($booking != null && $booking->proof_of_payment != null)
+                                    {{--{{ $img }}--}}
+                                    {{--<img src="proofOfPayment/{{ $booking->id }}">--}}
+                                    <img src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"/>
 
-                                    <img src="data:image/png;base64,'.{{base64_encode($booking->proof_of_payment)}} .'" />
+                                    {!! Form::open(
+                                                array(
+                                                    'url' => 'imageUploadForm',
+                                                    'class' => 'form',
+                                                    'novalidate' => 'novalidate',
+                                                    'files' => true)) !!}
+
+                                    <div class="form-group">
+                                        {!! Form::label('Update Proof Of Payment') !!}
+                                        {!! Form::file('image', null) !!}
+                                    </div>
+
+                                    <div class="form-group" hidden>
+                                        {!! Form::label('eventId') !!}
+                                        {!! Form::text('eventId', $event->id, ['class'=>'form-control']) !!}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {!! Form::submit('Upload Proof Of Payment!') !!}
+                                    </div>
+                                    {!! Form::close() !!}
 
                                 @else
 

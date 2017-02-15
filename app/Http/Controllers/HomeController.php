@@ -8,9 +8,11 @@ use App\Http\Requests\VerifyFormRequest;
 use Auth;
 use App\Event;
 use App\User;
-use Illuminate\Support\Facades\Mail;
+use Image;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller
 {
@@ -84,7 +86,8 @@ class HomeController extends Controller
     {
         $event = Event::where('id', $eventId)->first();
         $booking = Booking::where('event_id', $eventId)->first();
-        return view('view-event', compact(['event', 'booking']));
+
+        return view('view-event', compact(['event', 'booking', 'img']));
     }
 
     public function updateProofOfPayment(Request $request)
@@ -98,10 +101,11 @@ class HomeController extends Controller
         // Store the contents to the database
         $booking = Booking::where('event_id', $request['eventId'])->first();
         $booking->proof_of_payment = $contents;
+        $booking->mime_type = $file->getClientMimeType();
         $booking->save();
 
-        $event = Event::where('id',$request['eventId'])->first();
+        $event = Event::where('id', $request['eventId'])->first();
 
-        return view('view-event', compact(['event']));
+        return view('view-event', compact(['event', 'booking']));
     }
 }
