@@ -108,4 +108,17 @@ class HomeController extends Controller
 
         return view('view-event', compact(['event', 'booking']));
     }
+
+    public function proofOfPayment($bookingID){
+        $booking = Booking::where('id', $bookingID)->first();
+
+        $pic = Image::make($booking->proof_of_payment);
+        $response = Response::make($pic->encode('jpeg'));
+
+        //setting content-type
+        $response->header('Content-Type', $booking->mime_type);
+
+        return $response;
+    }
+
 }

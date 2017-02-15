@@ -40,7 +40,7 @@
                                     <td> 0
                                         / {{ $event->number_of_seats }}</td>
                                 @endif
-                                
+
                                 <td>{{ $event->start_date }}</td>
                                 <td>{{ $event->end_date }}</td>
                                 <td>{{ $event->status_is }}</td>

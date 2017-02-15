@@ -93,6 +93,7 @@
 
 {!! Html::script('/js/app.js') !!}
 {!! Html::script('/js/jquery-ui.min.js') !!}
+{!! Html::script('/js/jquery.zoomooz.min.js') !!}
 
 
 <script type="text/javascript" language="javascript">
