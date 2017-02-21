@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
