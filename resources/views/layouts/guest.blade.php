@@ -159,10 +159,9 @@
                         <li><a href="#" class="fa-google-plus"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Walter White</h3>
-                <span class="wow fadeInDown delay-03s">Chief Executive Officer</span>
-                <p class="wow fadeInDown delay-03s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
+                <h3 class="wow fadeInDown delay-03s">Ashley Hastibeer</h3>
+                <span class="wow fadeInDown delay-03s">Mentor & Managing Director</span>
+                <p class="wow fadeInDown delay-03s">A professional mentor who has prided himself in offering the most honest and relevant training and mentorship to the forex trading community.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader  wow fadeInDown delay-06s">
@@ -175,10 +174,9 @@
                         <li><a href="#" class="fa-google-plus"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-06s">Jesse Pinkman</h3>
-                <span class="wow fadeInDown delay-06s">Product Manager</span>
-                <p class="wow fadeInDown delay-06s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
+                <h3 class="wow fadeInDown delay-06s">Andile</h3>
+                <span class="wow fadeInDown delay-06s">Mentor & Managing Director</span>
+                <p class="wow fadeInDown delay-06s">Teaches and makesure best practise is applied when offering the best and reliable ways of trading the forex market.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-09s">
@@ -191,10 +189,26 @@
                         <li><a href="#" class="fa-google-plus"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-09s">Skyler white</h3>
-                <span class="wow fadeInDown delay-09s">Accountant</span>
-                <p class="wow fadeInDown delay-09s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
+                <h3 class="wow fadeInDown delay-09s">Joel</h3>
+                <span class="wow fadeInDown delay-09s">Sales and Marketing Director</span>
+                <p class="wow fadeInDown delay-09s">
+                    Ensures all marketing posters as well as classes advertised in the specified area in which we are teaching.</p>
+            </div>
+            <div class="team-leader-box">
+                <div class="team-leader wow fadeInDown delay-09s">
+                    <div class="team-leader-shadow"><a href="#"></a></div>
+                    <img src="img/team-leader-pic3.jpg" alt="">
+                    <ul>
+                        <li><a href="#" class="fa-twitter"></a></li>
+                        <li><a href="#" class="fa-facebook"></a></li>
+                        <li><a href="#" class="fa-pinterest"></a></li>
+                        <li><a href="#" class="fa-google-plus"></a></li>
+                    </ul>
+                </div>
+                <h3 class="wow fadeInDown delay-09s">Thesan
+                </h3>
+                <span class="wow fadeInDown delay-09s">Accounts & Director</span>
+                <p class="wow fadeInDown delay-09s">Ensuring the business has smooth capital flows either going out or coming into the business.</p>
             </div>
         </div>
     </div>
