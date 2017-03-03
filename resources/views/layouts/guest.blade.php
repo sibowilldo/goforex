@@ -40,11 +40,11 @@
         <figure class="logo animated fadeInDown delay-07s">
             <a href="#"><img src="img/logo.png" alt=""></a>
         </figure>
-        <h1 class="animated fadeInDown delay-07s">Welcome To Knight Studios</h1>
+        <h1 class="animated fadeInDown delay-07s">Welcom To GoForex Wealth Creation</h1>
         <ul class="we-create animated fadeInUp delay-1s">
-            <li>We are a digital agency that loves crafting beautiful websites.</li>
+            <li>One of the leading forex mentorship companies.</li>
         </ul>
-        <a class="link animated fadeInUp delay-1s servicelink" href="#service">Get Started</a>
+        <a class="link animated fadeInUp delay-1s servicelink" href="#service">Lets GoForex</a>
     </div>
 </header><!--header-end-->
 
@@ -52,12 +52,13 @@
     <div class="container">
         <ul class="main-nav">
             <li><a href="#header">Home</a></li>
-            <li><a href="#service">Services</a></li>
-            <li><a href="#Portfolio">Portfolio</a></li>
+            <li><a href="#service">Vision</a></li>
+            <li><a href="#client">About Us</a></li>
             <li class="small-logo"><a href="#header"><img src="img/small-logo.png" alt=""></a></li>
-            <li><a href="#client">Clients</a></li>
-            <li><a href="#team">Team</a></li>
+            {{--<li><a href="#Portfolio">Portfolio</a></li>--}}
+            <li><a href="#team">Our Team</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact1">Join / Sign In</a></li>
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
     </div>
@@ -66,7 +67,7 @@
 
 <section class="main-section" id="service"><!--main-section-start-->
     <div class="container">
-        <h2>Services</h2>
+        <h2>Vision</h2>
         <h6>We offer exceptional service with complimentary hugs.</h6>
         <div class="row">
             <div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
@@ -75,8 +76,9 @@
                         <i class="fa-paw"></i>
                     </div>
                     <div class="service-list-col2">
-                        <h3>branding &amp; identity</h3>
-                        <p>Proin iaculis purus digni consequat sem digni ssim. Donec entum digni ssim.</p>
+                        <h3>experience &amp; knowledge</h3>
+                        <p>To bring some order and respectability to this industry by sharing our experiences and
+                            knowledge</p>
                     </div>
                 </div>
                 <div class="service-list">
@@ -84,8 +86,8 @@
                         <i class="fa-gear"></i>
                     </div>
                     <div class="service-list-col2">
-                        <h3>web development</h3>
-                        <p>Proin iaculis purus consequat sem digni ssim. Digni ssim porttitora .</p>
+                        <h3>good & bad</h3>
+                        <p>As well as what works and what does not.</p>
                     </div>
                 </div>
                 <div class="service-list">
@@ -93,8 +95,9 @@
                         <i class="fa-apple"></i>
                     </div>
                     <div class="service-list-col2">
-                        <h3>mobile design</h3>
-                        <p>Proin iaculis purus consequat digni sem digni ssim. Purus donec porttitora entum.</p>
+                        <h3>guidance &amp; mentorship</h3>
+                        <p>Help the new entrant with the best possible opportunity to make a success of forex trading
+                            and build a profitable home business.</p>
                     </div>
                 </div>
                 <div class="service-list">
@@ -102,8 +105,9 @@
                         <i class="fa-medkit"></i>
                     </div>
                     <div class="service-list-col2">
-                        <h3>24/7 Support</h3>
-                        <p>Proin iaculis purus consequat sem digni ssim. Sem porttitora entum.</p>
+                        <h3>formula of success</h3>
+                        <p>We intend to shorten the time,cost and pain required to reach their goal by teaching them the
+                            formula of success in this business..</p>
                     </div>
                 </div>
             </div>
@@ -116,112 +120,17 @@
 </section><!--main-section-end-->
 
 
-<section class="main-section alabaster"><!--main-section alabaster-start-->
-    <div class="container">
-        <div class="row">
-            <figure class="col-lg-5 col-sm-4 wow fadeInLeft">
-                <img src="img/iphone.png" alt="">
-            </figure>
-            <div class="col-lg-7 col-sm-8 featured-work">
-                <h2>featured work</h2>
-                <P class="padding-b">Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit
-                    aenean rhoncus posuere odio in tincidunt. Proin iaculis purus consequat sem cure digni ssim. Donec
-                    porttitora entum suscipit.</P>
-                <div class="featured-box">
-                    <div class="featured-box-col1 wow fadeInRight delay-02s">
-                        <i class="fa-magic"></i>
-                    </div>
-                    <div class="featured-box-col2 wow fadeInRight delay-02s">
-                        <h3>magic of theme development</h3>
-                        <p>Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean
-                            rhoncus posuere odio in tincidunt. </p>
-                    </div>
-                </div>
-                <div class="featured-box">
-                    <div class="featured-box-col1 wow fadeInRight delay-04s">
-                        <i class="fa-gift"></i>
-                    </div>
-                    <div class="featured-box-col2 wow fadeInRight delay-04s">
-                        <h3>neatly packaged</h3>
-                        <p>Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean
-                            rhoncus posuere odio in tincidunt. </p>
-                    </div>
-                </div>
-                <div class="featured-box">
-                    <div class="featured-box-col1 wow fadeInRight delay-06s">
-                        <i class="fa-dashboard"></i>
-                    </div>
-                    <div class="featured-box-col2 wow fadeInRight delay-06s">
-                        <h3>SEO optimized</h3>
-                        <p>Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean
-                            rhoncus posuere odio in tincidunt. </p>
-                    </div>
-                </div>
-                <a class="Learn-More" href="#">Learn More</a>
-            </div>
-        </div>
-    </div>
-</section><!--main-section alabaster-end-->
-
-
-<section class="main-section paddind" id="Portfolio"><!--main-section-start-->
-    <div class="container">
-        <h2>Portfolio</h2>
-        <h6>Fresh portfolio of designs that will keep you wanting more.</h6>
-        <div class="portfolioFilter">
-            <ul class="Portfolio-nav wow fadeIn delay-02s">
-                <li><a href="#" data-filter="*" class="current">All</a></li>
-                <li><a href="#" data-filter=".branding">Branding</a></li>
-                <li><a href="#" data-filter=".webdesign">Web design</a></li>
-                <li><a href="#" data-filter=".printdesign">Print design</a></li>
-                <li><a href="#" data-filter=".photography">Photography</a></li>
-            </ul>
-        </div>
-
-    </div>
-    <div class="portfolioContainer wow fadeInUp delay-04s">
-        <div class=" Portfolio-box printdesign">
-            <a href="#"><img src="img/Portfolio-pic1.jpg" alt=""></a>
-            <h3>Foto Album</h3>
-            <p>Print Design</p>
-        </div>
-        <div class="Portfolio-box webdesign">
-            <a href="#"><img src="img/Portfolio-pic2.jpg" alt=""></a>
-            <h3>Luca Theme</h3>
-            <p>Web Design</p>
-        </div>
-        <div class=" Portfolio-box branding">
-            <a href="#"><img src="img/Portfolio-pic3.jpg" alt=""></a>
-            <h3>Uni Sans</h3>
-            <p>Branding</p>
-        </div>
-        <div class=" Portfolio-box photography">
-            <a href="#"><img src="img/Portfolio-pic4.jpg" alt=""></a>
-            <h3>Vinyl Record</h3>
-            <p>Photography</p>
-        </div>
-        <div class=" Portfolio-box branding">
-            <a href="#"><img src="img/Portfolio-pic5.jpg" alt=""></a>
-            <h3>Hipster</h3>
-            <p>Branding</p>
-        </div>
-        <div class=" Portfolio-box photography">
-            <a href="#"><img src="img/Portfolio-pic6.jpg" alt=""></a>
-            <h3>Windmills</h3>
-            <p>Photography</p>
-        </div>
-    </div>
-</section><!--main-section-end-->
-
-
 <section class="main-section client-part" id="client"><!--main-section client-part-start-->
     <div class="container">
         <b class="quote-right wow fadeInDown delay-03"><i class="fa-quote-right"></i></b>
         <div class="row">
             <div class="col-lg-12">
-                <p class="client-part-haead wow fadeInDown delay-05">It was a pleasure to work with the guys at Knight
-                    Studio. They made sure
-                    we were well fed and drunk all the time!</p>
+                <p class="client-part-haead wow fadeInDown delay-05">We want to erase the current perspective that
+                    people have of forex trading as just another kind of gambling and prove that when sound business
+                    principles are followed and one can build a low risk profitable business to support your family and
+                    all their needs. We also aim to remove the excessive stress levels normally associated with forex
+                    trading and change it into a non-emotional business investment practise that is viable option for
+                    starting a home business.</p>
             </div>
         </div>
         <ul class="client wow fadeIn delay-05s">
@@ -233,17 +142,7 @@
         </ul>
     </div>
 </section><!--main-section client-part-end-->
-<div class="c-logo-part"><!--c-logo-part-start-->
-    <div class="container">
-        <ul>
-            <li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo2.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo3.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo4.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo5.png" alt=""></a></li>
-        </ul>
-    </div>
-</div><!--c-logo-part-end-->
+
 <section class="main-section team" id="team"><!--main-section team-start-->
     <div class="container">
         <h2>team</h2>
@@ -302,9 +201,72 @@
 </section><!--main-section team-end-->
 
 
+<div class="c-logo-part"><!--c-logo-part-start-->
+    <div class="container">
+        <ul>
+            <li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>
+            <li><a href="#"><img src="img/c-liogo2.png" alt=""></a></li>
+            <li><a href="#"><img src="img/c-liogo3.png" alt=""></a></li>
+            <li><a href="#"><img src="img/c-liogo4.png" alt=""></a></li>
+            <li><a href="#"><img src="img/c-liogo5.png" alt=""></a></li>
+        </ul>
+    </div>
+</div><!--c-logo-part-end-->
+
+
+{{--<section class="main-section paddind" id="Portfolio"><!--main-section-start-->--}}
+{{--<div class="container">--}}
+{{--<h2>Portfolio</h2>--}}
+{{--<h6>Fresh portfolio of designs that will keep you wanting more.</h6>--}}
+{{--<div class="portfolioFilter">--}}
+{{--<ul class="Portfolio-nav wow fadeIn delay-02s">--}}
+{{--<li><a href="#" data-filter="*" class="current">All</a></li>--}}
+{{--<li><a href="#" data-filter=".branding">Branding</a></li>--}}
+{{--<li><a href="#" data-filter=".webdesign">Web design</a></li>--}}
+{{--<li><a href="#" data-filter=".printdesign">Print design</a></li>--}}
+{{--<li><a href="#" data-filter=".photography">Photography</a></li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+
+{{--</div>--}}
+{{--<div class="portfolioContainer wow fadeInUp delay-04s">--}}
+{{--<div class=" Portfolio-box printdesign">--}}
+{{--<a href="#"><img src="img/Portfolio-pic1.jpg" alt=""></a>--}}
+{{--<h3>Foto Album</h3>--}}
+{{--<p>Print Design</p>--}}
+{{--</div>--}}
+{{--<div class="Portfolio-box webdesign">--}}
+{{--<a href="#"><img src="img/Portfolio-pic2.jpg" alt=""></a>--}}
+{{--<h3>Luca Theme</h3>--}}
+{{--<p>Web Design</p>--}}
+{{--</div>--}}
+{{--<div class=" Portfolio-box branding">--}}
+{{--<a href="#"><img src="img/Portfolio-pic3.jpg" alt=""></a>--}}
+{{--<h3>Uni Sans</h3>--}}
+{{--<p>Branding</p>--}}
+{{--</div>--}}
+{{--<div class=" Portfolio-box photography">--}}
+{{--<a href="#"><img src="img/Portfolio-pic4.jpg" alt=""></a>--}}
+{{--<h3>Vinyl Record</h3>--}}
+{{--<p>Photography</p>--}}
+{{--</div>--}}
+{{--<div class=" Portfolio-box branding">--}}
+{{--<a href="#"><img src="img/Portfolio-pic5.jpg" alt=""></a>--}}
+{{--<h3>Hipster</h3>--}}
+{{--<p>Branding</p>--}}
+{{--</div>--}}
+{{--<div class=" Portfolio-box photography">--}}
+{{--<a href="#"><img src="img/Portfolio-pic6.jpg" alt=""></a>--}}
+{{--<h3>Windmills</h3>--}}
+{{--<p>Photography</p>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</section><!--main-section-end-->--}}
+
+
 <section class="business-talking"><!--business-talking-start-->
     <div class="container">
-        <h2>Let’s Talk Business.</h2>
+        <h2>Let’s Talk GoForex Wealth Creation.</h2>
     </div>
 </section><!--business-talking-end-->
 <div class="container">
@@ -375,6 +337,185 @@
         </div>
     </section>
 </div>
+
+
+<section class="business-talking"><!--business-talking-start-->
+    <div class="container">
+        <h2>Join GoForex Wealth Creation.</h2>
+    </div>
+</section><!--business-talking-end-->
+<div class="container">
+    <section class="main-section contact" id="contact1">
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-7 wow fadeInLeft">
+                <form class="form" method="POST" action="{{ route('login') }}">
+                    {{ csrf_field() }}
+
+                    <div>
+                        <h1 class="animated fadeInDown delay-07s">Login</h1><br/>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}" required autofocus placeholder="Email Address">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
+                    </div>
+
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <input id="password" type="password" class="form-control input-text" name="password" required placeholder="Password">
+
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="input-btn">Login</button>
+                    </div>
+                </form>
+
+                <br/>
+                <hr/>
+                <br/>
+                <hr/>
+
+                <form class="form" method="POST" action="{{ route('password.email') }}">
+                    {{ csrf_field() }}
+
+                    <div>
+                        <h1 class="animated fadeInDown delay-07s">Forgot Password</h1><br/>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}" required autofocus placeholder="Email Address">
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="input-btn"> Send Reset Password Link</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+                <div class="form" method="POST" action="{{ route('register') }}">
+
+                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="errormessage"></div>
+                    <h1 class="animated fadeInDown delay-07s">Join Us Now</h1><br/>
+                    <form action="" method="post" role="form" class="contactForm">
+                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
+                            <input id="firstname" type="text" class="form-control input-text" name="firstname"
+                                   value="{{ old('firstname') }}" required autofocus  placeholder="First Name">
+
+                            @if ($errors->has('firstname'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('firstname') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                            <input id="lastname" type="text" class="form-control input-text" name="lastname"
+                                   value="{{ old('lastname') }}" required autofocus placeholder="Last Name ">
+
+                            @if ($errors->has('lastname'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('lastname') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <input id="username" type="text" class="form-control input-text" name="username"
+                                   value="{{ old('username') }}" required autofocus placeholder="Username">
+
+                            @if ($errors->has('username'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('cell') ? ' has-error' : '' }}">
+                            <input id="cell" type="text" class="form-control input-text" name="cell" value="{{ old('cell') }}"
+                                   required autofocu placeholder="Cell Number"s>
+
+                            @if ($errors->has('cell'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('cell') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
+                            <input id="location" type="text" class="form-control input-text" name="location"
+                                   value="{{ old('location') }}" required autofocus placeholder="Location">
+
+                            @if ($errors->has('location'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('location') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}"
+                                   required placeholder="Email Address">
+
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <input id="password" type="password" class="form-control input-text" name="password" required placeholder="Password">
+
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                                <input id="password-confirm" type="password" class="form-control input-text"
+                                       name="password_confirmation" required placeholder="Password Confirm">
+                        </div>
+
+
+                        <div class="text-center">
+                            <button type="submit" class="input-btn">Join</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
 <footer class="footer">
     <div class="container">
         <div class="footer-logo"><a href="#"><img src="img/footer-logo.png" alt=""></a></div>
