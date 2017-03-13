@@ -1,7 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel-body">
+<div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    <h1>
+        View Event
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">View Event</li>
+    </ol>
+    </section>
+    <section class="content">
+    
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="box">
@@ -103,7 +116,7 @@
                                 @if($booking != null && $booking->proof_of_payment != null)
                                     {{--{{ $img }}--}}
                                     {{--<img src="proofOfPayment/{{ $booking->id }}">--}}
-                                    <img src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"/>
+                                    <img src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}" class="img-thumbnail"/>
 
                                     {!! Form::open(
                                                 array(
@@ -123,7 +136,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::submit('Upload Proof Of Payment!') !!}
+                                        {!! Form::submit('Upload Proof Of Payment!', ['class'=>'btn']) !!}
                                     </div>
                                     {!! Form::close() !!}
 
@@ -147,7 +160,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::submit('Upload Proof Of Payment!') !!}
+                                        {!! Form::submit('Upload Proof Of Payment!', ['class'=>'btn']) !!}
                                     </div>
                                     {!! Form::close() !!}
 
@@ -165,7 +178,7 @@
                     </div>
                 </div>
             </div>
-    </div>
-    @endif
-    </div>
+        @endif
+    </section>
+</div>
 @stop

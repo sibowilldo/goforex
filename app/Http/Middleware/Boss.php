@@ -16,6 +16,7 @@ class Boss
     public function handle($request, Closure $next)
     {
         if (!$request->user()->hasRole('admin')) {
+            flash()->error('403 Forbidden');
             return redirect('/home');
         }
 
