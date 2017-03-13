@@ -34,15 +34,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->role->first()->name == 'admin' && Auth::user()->verified == 1) {
-            return Redirect('/events');
+        if(Auth::user()->verified==0){
+                return view('auth.verification');
         }
+        $events = Event::get();
 
         $allEvents = Event::whereNotIn('status_is', ['Pending'])->get();
-//        dd($allEvents);
         $bookings = Booking::where('user_id', Auth::user()->id)->get();
-
-        return view('home', compact(['allEvents', 'bookings']));
+        return view('home', compact(['allEvents', 'bookings', 'events']));
     }
 
     /**
@@ -86,7 +85,7 @@ class HomeController extends Controller
     public function viewEvent($eventId)
     {
         $event = Event::where('id', $eventId)->first();
-        $booking = Booking::where('event_id', $eventId)->first();
+        $booking = Booking::where(['event_id'=> $eventId, 'user_id' => Auth::id()])->first();
 
         return view('view-event', compact(['event', 'booking', 'img']));
     }
@@ -100,7 +99,7 @@ class HomeController extends Controller
         $contents = $file->openFile()->fread($file->getSize());
 
         // Store the contents to the database
-        $booking = Booking::where('event_id', $request['eventId'])->first();
+        $booking = Booking::where(['event_id'=> $request['eventId'], 'user_id' => Auth::id() ])->first();
         $booking->proof_of_payment = $contents;
         $booking->mime_type = $file->getClientMimeType();
         $booking->save();
