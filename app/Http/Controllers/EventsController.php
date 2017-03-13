@@ -58,7 +58,7 @@ class EventsController extends Controller
         $event['reference'] = str_random(7);
 //        dd($event);
         Event::create($event);
-        flash('You have successfully created and Event.', 'success');
+        flash('You have successfully created an Event.', 'success');
 
         $events = Event::get();
         return view('events.index', compact(['events']));

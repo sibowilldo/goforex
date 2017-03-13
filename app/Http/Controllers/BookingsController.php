@@ -144,7 +144,7 @@ class BookingsController extends Controller
             return view('events.show', compact(['event', 'bookings']));
 
         }else {
-            flash("There booking you are searching for doesn't exist.", "danger");
+            flash("The booking you are searching for doesn't exist.", "danger");
         }
     }
 }
