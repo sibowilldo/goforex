@@ -35,10 +35,10 @@ class Event extends Model
      * @var array
      */
     public static $statuses = [
-        'FullyBooked' => 'FullyBooked',
-        'Pending' => 'Pending',
-        'Open' => 'Open',
-        'Closed' => 'Closed',
+        'FullyBooked' => 'FullyBooked', //red
+        'Pending' => 'Pending', //orange
+        'Open' => 'Open', // green
+        'Closed' => 'Closed', // grey
     ];
 
     // A Booking belongsTo User
@@ -48,5 +48,10 @@ class Event extends Model
     }
 
 
+    // A Booking belongsTo User
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking');
+    }
 
 }

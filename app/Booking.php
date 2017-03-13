@@ -39,4 +39,10 @@ class Booking extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    // A Booking belongsTo an Event
+    public function event()
+    {
+        return $this->belongsTo('App\Event');
+    }
 }
