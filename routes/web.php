@@ -40,3 +40,12 @@ Route::get('/home', 'HomeController@index');
 // Verification function of HomeController
 Route::post('/verification', 'HomeController@verification');
 
+//ajax for knobs
+Route::get('/ajax/knobs', ['as'=>'ajax.knobs', 'uses' => 'HomeController@updateKnobs']);
+
+// Profile Resource routes
+Route::resource('/profile',  'UsersController');
+
+// Password update
+Route::patch('/password/update/', ['as' => 'password.update', 'uses' => 'UsersController@updatePassword']);
+
