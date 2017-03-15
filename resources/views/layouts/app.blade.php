@@ -25,6 +25,10 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
 {{ Html::style('css/skins/skin-gold.css') }}
+<!-- SweetAlert -->
+{!! Html::script('plugins/sweetalert/sweetalert-dev.js') !!}
+{{ Html::style('plugins/sweetalert/sweetalert.css') }}
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +36,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+@yield('styles')
 
 <!-- Scripts -->
     <script>
@@ -40,6 +44,15 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <style>
+      *{
+        -moz-transform-origin: inherit !important;
+        -webkit-transform-origin: inherit !important;
+        -o-transform-origin: inherit !important;
+        -ms-transform-origin: inherit !important;
+        transform-origin: inherit !important;
+      }    
+    </style>
 </head>
 <body class="hold-transition skin-gold sidebar-mini">
 
@@ -83,7 +96,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ route('profile.index') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -142,7 +155,6 @@
     </section>
     <!-- /.sidebar -->
   </aside>
-
     @yield('content')
     
 
@@ -170,17 +182,8 @@
 
 @yield('javascript')
 
-
-
 <script type="text/javascript" language="javascript">
-    $('div.alert').not('.alert-important').delay(7000).fadeOut(500);
-
-    $( function() {
-        $( "#accordion" ).accordion({
-            collapsible: true
-        });
-    } );
-
+    // $('div.alert').not('.alert-important').delay(7000).fadeOut(500);
 
     $( function() {
         $( "#dialog-make-booking" ).dialog({
