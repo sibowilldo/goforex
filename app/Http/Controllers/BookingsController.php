@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Event;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Mail;
 
 class BookingsController extends Controller
 {
@@ -140,6 +142,31 @@ class BookingsController extends Controller
             $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
 
             flash("Booking approved successfully.", "success");
+
+            $user = User::where('id', $booking->user_id)->first();
+
+            $email = $user->email;
+            $name = $user->username;
+
+            $parameters = array(
+                'username' => $user->username,
+                'event_name' => $event->name,
+                'start_date' => $event->start_date,
+                'end_date' => $event->end_date,
+                'start_time' => $event->start_date,
+                'address' => $event->address,
+                'host' => $event->host,
+                'booking_ref'=> $booking->reference,
+            );
+            // TODO add que
+
+            // Send email to confirm successful registration
+            Mail::send('emails.booking_confirmed', $parameters, function ($message)
+            use ($email, $name) {
+                $message->from('noreply@goforex.com');
+                $message->to($email, $name)->subject('GoForex - Booking Confirmed');
+            });
+
 
             return view('events.show', compact(['event', 'bookings']));
 
