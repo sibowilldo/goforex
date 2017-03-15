@@ -50,9 +50,9 @@
                         <div class="col-md-3">
                           <div class="event-chart">
                             @if(count(explode(',', $event->attendees)) > 0 && explode(',', $event->attendees)[0] != "")
-                              <input type="text" class="knob" value="{{($event->number_of_seats - count(explode(',', $event->attendees)))}}" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
+                              <input id="knob-{{ $event->id }}" type="text" class="knob" value="{{($event->number_of_seats - count(explode(',', $event->attendees)))}}" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
                             @else
-                              <input type="text" class="knob" value="0" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
+                              <input id="knob-{{ $event->id }}" type="text" class="knob" value="0" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
                             @endif 
                               <p class="knob-label">Available Seats</p>
                           </div>                        
@@ -78,11 +78,13 @@
                                 @elseif($event->status_is == 'Open')
                                     @if(in_array(Auth::user()->id,explode(',', $event->attendees)))
                                     @foreach($bookings as $booking)
-                                      @if($booking->event_id == $event->id AND $booking->status_is == 'Paid')
-                                        <span class="btn btn-success" disabled><i class="ion ion-ios-checkmark-outline"></i> Booking Approved</span>
-                                       @elseif($booking->status_is != 'Paid' AND $booking->event_id == $event->id)
-                                        <span class="btn btn-danger" disabled><i class="ion ion-ios-clock-outline"></i> Booking {{ $booking->status_is }}</span>
-                                       @endif
+                                      @if($booking->event_id == $event->id AND $booking->user_id == Auth::id())
+                                        @if($booking->status_is == 'Paid')
+                                          <span class="btn btn-success" disabled><i class="ion ion-ios-checkmark-outline"></i> Booking Approved</span>
+                                        @else
+                                          <span class="btn btn-danger" disabled><i class="ion ion-ios-clock-outline"></i> Booking {{ $booking->status_is }}</span>
+                                        @endif
+                                      @endif
                                     @endforeach
                                     @else
                                         <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
@@ -134,7 +136,7 @@
               <div class="box-body no-padding">
                 <div class="row">
                   <div class="col-md-12 col-sm-12">
-
+                  
                   </div>
                   <!-- /.col -->
                 </div>
@@ -220,5 +222,16 @@
             });
             /* END JQUERY KNOB */
         });
+
+        //update knobs
+        setInterval(function(){
+          if(document.hasFocus()){
+            $.get('/ajax/knobs', function(data){
+              $.each(data.data, function(i, v){
+                $('#knob-'+v.id).val(v.number_of_seats - (v.attendees).split(',').length);
+              });
+            });
+          }
+        }, 3000);
     </script>
 @stop
