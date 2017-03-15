@@ -80,7 +80,7 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/img/small-logo.png" class="user-image" alt="{{ Auth::user()->firstname }}">
+              <img src="img/small-logo.png" class="user-image" alt="{{ Auth::user()->firstname }}">
               <span class="hidden-xs">{{ Auth::user()->firstname }}</span>
             </a>
             <ul class="dropdown-menu">
@@ -119,7 +119,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/img/logo.png" class="/img-circle" alt="User Image">
+          <img src="img/logo.png" class="/img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
