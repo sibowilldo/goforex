@@ -58,7 +58,15 @@
             {{--<li><a href="#Portfolio">Portfolio</a></li>--}}
             <li><a href="#team">Our Team</a></li>
             <li><a href="#contact">Contact</a></li>
+            @if(!Auth::check())
             <li><a href="#contact1">Join / Sign In</a></li>
+            @else
+            <li>
+            <form action="{{route('logout')}}" method="post" role="form" class="form-inline" style="display:inline-block;" >
+                {{ csrf_field() }}
+                <button class="btn btn-warning" type="submit">Logout</button>
+            </form>
+            @endif
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
     </div>
@@ -358,6 +366,8 @@
         <h2>Join GoForex Wealth Creation.</h2>
     </div>
 </section><!--business-talking-end-->
+
+@if(!Auth::check())
 <div class="container">
     <section class="main-section contact" id="contact1">
 
@@ -371,7 +381,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}" required autofocus placeholder="Email Address">
+                            <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}" required placeholder="Email Address">
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -417,7 +427,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}" required autofocus placeholder="Email Address">
+                        <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}" required placeholder="Email Address">
                         @if ($errors->has('email'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -439,7 +449,7 @@
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
                         <input id="firstname" type="text" class="form-control input-text" name="firstname"
-                                value="{{ old('firstname') }}" required autofocus  placeholder="First Name">
+                                value="{{ old('firstname') }}" required  placeholder="First Name">
 
                         @if ($errors->has('firstname'))
                             <span class="help-block">
@@ -450,7 +460,7 @@
 
                     <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
                         <input id="lastname" type="text" class="form-control input-text" name="lastname"
-                                value="{{ old('lastname') }}" required autofocus placeholder="Last Name ">
+                                value="{{ old('lastname') }}" required placeholder="Last Name ">
 
                         @if ($errors->has('lastname'))
                             <span class="help-block">
@@ -461,7 +471,7 @@
 
                     <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                         <input id="username" type="text" class="form-control input-text" name="username"
-                                value="{{ old('username') }}" required autofocus placeholder="Username">
+                                value="{{ old('username') }}" required placeholder="Username">
 
                         @if ($errors->has('username'))
                             <span class="help-block">
@@ -483,7 +493,7 @@
 
                     <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
                         <input id="location" type="text" class="form-control input-text" name="location"
-                                value="{{ old('location') }}" required autofocus placeholder="Location">
+                                value="{{ old('location') }}" required placeholder="Location">
 
                         @if ($errors->has('location'))
                             <span class="help-block">
@@ -527,7 +537,7 @@
         </div>
     </section>
 </div>
-
+@endif
 <footer class="footer">
     <div class="container">
         <div class="footer-logo"><a href="#"><img src="img/footer-logo.png" alt=""></a></div>
