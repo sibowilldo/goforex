@@ -7,7 +7,7 @@ use App\Event;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class BookingsController extends Controller
 {
@@ -57,12 +57,31 @@ class BookingsController extends Controller
         }
 
 
-        Booking::create(['user_id'=>Auth::user()->id,
+        $booking = Booking::create(['user_id'=>Auth::user()->id,
                         'event_id'=>$eventId,
                         'reference'=>'BO'.str_random(9),
                         'status_is'=>'Pending']);
 
+
+        $email = Auth::user()->email;
+        $name = Auth::user()->username;
+
+        $parameters = array(
+            'username' => Auth::user()->username,
+            'booking_ref' => $booking->reference,
+            'booking_date_time' => $booking->created_date,
+        );
+
+        // Send email to show booking has been created
+        Mail::send('emails.booking_created', $parameters, function ($message)
+        use ($email, $name) {
+            $message->from('noreply@goforex.co.za');
+            $message->to($email, $name)->subject('GoForex - Booking Created');
+        });
+
         flash("You have successfully created a booking, please make payment to get approval.","success");
+
+
         return redirect('/home');
     }
 

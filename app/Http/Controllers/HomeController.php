@@ -71,7 +71,7 @@ class HomeController extends Controller
             // Send email to confirm successful registration
             Mail::send('emails.verified', $parameters, function ($message)
             use ($email, $name) {
-                $message->from('noreply@innobrand.co.za');
+                $message->from('noreply@goforex.co.za');
                 $message->to($email, $name)->subject('GoForex Profile Complete');
             });
             flash('Your profile has been verified and is complete!', 'success');
