@@ -43,7 +43,7 @@ class BookingsController extends Controller
         $attendees = explode(',', $event->attendees);
         if(count($attendees) > 0 && $attendees[0] != ""){
             if (count($attendees) == $event->number_of_seats || $event->status_is == "FullyBooked"){
-                flash("Sorry this event is fully booked.","danger");
+                flash("Sorry this event is fully booked.","error");
                 return redirect('/home');
             }else{
                 array_push($attendees, Auth::user()->id);
@@ -144,7 +144,7 @@ class BookingsController extends Controller
             return view('events.show', compact(['event', 'bookings']));
 
         }else {
-            flash("The booking you are searching for doesn't exist.", "danger");
+            flash("The booking you are searching for doesn't exist.", "error");
         }
     }
 }

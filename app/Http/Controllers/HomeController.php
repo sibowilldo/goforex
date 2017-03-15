@@ -76,7 +76,7 @@ class HomeController extends Controller
             });
             flash('Your profile has been verified and is complete!', 'success');
         } else {
-            flash('The code you submitted is incorrect, please try again.', 'danger');
+            flash('The code you submitted is incorrect, please try again.', 'error');
         }
 
         return redirect('/home');
@@ -121,4 +121,9 @@ class HomeController extends Controller
         return $response;
     }
 
+    public function updateKnobs(Request $request)
+    {
+        $events = Event::where('status_is', 'Open')->select('id', 'number_of_seats', 'attendees')->get();
+        return response()->json(['status'=> 'OK', 'data' => $events]);
+    }
 }

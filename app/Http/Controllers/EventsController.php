@@ -127,7 +127,7 @@ class EventsController extends Controller
             $events = Event::get();
             return view('events.index', compact(['events']));
         }else{
-            flash('You can only delete an event that\'s Pending', 'danger');
+            flash('You can only delete an event that\'s Pending', 'error');
         }
     }
 
@@ -138,7 +138,7 @@ class EventsController extends Controller
             $event->update(['status_is'=>'Open']);
             flash('Event is now open and members can book it!', 'success');
         }else{
-            flash('The event you are looking for is invalid.', 'danger');
+            flash('The event you are looking for is invalid.', 'error');
         }
 
         $events = Event::get();
