@@ -193,4 +193,57 @@ class BookingsController extends Controller
             flash("The booking you are searching for doesn't exist.", "error");
         }
     }
+
+
+    /**
+     * Booking declined.
+     *
+     * @param  \App\Booking  $booking
+     * @return \Illuminate\Http\Response
+     */
+    public function decline($bookingId)
+    {
+        //
+        $booking = Booking::where('id', $bookingId)->first();
+        if ($booking){
+            $user = User::where('id', $booking->user_id)->first();
+            $booking_ref = $booking->reference;
+
+            $event = Event::where('id', $booking->event_id)->first();
+
+            $attendees = explode(',', $event->attendees);
+
+            unset($attendees[$user->id]);
+
+            $event->update(['attendees'=>implode(',', $attendees),
+                            ]);
+
+            $booking->delete();
+
+            flash("Booking has been declined successfully.", "success");
+
+            $email = $user->email;
+            $name = $user->username;
+
+            $parameters = array(
+                'username' => $user->username,
+                'booking_ref'=> $booking_ref,
+            );
+            // TODO add que
+
+            // Send email to confirm successful registration
+            Mail::send('emails.booking_declined', $parameters, function ($message)
+            use ($email, $name) {
+                $message->from('noreply@goforex.com');
+                $message->to($email, $name)->subject('GoForex - Booking Declined');
+            });
+
+
+            return view('events.show', compact(['event', 'bookings']));
+
+        }else {
+            flash("The booking you are searching for doesn't exist.", "error");
+        }
+    }
+
 }
