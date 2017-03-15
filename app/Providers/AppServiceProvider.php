@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use  Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Schema;
+use Validator;
+use App\Http\Validators\HashValidator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+        
+        Validator::resolver(function($translator, $data, $rules, $messages) {
+            return new HashValidator($translator, $data, $rules, $messages);
+        });
     }
 
     /**
