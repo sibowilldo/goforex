@@ -142,7 +142,7 @@
                                     <tr>
                                         <td>{{ $booking->reference }}</td>
                                         <td>{{ $booking->user->username }}</td>
-                                        <td><img class="zoomTarget" data-targetsize="0.8" data-duration="600" style="width: 15%;height: 15%" src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"/></td>
+                                        <td style="width: 30%"><a target="_blank" href="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"><img class="elevatezoom" style="width: 100%;height: auto" src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}" data-zoom-image="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"/></a></td>
                                         <td>{{ $booking->status_is }}</td>
                                         <td>{{ $booking->created_at }}</td>
                                         <td>
