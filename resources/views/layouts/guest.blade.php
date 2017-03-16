@@ -38,7 +38,7 @@
 <header class="header" id="header"><!--header-start-->
     <div class="container">
         <figure class="logo animated fadeInDown delay-07s">
-            <a href="#"><img src="img/logo.png" alt=""></a>
+            <a href="#" style="margin: 15px !important;"><img src="img/logo.png" alt="" style="width: 120%;height: auto;"></a>
         </figure>
         <h1 class="animated fadeInDown delay-07s">Welcome To GoForex Wealth Creation</h1>
         <ul class="we-create animated fadeInUp delay-1s">
@@ -54,7 +54,7 @@
             <li><a href="#header">Home</a></li>
             <li><a href="#service">Vision</a></li>
             <li><a href="#client">About Us</a></li>
-            <li class="small-logo"><a href="#header"><img src="img/small-logo.png" alt=""></a></li>
+            <li class="small-logo"><a href="#header"><img src="img/All-Black-Bull-Shield-LOGO-1.png" alt=""></a></li>
             {{--<li><a href="#Portfolio">Portfolio</a></li>--}}
             <li><a href="#team">Our Team</a></li>
             <li><a href="#contact">Contact</a></li>
