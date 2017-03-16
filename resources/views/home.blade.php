@@ -68,6 +68,7 @@
                                   <strong>Ends</strong> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }} <br>
                                   <strong>Location</strong> {{ $event->address }}
                                 </span>
+                              <br/>
                             <p class="pull-right">
                                <a href="{{ url('view-event', $event->id) }}" class="btn btn-default"
                                 rel="tooltip" title="View">
@@ -99,6 +100,7 @@
                           </div>                        
                         </div>
                       </div>
+                          <hr>
                       </li>
                       <!-- /.item -->
                   @endforeach
