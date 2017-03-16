@@ -208,8 +208,15 @@ color: #fff;
 	color: #7cc576;
 }
 
-.small-logo{ 
-	padding:0 32px;
+.small-logo{
+	padding:0px;
+}
+.small-logo a {
+	margin:0 0;
+}
+
+.small-logo a img{
+	width: 70px;
 }
 
 .main-section{

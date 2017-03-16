@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Event;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookingsController extends Controller
 {
@@ -55,12 +57,31 @@ class BookingsController extends Controller
         }
 
 
-        Booking::create(['user_id'=>Auth::user()->id,
+        $booking = Booking::create(['user_id'=>Auth::user()->id,
                         'event_id'=>$eventId,
                         'reference'=>'BO'.str_random(9),
                         'status_is'=>'Pending']);
 
+
+        $email = Auth::user()->email;
+        $name = Auth::user()->username;
+
+        $parameters = array(
+            'username' => Auth::user()->username,
+            'booking_ref' => $booking->reference,
+            'booking_date_time' => $booking->created_date,
+        );
+
+        // Send email to show booking has been created
+        Mail::send('emails.booking_created', $parameters, function ($message)
+        use ($email, $name) {
+            $message->from('noreply@goforex.co.za');
+            $message->to($email, $name)->subject('GoForex - Booking Created');
+        });
+
         flash("You have successfully created a booking, please make payment to get approval.","success");
+
+
         return redirect('/home');
     }
 
@@ -141,10 +162,93 @@ class BookingsController extends Controller
 
             flash("Booking approved successfully.", "success");
 
+            $user = User::where('id', $booking->user_id)->first();
+
+            $email = $user->email;
+            $name = $user->username;
+
+            $parameters = array(
+                'username' => $user->username,
+                'event_name' => $event->name,
+                'start_date' => $event->start_date,
+                'end_date' => $event->end_date,
+                'start_time' => $event->start_date,
+                'address' => $event->address,
+                'host' => $event->host,
+                'booking_ref'=> $booking->reference,
+            );
+            // TODO add que
+
+            // Send email to confirm successful registration
+            Mail::send('emails.booking_confirmed', $parameters, function ($message)
+            use ($email, $name) {
+                $message->from('noreply@goforex.com');
+                $message->to($email, $name)->subject('GoForex - Booking Confirmed');
+            });
+
+
             return view('events.show', compact(['event', 'bookings']));
 
         }else {
             flash("The booking you are searching for doesn't exist.", "error");
         }
     }
+
+
+    /**
+     * Booking declined.
+     *
+     * @param  \App\Booking  $booking
+     * @return \Illuminate\Http\Response
+     */
+    public function decline($bookingId)
+    {
+        //
+        $booking = Booking::where('id', $bookingId)->first();
+        if ($booking){
+            $user = User::where('id', $booking->user_id)->first();
+            $booking_ref = $booking->reference;
+
+            $event = Event::where('id', $booking->event_id)->first();
+
+            $attendees = explode(',', $event->attendees);
+
+            if (($key = array_search($user->id, $attendees)) !== false) {
+                unset($attendees[$key]);
+            }
+
+            $event->update(['attendees'=>implode(',', $attendees),
+                            ]);
+
+            $booking->delete();
+
+            flash("Booking has been declined successfully.", "success");
+
+            $email = $user->email;
+            $name = $user->username;
+
+            $parameters = array(
+                'username' => $user->username,
+                'booking_ref'=> $booking_ref,
+            );
+            // TODO add que
+
+            // Send email to confirm successful registration
+            Mail::send('emails.booking_declined', $parameters, function ($message)
+            use ($email, $name) {
+                $message->from('noreply@goforex.com');
+                $message->to($email, $name)->subject('GoForex - Booking Declined');
+            });
+
+
+            $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
+
+            flash("Booking declined successfully.", "success");
+            return view('events.show', compact(['event', 'bookings']));
+
+        }else {
+            flash("Failed to decline booking.", "error");
+        }
+    }
+
 }

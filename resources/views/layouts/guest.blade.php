@@ -38,7 +38,7 @@
 <header class="header" id="header"><!--header-start-->
     <div class="container">
         <figure class="logo animated fadeInDown delay-07s">
-            <a href="#"><img src="img/logo.png" alt=""></a>
+            <a href="#" style="margin: 15px !important;"><img src="img/logo.png" alt="" style="width: auto;height: auto;"></a>
         </figure>
         <h1 class="animated fadeInDown delay-07s">Welcome To GoForex Wealth Creation</h1>
         <ul class="we-create animated fadeInUp delay-1s">
@@ -54,18 +54,19 @@
             <li><a href="#header">Home</a></li>
             <li><a href="#service">Vision</a></li>
             <li><a href="#client">About Us</a></li>
-            <li class="small-logo"><a href="#header"><img src="img/small-logo.png" alt=""></a></li>
+            <li class="small-logo"><a href="#header"><img src="img/All-Black-Bull-Shield-LOGO-1.png" alt=""></a></li>
             {{--<li><a href="#Portfolio">Portfolio</a></li>--}}
             <li><a href="#team">Our Team</a></li>
             <li><a href="#contact">Contact</a></li>
             @if(!Auth::check())
-            <li><a href="#contact1">Join / Sign In</a></li>
+                <li><a href="#contact1">Join / Sign In</a></li>
             @else
-            <li>
-            <form action="{{route('logout')}}" method="post" role="form" class="form-inline" style="display:inline-block;" >
-                {{ csrf_field() }}
-                <button class="btn btn-warning" type="submit">Logout</button>
-            </form>
+                <li>
+                    <form action="{{route('logout')}}" method="post" role="form" class="form-inline"
+                          style="display:inline-block;">
+                        {{ csrf_field() }}
+                        <button class="btn btn-warning" type="submit">Logout</button>
+                    </form>
             @endif
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
@@ -169,7 +170,8 @@
                 </div>
                 <h3 class="wow fadeInDown delay-03s">Ashley Hastibeer</h3>
                 <span class="wow fadeInDown delay-03s">Mentor & Managing Director</span>
-                <p class="wow fadeInDown delay-03s">A professional mentor who has prided himself in offering the most honest and relevant training and mentorship to the forex trading community.</p>
+                <p class="wow fadeInDown delay-03s">A professional mentor who has prided himself in offering the most
+                    honest and relevant training and mentorship to the forex trading community.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader  wow fadeInDown delay-06s">
@@ -184,7 +186,8 @@
                 </div>
                 <h3 class="wow fadeInDown delay-06s">Andile</h3>
                 <span class="wow fadeInDown delay-06s">Mentor & Managing Director</span>
-                <p class="wow fadeInDown delay-06s">Teaches and makesure best practise is applied when offering the best and reliable ways of trading the forex market.</p>
+                <p class="wow fadeInDown delay-06s">Teaches and makesure best practise is applied when offering the best
+                    and reliable ways of trading the forex market.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-09s">
@@ -200,23 +203,8 @@
                 <h3 class="wow fadeInDown delay-09s">Joel</h3>
                 <span class="wow fadeInDown delay-09s">Sales and Marketing Director</span>
                 <p class="wow fadeInDown delay-09s">
-                    Ensures all marketing posters as well as classes advertised in the specified area in which we are teaching.</p>
-            </div>
-            <div class="team-leader-box">
-                <div class="team-leader wow fadeInDown delay-09s">
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="img/team-leader-pic3.jpg" alt="">
-                    <ul>
-                        <li><a href="#" class="fa-twitter"></a></li>
-                        <li><a href="#" class="fa-facebook"></a></li>
-                        <li><a href="#" class="fa-pinterest"></a></li>
-                        <li><a href="#" class="fa-google-plus"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-09s">Thesan
-                </h3>
-                <span class="wow fadeInDown delay-09s">Accounts & Director</span>
-                <p class="wow fadeInDown delay-09s">Ensuring the business has smooth capital flows either going out or coming into the business.</p>
+                    Ensures all marketing posters as well as classes advertised in the specified area in which we are
+                    teaching.</p>
             </div>
         </div>
     </div>
@@ -368,175 +356,182 @@
 </section><!--business-talking-end-->
 
 @if(!Auth::check())
-<div class="container">
-    <section class="main-section contact" id="contact1">
+    <div class="container">
+        <section class="main-section contact" id="contact1">
 
-        <div class="row">
-            <div class="col-lg-6 col-sm-7 wow fadeInLeft">
-                <form class="form" method="POST" action="{{ route('login') }}">
-                    {{ csrf_field() }}
+            <div class="row">
+                <div class="col-lg-6 col-sm-7 wow fadeInLeft">
+                    <form class="form" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
 
-                    <div>
-                        <h1 class="animated fadeInDown delay-07s">Login</h1><br/>
-                    </div>
+                        <div>
+                            <h1 class="animated fadeInDown delay-07s">Login</h1><br/>
+                        </div>
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}" required placeholder="Email Address">
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input id="email" type="email" class="form-control input-text" name="email"
+                                   value="{{ old('email') }}" required placeholder="Email Address">
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                             @endif
-                    </div>
+                        </div>
 
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input id="password" type="password" class="form-control input-text" name="password" required placeholder="Password">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <input id="password" type="password" class="form-control input-text" name="password"
+                                   required placeholder="Password">
 
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                             @endif
-                    </div>
+                        </div>
 
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                </label>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        Remember Me
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="input-btn">Login</button>
-                    </div>
-                </form>
+                        <div class="text-center">
+                            <button type="submit" class="input-btn">Login</button>
+                        </div>
+                    </form>
 
-                <br/>
-                <hr/>
-                <br/>
-                <hr/>
+                    <br/>
+                    <hr/>
+                    <br/>
+                    <hr/>
 
-                <form class="form" method="POST" action="{{ route('password.email') }}">
-                    {{ csrf_field() }}
+                    <form class="form" method="POST" action="{{ route('password.email') }}">
+                        {{ csrf_field() }}
 
-                    <div>
-                        <h1 class="animated fadeInDown delay-07s">Forgot Password</h1><br/>
-                    </div>
+                        <div>
+                            <h1 class="animated fadeInDown delay-07s">Forgot Password</h1><br/>
+                        </div>
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}" required placeholder="Email Address">
-                        @if ($errors->has('email'))
-                            <span class="help-block">
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input id="email" type="email" class="form-control input-text" name="email"
+                                   value="{{ old('email') }}" required placeholder="Email Address">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="input-btn"> Send Reset Password Link</button>
-                    </div>
-                </form>
+                        <div class="text-center">
+                            <button type="submit" class="input-btn"> Send Reset Password Link</button>
+                        </div>
+                    </form>
 
-            </div>
-            <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
-                <div id="sendmessage">Your message has been sent. Thank you!</div>
-                <div id="errormessage"></div>
-                <h1 class="animated fadeInDown delay-07s">Join Us Now</h1><br/>
-                <form role="form" class="contactForm" method="POST" action="{{ route('register') }}">
-                    {{ csrf_field() }}
-                    <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                        <input id="firstname" type="text" class="form-control input-text" name="firstname"
-                                value="{{ old('firstname') }}" required  placeholder="First Name">
+                </div>
+                <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="errormessage"></div>
+                    <h1 class="animated fadeInDown delay-07s">Join Us Now</h1><br/>
+                    <form role="form" class="contactForm" method="POST" action="{{ route('register') }}">
+                        {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
+                            <input id="firstname" type="text" class="form-control input-text" name="firstname"
+                                   value="{{ old('firstname') }}" required placeholder="First Name">
 
-                        @if ($errors->has('firstname'))
-                            <span class="help-block">
+                            @if ($errors->has('firstname'))
+                                <span class="help-block">
                                     <strong>{{ $errors->first('firstname') }}</strong>
                                 </span>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                        <input id="lastname" type="text" class="form-control input-text" name="lastname"
-                                value="{{ old('lastname') }}" required placeholder="Last Name ">
+                        <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                            <input id="lastname" type="text" class="form-control input-text" name="lastname"
+                                   value="{{ old('lastname') }}" required placeholder="Last Name ">
 
-                        @if ($errors->has('lastname'))
-                            <span class="help-block">
+                            @if ($errors->has('lastname'))
+                                <span class="help-block">
                                     <strong>{{ $errors->first('lastname') }}</strong>
                                 </span>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                        <input id="username" type="text" class="form-control input-text" name="username"
-                                value="{{ old('username') }}" required placeholder="Username">
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <input id="username" type="text" class="form-control input-text" name="username"
+                                   value="{{ old('username') }}" required placeholder="Username">
 
-                        @if ($errors->has('username'))
-                            <span class="help-block">
+                            @if ($errors->has('username'))
+                                <span class="help-block">
                                     <strong>{{ $errors->first('username') }}</strong>
                                 </span>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="form-group{{ $errors->has('cell') ? ' has-error' : '' }}">
-                        <input id="cell" type="text" class="form-control input-text" name="cell" value="{{ old('cell') }}"
-                                required autofocu placeholder="Cell Number"s>
+                        <div class="form-group{{ $errors->has('cell') ? ' has-error' : '' }}">
+                            <input id="cell" type="text" class="form-control input-text" name="cell"
+                                   value="{{ old('cell') }}"
+                                   required autofocu placeholder="Cell Number" s>
 
-                        @if ($errors->has('cell'))
-                            <span class="help-block">
+                            @if ($errors->has('cell'))
+                                <span class="help-block">
                                     <strong>{{ $errors->first('cell') }}</strong>
                                 </span>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
-                        <input id="location" type="text" class="form-control input-text" name="location"
-                                value="{{ old('location') }}" required placeholder="Location">
+                        <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
+                            <input id="location" type="text" class="form-control input-text" name="location"
+                                   value="{{ old('location') }}" required placeholder="Location">
 
-                        @if ($errors->has('location'))
-                            <span class="help-block">
+                            @if ($errors->has('location'))
+                                <span class="help-block">
                                     <strong>{{ $errors->first('location') }}</strong>
                                 </span>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input id="email" type="email" class="form-control input-text" name="email" value="{{ old('email') }}"
-                                required placeholder="Email Address">
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input id="email" type="email" class="form-control input-text" name="email"
+                                   value="{{ old('email') }}"
+                                   required placeholder="Email Address">
 
-                        @if ($errors->has('email'))
-                            <span class="help-block">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <input id="password" type="password" class="form-control input-text" name="password" required placeholder="Password">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <input id="password" type="password" class="form-control input-text" name="password"
+                                   required placeholder="Password">
 
-                        @if ($errors->has('password'))
-                            <span class="help-block">
+                            @if ($errors->has('password'))
+                                <span class="help-block">
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="form-group">
+                        <div class="form-group">
                             <input id="password-confirm" type="password" class="form-control input-text"
-                                    name="password_confirmation" required placeholder="Password Confirm">
-                    </div>
+                                   name="password_confirmation" required placeholder="Password Confirm">
+                        </div>
 
 
-                    <div class="text-center">
-                        <button type="submit" class="input-btn">Join</button>
-                    </div>
-                </form>
+                        <div class="text-center">
+                            <button type="submit" class="input-btn">Join</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 @endif
 <footer class="footer">
     <div class="container">
@@ -643,6 +638,16 @@
         });
 
     });
+
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/58c9b1295b89e2149e17c922/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
 
 </script>
 
