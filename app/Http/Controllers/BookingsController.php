@@ -213,7 +213,9 @@ class BookingsController extends Controller
 
             $attendees = explode(',', $event->attendees);
 
-            unset($attendees[$user->id]);
+            if (($key = array_search($user->id, $attendees)) !== false) {
+                unset($attendees[$key]);
+            }
 
             $event->update(['attendees'=>implode(',', $attendees),
                             ]);
@@ -239,10 +241,13 @@ class BookingsController extends Controller
             });
 
 
+            $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
+
+            flash("Booking declined successfully.", "success");
             return view('events.show', compact(['event', 'bookings']));
 
         }else {
-            flash("The booking you are searching for doesn't exist.", "error");
+            flash("Failed to decline booking.", "error");
         }
     }
 

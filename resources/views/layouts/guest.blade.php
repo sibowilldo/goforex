@@ -38,7 +38,7 @@
 <header class="header" id="header"><!--header-start-->
     <div class="container">
         <figure class="logo animated fadeInDown delay-07s">
-            <a href="#" style="margin: 15px !important;"><img src="img/logo.png" alt="" style="width: 120%;height: auto;"></a>
+            <a href="#" style="margin: 15px !important;"><img src="img/logo.png" alt="" style="width: auto;height: auto;"></a>
         </figure>
         <h1 class="animated fadeInDown delay-07s">Welcome To GoForex Wealth Creation</h1>
         <ul class="we-create animated fadeInUp delay-1s">
