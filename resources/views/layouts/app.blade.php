@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'GoForex Wealth Creation') }}</title>
 
     <!-- Styles -->
 {{ Html::style('css/app.css') }}
@@ -28,6 +28,8 @@
 <!-- SweetAlert -->
 {!! Html::script('plugins/sweetalert/sweetalert-dev.js') !!}
 {{ Html::style('plugins/sweetalert/sweetalert.css') }}
+<!-- Animate CSS-->
+{{ Html::style('css/knight/animate.css') }}
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -60,108 +62,149 @@
     @include('flash::message')
     <div class="wrapper">
 
-  <header class="main-header">
+    <header class="main-header">
 
-    <!-- Logo -->
-    <a href="/home" class="logo">
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg ogo-mini">GoForex</span>
-    </a>
-
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
+      <!-- Logo -->
+      <a href="/home" class="logo">
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg ogo-mini">GoForex</span>
       </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/img/small-logo.png" class="user-image" alt="{{ Auth::user()->firstname }}">
-              <span class="hidden-xs">{{ Auth::user()->firstname }}</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="/img/small-logo.png" class="/img-circle" alt="User Image">
 
-                <p>
-                  {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
-                  <small>Member since: {{ Auth::user()->created_at->formatLocalized('%A, %d %B %Y') }}</small>
-                </p>
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="{{ route('profile.index') }}" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-default btn-flat">Sign out</button>
-                    </form>
-                </div>
-              </li>
-            </ul>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+
+            <!-- Notifications: style can be found in dropdown.less -->
+            <li class="dropdown notifications-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="notification_count">
+                <i class="fa fa-bell"></i>
+                <span class="label label-info"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header" id="notification_count_message"></li>
+                @if(session()->has('unread-notifications:'.Auth::id()))
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                  @foreach(session('unread-notifications:'.Auth::id()) as $item)
+                    <li>
+                      <a href="{{ url('/notifications/'.$item->id ) }}">
+                        <i class="fa fa-{{ $item->type == 'notification' ? 'bell' : 'envelope' }} text-aqua"></i> {{ $item->message }}
+                      </a>
+                    </li>
+                  @endforeach
+                  </ul>
+                </li>
+                  @endif
+                <li class="footer bg-gray-light"><a href="{{url('notifications')}}">View all</a></li>
+              </ul>
+            </li>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="{{ url('/img/small-logo.png') }}" class="user-image" alt="{{ Auth::user()->firstname }}">
+                <span class="hidden-xs">{{ Auth::user()->firstname }}</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="{{ url('/img/small-logo.png') }}" class="/img-circle" alt="User Image">
+
+                  <p>
+                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+                    <small>Member since: {{ Auth::user()->created_at->formatLocalized('%A, %d %B %Y') }}</small>
+                  </p>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="{{ route('profile.index') }}" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-default btn-flat">Sign out</button>
+                      </form>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="{{ url('/img/logo.png') }}" class="/img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> {{ Auth::user()->status_is }}</a>
+          </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+          <li class="header">Main Navigation</li>
+          <li>
+            <a href="/home">
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            </a>
+          </li>
+          @if(Auth::user()->hasRole('admin'))
+          <li>
+            <a href="{{ url('/events')}}">
+              <i class="fa fa-calendar-o"></i>
+              <span>Events</span>
+            </a>
+          </li>
+          @endif
+          <li>
+            <a href="{{ url('/profile')}}">
+              <i class="fa fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('/notifications')}}">
+              <i class="fa fa-bell"></i>
+              <span>Notifications</span>
+            </a>
           </li>
         </ul>
-      </div>
-
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="/img/logo.png" class="/img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> {{ Auth::user()->status_is }}</a>
-        </div>
-      </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="header">Main Navigation</li>
-        <li>
-          <a href="/home">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ url('/events')}}">
-            <i class="fa fa-calendar"></i>
-            <span>Events</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+    
     @yield('content')
     
 
-  <footer class="main-footer">
-    <strong>Copyright &copy; {{ \Carbon\Carbon::now()->year  }} <a href="/">GoForex</a> Wealth Creation.</strong> All rights
-    reserved.
-  </footer>
+    <footer class="main-footer">
+      <strong>Copyright &copy; {{ \Carbon\Carbon::now()->year  }} <a href="/">GoForex</a> Wealth Creation.</strong> All rights
+      reserved.
+    </footer>
     
 </div>
 <!-- ./wrapper -->
@@ -172,19 +215,36 @@
 <!-- jQuery 2.2.3 -->
 {!! Html::script('plugins/jQuery/jquery-2.2.3.min.js') !!}
 
-{!! Html::script('/js/app.js') !!}
-<!-- AdminLTE App -->
-{!! Html::script('js/app.min.js') !!}
-{!! Html::script('/js/jquery-ui.min.js') !!}
+{!! Html::script('js/app.js') !!}
+
+{!! Html::script('js/jquery-ui.min.js') !!}
 <!-- Bootstrap 3.3.6 -->
 {!! Html::script('bootstrap/js/bootstrap.min.js') !!}
-{!! Html::script('/js/jquery.zoomooz.min.js') !!}
+<!-- Slim Scroll -->
+{!! Html::script('plugins/slimScroll/jquery.slimscroll.min.js') !!}
+<!-- Elevate Zoom -->
+{!! Html::script('plugins/elevatezoom/jquery.elevatezoom.min.js') !!}
 
 @yield('javascript')
 
 <script type="text/javascript" language="javascript">
     // $('div.alert').not('.alert-important').delay(7000).fadeOut(500);
+    $(document).ready(function(){
+      $(".elevatezoom").elevateZoom({scrollZoom : true});
+    });
 
+    $(function(){
+       $.get('/unread/notifications', function(data){
+              $('#notification_count_message').text('You have ' + data.data.length + (data.data.length > 1 ? ' new notifications' : ' new notification'));
+              if(data.data.length > 0){
+                $('#notification_count i').addClass('animated infinite tada');
+              console.log(data.data.length);
+              }else{
+                $('#notification_count i').removeClass('animated infinite tada');
+              }
+              $('#notification_count span').text(data.data.length);
+        });
+    });
     $( function() {
         $( "#dialog-make-booking" ).dialog({
             autoOpen: false,

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\VerifyFormRequest;
 use Auth;
 use App\Event;
+use App\Notification;
 use App\User;
 use Image;
 use Illuminate\Support\Facades\Response;

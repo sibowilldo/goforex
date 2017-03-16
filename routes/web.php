@@ -49,3 +49,15 @@ Route::resource('/profile',  'UsersController');
 // Password update
 Route::patch('/password/update/', ['as' => 'password.update', 'uses' => 'UsersController@updatePassword']);
 
+// Notifications Resources
+Route::resource('notifications',  'NotificationsController');
+
+// Get Unread Notifications route
+Route::get('/unread/notifications', function () { 
+    $notifications = new App\Notification;
+    $unreadNotifications = $notifications->where('user_id', Auth::user()->id)->where('viewed', false)->take(5)->get();
+    
+    session(['unread-notifications:'.Auth::user()->id =>  $unreadNotifications]);
+
+    return response()->json(['status' => 200, 'data' => $unreadNotifications]);
+});
