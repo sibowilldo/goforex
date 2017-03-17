@@ -1,14 +1,6 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="register-box">
-    <div class="register-logo">
-        <div class="header">
-            <img src="img/logo.png" alt="GoForex"><br>
-            <h1 style="color:white" class="animated fadeInDown delay-07s">GoForex</h1>
-
-        </div>
-    </div>
     <!-- /.register-logo -->
     <div class="register-box-body">
         <h3 class="login-box-msg">Reset Password</h3>
@@ -63,5 +55,4 @@
             </div>
         </form>
     </div>
-</div>
 @endsection

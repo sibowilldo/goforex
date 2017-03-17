@@ -25,7 +25,7 @@
                     <h5 class="widget-user-desc">{{ Auth::user()->email }}</h5>
                     </div>
                     <div class="widget-user-image">
-                    <img class="img-circle" src="/img/logo.png" alt="User Avatar">
+                    <img class="img-circle" src="{{ url('img/all-white-bull-shield-logo.png') }}" alt="{{Auth::user()->firstname}}">
                     </div>
                     <div class="box-footer">
                     <div class="row">

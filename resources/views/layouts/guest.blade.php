@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1">
 
     <title>Homepage</title>
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="shortcut icon" href="favicon.ico" type="img/x-icon">
+    <link rel="icon" 
+      type="image/png" 
+      href="{{ url('img/All-Black-Bull-Shield-LOGO-1.png') }}">
 
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600'
@@ -38,7 +39,7 @@
 <header class="header" id="header"><!--header-start-->
     <div class="container">
         <figure class="logo animated fadeInDown delay-07s">
-            <a href="#" style="margin: 15px !important;"><img src="img/logo.png" alt="" style="width: auto;height: auto;"></a>
+           <img src="{{ url('img/full-logo-white.png')}}" alt="{{ config('app.name') }}">
         </figure>
         <h1 class="animated fadeInDown delay-07s">Welcome To GoForex Wealth Creation</h1>
         <ul class="we-create animated fadeInUp delay-1s">
@@ -62,10 +63,9 @@
                 <li><a href="#contact1">Join / Sign In</a></li>
             @else
                 <li>
-                    <form action="{{route('logout')}}" method="post" role="form" class="form-inline"
+                    <form action="{{url('/home')}}" method="get" role="form" class="form-inline"
                           style="display:inline-block;">
-                        {{ csrf_field() }}
-                        <button class="btn btn-warning" type="submit">Logout</button>
+                        <button class="btn btn-warning" type="submit">Dashboard</button>
                     </form>
             @endif
         </ul>
@@ -535,7 +535,7 @@
 @endif
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><a href="#"><img src="img/footer-logo.png" alt=""></a></div>
+        <div class="footer-logo"><a href="#"><img src="{{ url('img/light-logo.png') }}" alt=""></a></div>
         <span class="copyright">&copy; Knight Theme. All Rights Reserved</span>
         <div class="credits">
             <!--

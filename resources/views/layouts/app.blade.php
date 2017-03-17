@@ -9,27 +9,28 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'GoForex Wealth Creation') }}</title>
+    <link rel="icon" type="image/png" href="{{ url('img/All-Black-Bull-Shield-LOGO-1.png') }}">
 
     <!-- Styles -->
-{{ Html::style('css/app.css') }}
-{{ Html::style('css/font-awesome.min.css') }}
-{{ Html::style('css/jquery-ui.css') }}
-  <!-- Bootstrap 3.3.6 -->
-{{ Html::style('bootstrap/css/bootstrap.min.css') }}
-  <!-- Ionicons -->
-{{ Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') }}
-  <!-- jvectormap -->
-{{ Html::style('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}
-  <!-- Theme style -->
-{{ Html::style('css/AdminLTE.min.css') }}
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-{{ Html::style('css/skins/skin-gold.css') }}
-<!-- SweetAlert -->
-{!! Html::script('plugins/sweetalert/sweetalert-dev.js') !!}
-{{ Html::style('plugins/sweetalert/sweetalert.css') }}
-<!-- Animate CSS-->
-{{ Html::style('css/knight/animate.css') }}
+    {{ Html::style('css/app.css') }}
+    {{ Html::style('css/font-awesome.min.css') }}
+    {{ Html::style('css/jquery-ui.css') }}
+      <!-- Bootstrap 3.3.6 -->
+    {{ Html::style('bootstrap/css/bootstrap.min.css') }}
+      <!-- Ionicons -->
+    {{ Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') }}
+      <!-- jvectormap -->
+    {{ Html::style('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}
+      <!-- Theme style -->
+    {{ Html::style('css/AdminLTE.min.css') }}
+      <!-- AdminLTE Skins. Choose a skin from the css/skins
+          folder instead of downloading all of them to reduce the load. -->
+    {{ Html::style('css/skins/skin-gold.css') }}
+    <!-- SweetAlert -->
+    {!! Html::script('plugins/sweetalert/sweetalert-dev.js') !!}
+    {{ Html::style('plugins/sweetalert/sweetalert.css') }}
+    <!-- Animate CSS-->
+    {{ Html::style('css/knight/animate.css') }}
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,7 +68,8 @@
       <!-- Logo -->
       <a href="/home" class="logo">
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg ogo-mini">GoForex</span>
+        <span class="logo-mini"><img src="{{ url('/img/All-Black-Bull-Shield-LOGO-1.png') }}" alt="{{ config('app.name') }}" style="height: 40px;"></span>
+        <span class="logo-lg"><img src="{{ url('/img/full-black-and-white-logo.png') }}" alt="{{ config('app.name') }}" style="height: 40px;"></span>
       </a>
 
       <!-- Header Navbar: style can be found in header.less -->
@@ -102,19 +104,19 @@
                   </ul>
                 </li>
                   @endif
-                <li class="footer bg-gray-light"><a href="{{url('notifications')}}">View all</a></li>
+                <li class="footer"><a href="{{url('notifications')}}" class="bg-gray-light">View all</a></li>
               </ul>
             </li>
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ url('/img/small-logo.png') }}" class="user-image" alt="{{ Auth::user()->firstname }}">
+                <img src="{{ Avatar::create(Auth::user()->firstname )->toBase64() }}" class="user-image img-bordered-sm img-circle" alt="{{ Auth::user()->firstname }}">
                 <span class="hidden-xs">{{ Auth::user()->firstname }}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="{{ url('/img/small-logo.png') }}" class="/img-circle" alt="User Image">
+                  <img src="{{ url('img/All-Black-Bull-Shield-LOGO-1.png') }}" class="img-circle" alt="User Image">
 
                   <p>
                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
@@ -147,7 +149,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="{{ url('/img/logo.png') }}" class="/img-circle" alt="User Image">
+            <img src="{{ Avatar::create(Auth::user()->firstname )->toBase64() }}" class="img-bordered img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</p>
@@ -164,6 +166,16 @@
                 </span>
           </div>
         </form>
+        
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" style="">
+          <li>
+            <a href="{{ url('/')}}">
+              <i class="fa fa-home"></i>
+              <span>Main site</span>
+            </a>
+          </li>
+        </ul>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -228,52 +240,8 @@
 @yield('javascript')
 
 <script type="text/javascript" language="javascript">
-    // $('div.alert').not('.alert-important').delay(7000).fadeOut(500);
-    $(document).ready(function(){
-      $(".elevatezoom").elevateZoom({scrollZoom : true});
-    });
-
-    $(function(){
-       $.get('/unread/notifications', function(data){
-              $('#notification_count_message').text('You have ' + data.data.length + (data.data.length > 1 ? ' new notifications' : ' new notification'));
-              if(data.data.length > 0){
-                $('#notification_count i').addClass('animated infinite tada');
-              console.log(data.data.length);
-              }else{
-                $('#notification_count i').removeClass('animated infinite tada');
-              }
-              $('#notification_count span').text(data.data.length);
-        });
-    });
-    $( function() {
-        $( "#dialog-make-booking" ).dialog({
-            autoOpen: false,
-            resizable: false,
-            height: "auto",
-            show: {
-                effect: "blind",
-                duration: 500
-            },
-            hide: {
-                effect: "explode",
-                duration: 500
-            },
-            width: "auto",
-            modal: true,
-            buttons: {
-                "Delete all items": function() {
-                    $( this ).dialog( "close" );
-                },
-                Cancel: function() {
-                    $( this ).dialog( "close" );
-                }
-            }
-        });
-    } );
-
-    $( ".view-event" ).on( "click", function() {
-        $( "#dialog-make-booking" ).dialog( "open" );
-    });
+$(document).ready(function(){$(".elevatezoom").elevateZoom({scrollZoom:!0})});$(function(){$.get('/unread/notifications',function(data){$('#notification_count_message').text('You have '+data.data.length+(data.data.length>1?' new notifications':' new notification'));if(data.data.length>0){$('#notification_count i').addClass('animated infinite tada');console.log('called')}else{$('#notification_count i').removeClass('animated infinite tada')}
+$('#notification_count span').text(data.data.length)})});$(function(){$("#dialog-make-booking").dialog({autoOpen:!1,resizable:!1,height:"auto",show:{effect:"blind",duration:500},hide:{effect:"explode",duration:500},width:"auto",modal:!0,buttons:{"Delete all items":function(){$(this).dialog("close")},Cancel:function(){$(this).dialog("close")}}})});$(".view-event").on("click",function(){$("#dialog-make-booking").dialog("open")})
 </script>
 </body>
 </html>

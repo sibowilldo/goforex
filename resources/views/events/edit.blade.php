@@ -34,3 +34,31 @@
     </section>
 </div>
 @stop
+
+@section('styles')
+  <!-- Bootstrap time Picker -->
+  {!! Html::style('plugins/timepicker/bootstrap-timepicker.min.css') !!}
+  <!-- bootstrap datepicker -->
+  {!! Html::style('plugins/datepicker/datepicker3.css') !!}
+
+@stop
+
+@section('javascript')
+<!-- bootstrap time picker -->
+{!! Html::script('plugins/timepicker/bootstrap-timepicker.min.js') !!}
+<!-- bootstrap date picker -->
+{!! Html::script('plugins/datepicker/bootstrap-datepicker.js') !!}
+<script>
+    //Timepicker
+    $(".timepicker").timepicker({
+      showInputs: false
+    });
+
+    //Date picker
+    $('.eventdatepicker').datepicker({
+        format: 'yyyy/mm/dd',
+        autoclose: true,
+        startDate: '1d'
+    });
+</script>
+@stop

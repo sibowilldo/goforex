@@ -165,7 +165,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-
+        Laravolt\Avatar\ServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
 
@@ -234,6 +234,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
+        'Avatar'    => Laravolt\Avatar\Facade::class,
 
     ],
 

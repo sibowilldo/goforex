@@ -3001,9 +3001,10 @@ a:focus {
 .events-list>.item {
     border-radius: 3px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    background: #fff
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    background: #fff;
+    margin-bottom: 1rem;
 }
 
 .events-list>.item:before,
@@ -5573,13 +5574,16 @@ table.text-center th {
 }
 
 .img-bordered {
-    border: 3px solid #d2d6de;
-    padding: 3px
+    border: 3px solid;
+    border-color: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+    padding: 2px;
 }
 
 .img-bordered-sm {
-    border: 2px solid #d2d6de;
-    padding: 2px
+    border: 2px solid;
+    border-color: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .attachment-block {

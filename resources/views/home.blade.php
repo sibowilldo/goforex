@@ -44,7 +44,8 @@
               <!-- /.box-header -->
               <div class="box-body">
                     <ul class="events-list product-list-in-box">
-                    @foreach($allEvents as $event)  
+                    @foreach($allEvents as $event)
+                    @if($event->status_is == "Open")
                       <li class="item">
                       <div class="row">
                         <div class="col-md-3">
@@ -59,7 +60,7 @@
                         </div>
                         <div class="col-md-9">
                           <div class="event-info">
-                          <span class="label label-success pull-right">{{ $event->status_is }}</span>
+                            <span class="label label-success pull-right">{{ $event->status_is }}</span>
                             <h3 class="event-title no-margin">{{ $event->name }} <br><small>with  <strong>{{ $event->host }}</strong></small>
                             </h3>
                               <p>Event Reference: <span style="text-decoration: underline;" class="copy">{{ $event->reference }}</span></p>
@@ -68,9 +69,15 @@
                                   <strong>Ends</strong> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }} <br>
                                   <strong>Location</strong> {{ $event->address }}
                                 </span>
-                              <br/>
+                          </div>                        
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                            <br>
+                            <br>
                             <p class="pull-right">
-                               <a href="{{ url('view-event', $event->id) }}" class="btn btn-default"
+                              <a href="{{ url('view-event', $event->id) }}" class="btn btn-default"
                                 rel="tooltip" title="View">
                                   <i class="ion ion-ios-calendar-outline"></i> View Event
                               </a>
@@ -97,20 +104,20 @@
                                     @endif
                                 @endif
                             </p>
-                          </div>                        
                         </div>
                       </div>
-                          <hr>
                       </li>
                       <!-- /.item -->
-                  @endforeach
+                    @endif
+                    @endforeach
+                    @if(count($allEvents) < 1)
+                    <li class="item">
+                        <h1 class="text-center text-gray">
+                            <i class="ion ion-ios-information-outline"></i><br>No events to display <br><a href="{{url('events/create')}}" class="btn btn-default btn-sm">Create Event</a>
+                        </h1>
+                    </li>
+                    @endif
                     </ul>
-                <div class="row">
-                  <div class="col-md-12">
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
               </div>
               <!-- ./box-body -->
             </div>
@@ -121,9 +128,9 @@
           <!-- Right col -->
           <div class="col-lg-6 col-md-6 col-sm-12">
             <!-- MAP & BOX PANE -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
-                <h3 class="box-title">Closed Events</h3>
+                <h3 class="box-title">Passed Events</h3>
 
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -135,14 +142,59 @@
                 </div>
               </div>
               <!-- /.box-header -->
-              <div class="box-body no-padding">
-                <div class="row">
-                  <div class="col-md-12 col-sm-12">
-                  
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
+              <div class="box-body">
+                <ul class="events-list product-list-in-box">
+                @foreach($allEvents as $event)
+                    @if($event->status_is == "Closed")
+                        <li class="item bg-gray-light">
+                        <div class="row">
+                            <div class="col-md-3">
+                            <div class="event-chart">
+                                <input type="text" class="knob" value="0" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
+                                <p class="knob-label">Available Seats</p>
+                            </div>                        
+                            </div>
+                            <div class="col-md-9">
+                            <div class="event-info">
+                                <span class="label label-danger pull-right">{{ $event->status_is }}</span>
+                                <h3 class="event-title no-margin">{{ $event->name }} <br><small>with  <strong>{{ $event->host }}</strong></small>
+                                </h3>
+                                <p>Event Reference: <span style="text-decoration: underline;" class="copy">{{ $event->reference }}</span></p>
+                                    <span class="event-description">
+                                    <strong>Started </strong> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->start_time }} <br/>
+                                    <strong>Ended</strong> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }} <br>
+                                    <strong>Location</strong> {{ $event->address }}
+                                    </span>
+                            </div>                        
+                            </div>
+                        </div><br><br>
+                        <div class="row">
+                            <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6 text-center">
+                                    {{ sprintf("%02d", count(explode(',', $event->attendees))) }} <br>
+                                    <strong>ATTENDEES</strong>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    {{ sprintf("%02d", App\Booking::where('event_id', $event->id)->count()) }} <br>
+                                    <strong>BOOKINGS</strong>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="text-right">
+                                <a href="{{ url('view-event', $event->id) }}" class="btn btn-default"
+                                    rel="tooltip" title="View">
+                                    <i class="ion ion-ios-calendar-outline"></i> View Event
+                                </a>
+                                </p>
+                            </div>
+                        </div>
+                        </li>
+                        <!-- /.item -->
+                    @endif
+                @endforeach
+                </ul>
               </div>
               <!-- /.box-body -->
             </div>
@@ -161,6 +213,8 @@
 @section('javascript')
     <!-- jQuery Knob -->
     {!! Html::script('plugins/knob/jquery.knob.js') !!}
+    <!-- ChartJS 1.0.1 -->
+    {!! Html::script('plugins/chartjs/Chart.min.js') !!}"
     <script>
         $(function() {
             /* jQueryKnob */

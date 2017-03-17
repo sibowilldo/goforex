@@ -26,7 +26,7 @@
                                         [ + ]</a></b></h3>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered table-striped">
+                            <table class="ui table table-hover table-striped table-condensed" id="events">
                                 <thead>
                                 <tr>
                                     <th>Reference</th>
@@ -37,7 +37,6 @@
                                     <th>End Date</th>
                                     <th>Status</th>
                                     <th>Created</th>
-                                    <th>Updated</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -60,7 +59,6 @@
                                         <td>{{ $event->end_date }}</td>
                                         <td>{{ $event->status_is }}</td>
                                         <td>{{ $event->created_at }}</td>
-                                        <td>{{ $event->updated_at }}</td>
                                         <td>
                                             <a href="{{ url('events', $event->id) }}" class="btn" rel="tooltip" title="View">
                                                 <b>Show</b>
@@ -91,3 +89,34 @@
     </div>
 
 @endsection
+
+
+@section('styles')
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css">
+
+<style type="text/css">
+    .ui.grid{
+        margin: 0;
+        padding-left: 2.5rem;
+    }
+    .ui.table td {
+        padding: .58571429em .98571429em;
+    }
+    .ui.table td.unread {
+        font-weight: bold;
+    }
+</style>
+@stop
+
+@section('javascript')
+{{ Html::script('https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js') }}
+{{ Html::script('https://cdn.datatables.net/1.10.13/js/dataTables.semanticui.min.js') }}
+{{ Html::script('http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js') }}
+
+<script>
+    $(document).ready(function() {
+        $('#events').DataTable();
+    } );
+</script>
+@stop

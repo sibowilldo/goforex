@@ -2,14 +2,6 @@
 
 @section('content')
 
-<div class="login-box">
-    <div class="login-logo">
-        <div class="header">
-            <img src="/img/logo.png" alt="GoForex"><br>
-            <h1 style="color:white" class="animated fadeInDown delay-07s">GoForex <small>Wealth Creation</small></h1>
-        
-        </div>
-    </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
         <h3 class="login-box-msg">Create new account</h3>
@@ -118,5 +110,4 @@
             </div>
         </form>
     </div>
-</div>
 @endsection
