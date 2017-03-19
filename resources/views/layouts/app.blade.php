@@ -66,7 +66,7 @@
     <header class="main-header">
 
       <!-- Logo -->
-      <a href="/home" class="logo">
+      <a href="{{ url('/home')}}" class="logo">
         <!-- logo for regular state and mobile devices -->
         <span class="logo-mini"><img src="{{ url('/img/All-Black-Bull-Shield-LOGO-1.png') }}" alt="{{ config('app.name') }}" style="height: 40px;"></span>
         <span class="logo-lg"><img src="{{ url('/img/full-black-and-white-logo.png') }}" alt="{{ config('app.name') }}" style="height: 40px;"></span>
@@ -181,7 +181,7 @@
         <ul class="sidebar-menu">
           <li class="header">Main Navigation</li>
           <li>
-            <a href="/home">
+            <a href="{{ url('/home')}}">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
