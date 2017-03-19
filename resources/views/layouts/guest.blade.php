@@ -39,7 +39,7 @@
 <header class="header" id="header"><!--header-start-->
     <div class="container">
         <figure class="logo animated fadeInDown delay-07s">
-           <img src="{{ url('img/full-logo-white.png')}}" alt="{{ config('app.name') }}">
+           <img src="{{ url('img/Full-logo-white.png')}}" alt="{{ config('app.name') }}">
         </figure>
         <h1 class="animated fadeInDown delay-07s">Welcome To GoForex Wealth Creation</h1>
         <ul class="we-create animated fadeInUp delay-1s">
