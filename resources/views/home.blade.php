@@ -284,7 +284,7 @@
           if(document.hasFocus()){
             $.get('/ajax/knobs', function(data){
               $.each(data.data, function(i, v){
-                $('#knob-'+v.id).val(v.number_of_seats - (v.attendees).split(',').length);
+                $('#knob-'+v.id).val(v.number_of_seats - (v.attendees == '' ? 0 : (v.attendees).split(',').length));
               });
             });
           }
