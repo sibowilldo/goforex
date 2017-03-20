@@ -43,7 +43,7 @@
         </figure>
         <h1 class="animated fadeInDown delay-07s">Welcome To GoForex Wealth Creation</h1>
         <ul class="we-create animated fadeInUp delay-1s">
-            <li>One of the leading forex mentorship companies.</li>
+            <li>Your adaptive and Selective approach to trading Forex.</li>
         </ul>
         <a class="link animated fadeInUp delay-1s servicelink" href="#service">Lets GoForex</a>
     </div>
@@ -142,13 +142,13 @@
                     starting a home business.</p>
             </div>
         </div>
-        <ul class="client wow fadeIn delay-05s">
-            <li><a href="#">
-                    <img src="img/client-pic1.jpg" alt="">
-                    <h3>James Bond</h3>
-                    <span>License To Drink Inc.</span>
-                </a></li>
-        </ul>
+        {{--<ul class="client wow fadeIn delay-05s">--}}
+            {{--<li><a href="#">--}}
+                    {{--<img src="img/client-pic1.jpg" alt="">--}}
+                    {{--<h3>James Bond</h3>--}}
+                    {{--<span>License To Drink Inc.</span>--}}
+                {{--</a></li>--}}
+        {{--</ul>--}}
     </div>
 </section><!--main-section client-part-end-->
 
@@ -214,11 +214,12 @@
 <div class="c-logo-part"><!--c-logo-part-start-->
     <div class="container">
         <ul>
-            <li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo2.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo3.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo4.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo5.png" alt=""></a></li>
+            <h2>Coming Soon.</h2>
+            {{--<li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>--}}
+            {{--<li><a href="#"><img src="img/c-liogo2.png" alt=""></a></li>--}}
+            {{--<li><a href="#"><img src="img/c-liogo3.png" alt=""></a></li>--}}
+            {{--<li><a href="#"><img src="img/c-liogo4.png" alt=""></a></li>--}}
+            {{--<li><a href="#"><img src="img/c-liogo5.png" alt=""></a></li>--}}
         </ul>
     </div>
 </div><!--c-logo-part-end-->
@@ -286,26 +287,26 @@
             <div class="col-lg-6 col-sm-7 wow fadeInLeft">
                 <div class="contact-info-box address clearfix">
                     <h3><i class=" icon-map-marker"></i>Address:</h3>
-                    <span>308 Negra Arroyo Lane<br>Albuquerque, New Mexico, 87111.</span>
+                    <span>Opening Soon In Durban</span>
                 </div>
                 <div class="contact-info-box phone clearfix">
                     <h3><i class="fa-phone"></i>Phone:</h3>
-                    <span>1-800-BOO-YAHH</span>
+                    <span>+27 71 920 0123 / +27 63 000 5773</span>
                 </div>
                 <div class="contact-info-box email clearfix">
                     <h3><i class="fa-pencil"></i>email:</h3>
-                    <span>hello@knightstudios.com</span>
+                    <span>info@goforexwealth.com</span>
                 </div>
                 <div class="contact-info-box hours clearfix">
                     <h3><i class="fa-clock-o"></i>Hours:</h3>
-                    <span><strong>Monday - Thursday:</strong> 10am - 6pm<br><strong>Friday:</strong> People work on Fridays now?<br><strong>Saturday - Sunday:</strong> Best not to ask.</span>
+                    <span><strong>Monday - Friday:</strong> 8am - 5pm<br><strong>Saturday - Sunday:</strong> Online Bookings Only.</span>
                 </div>
                 <ul class="social-link">
-                    <li class="twitter"><a href="#"><i class="fa-twitter"></i></a></li>
-                    <li class="facebook"><a href="#"><i class="fa-facebook"></i></a></li>
-                    <li class="pinterest"><a href="#"><i class="fa-pinterest"></i></a></li>
-                    <li class="gplus"><a href="#"><i class="fa-google-plus"></i></a></li>
-                    <li class="dribbble"><a href="#"><i class="fa-dribbble"></i></a></li>
+                    {{--<li class="twitter"><a href="#"><i class="fa-twitter"></i></a></li>--}}
+                    <li class="facebook"><a href="https://www.facebook.com/goforexwealth/?fref=ts"><i class="fa-facebook"></i></a></li>
+                    {{--<li class="pinterest"><a href="#"><i class="fa-pinterest"></i></a></li>--}}
+                    {{--<li class="gplus"><a href="#"><i class="fa-google-plus"></i></a></li>--}}
+                    <li class="instagram"><a href="https://www.instagram.com/goforex_wealth_creation/?hl=en"><i class="fa-instagram"></i></a></li>
                 </ul>
             </div>
             <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
@@ -338,7 +339,7 @@
                             <div class="validation"></div>
                         </div>
 
-                        <div class="text-center">
+                        <div>
                             <button type="submit" class="input-btn">Send Message</button>
                         </div>
                     </form>
@@ -390,7 +391,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-12">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -400,15 +401,17 @@
                             </div>
                         </div>
 
-                        <div class="text-center">
+                        <div>
                             <button type="submit" class="input-btn">Login</button>
                         </div>
                     </form>
 
                     <br/>
-                    <hr/>
+
                     <br/>
-                    <hr/>
+
+                    <br/>
+
 
                     <form class="form" method="POST" action="{{ route('password.email') }}">
                         {{ csrf_field() }}
@@ -427,8 +430,8 @@
                             @endif
                         </div>
 
-                        <div class="text-center">
-                            <button type="submit" class="input-btn"> Send Reset Password Link</button>
+                        <div>
+                            <button type="submit" class="input-btn">Reset Password</button>
                         </div>
                     </form>
 
@@ -524,7 +527,7 @@
                         </div>
 
 
-                        <div class="text-center">
+                        <div>
                             <button type="submit" class="input-btn">Join</button>
                         </div>
                     </form>
