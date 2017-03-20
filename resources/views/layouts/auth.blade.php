@@ -26,7 +26,7 @@
   <![endif]-->
   <style>
     body{
-      background: url('/img/pw_maze_black_2X.png') left top repeat !important
+      background: url("{{ url('/img/pw_maze_black_2X.png') }}") left top repeat !important
     }
   </style>
 </head>
