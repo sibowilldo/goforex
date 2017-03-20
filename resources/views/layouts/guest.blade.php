@@ -535,7 +535,7 @@
 @endif
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><a href="#"><img src="{{ url('img/light-logo.png') }}" alt=""></a></div>
+        <div class="footer-logo"><a href="#"><img src="{{ url('img/full-logo-white.png')}}" alt=""></a></div>
         <span class="copyright">&copy; Knight Theme. All Rights Reserved</span>
         <div class="credits">
             <!--
