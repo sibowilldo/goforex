@@ -3018,7 +3018,7 @@ a:focus {
 }
 
 .events-list .event-chart {
-    float: left
+    display: inline-block
 }
 
 .events-list .event-chart div {

@@ -21,7 +21,7 @@
 
         <div class="row">
           <div class="col-md-6 col-lg-6 col-sm-12">
-            <div class="box">
+            <div class="box box-success">
               <div class="box-header with-border">
                 <h3 class="box-title">Open Events</h3>
 
@@ -47,73 +47,80 @@
                     @foreach($allEvents as $event)
                     @if($event->status_is == "Open")
                       <li class="item">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <div class="event-chart">
-                            @if(count(explode(',', $event->attendees)) > 0 && explode(',', $event->attendees)[0] != "")
-                              <input id="knob-{{ $event->id }}" type="text" class="knob" value="{{($event->number_of_seats - count(explode(',', $event->attendees)))}}" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
-                            @else
-                              <input id="knob-{{ $event->id }}" type="text" class="knob" value="0" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
-                            @endif 
-                              <p class="knob-label">Available Seats</p>
-                          </div>                        
-                        </div>
-                        <div class="col-md-9">
-                          <div class="event-info">
-                            <span class="label label-success pull-right">{{ $event->status_is }}</span>
-                            <h3 class="event-title no-margin">{{ $event->name }} <br><small>with  <strong>{{ $event->host }}</strong></small>
-                            </h3>
-                              <p>Event Reference: <span style="text-decoration: underline;" class="copy">{{ $event->reference }}</span></p>
-                                <span class="event-description">
-                                  <strong>Starts </strong> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->start_time }} <br/>
-                                  <strong>Ends</strong> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }} <br>
-                                  <strong>Location</strong> {{ $event->address }}
-                                </span>
-                          </div>                        
-                        </div>
+                      <div class="loader-seat-container">
+                        <div class="loader"></div>
+                        <p>Loading Seats...</p>
                       </div>
-                      <div class="row">
-                        <div class="col-xs-12">
-                            <br>
-                            <br>
-                            <p class="pull-right">
-                              <a href="{{ url('view-event', $event->id) }}" class="btn btn-default"
-                                rel="tooltip" title="View">
-                                  <i class="ion ion-ios-calendar-outline"></i> View Event
-                              </a>
-                                @if($event->status_is == 'FullyBooked')
-                                    <button type="button" class="btn btn-disabled" disabled>Fully Booked</button>
-                                @elseif($event->status_is == 'Open')
-                                    @if(in_array(Auth::user()->id,explode(',', $event->attendees)))
-                                    @foreach($bookings as $booking)
-                                      @if($booking->event_id == $event->id AND $booking->user_id == Auth::id())
-                                        @if($booking->status_is == 'Paid')
-                                          <span class="btn btn-success" disabled><i class="ion ion-ios-checkmark-outline"></i> Booking Approved</span>
-                                        @else
-                                          <span class="btn btn-danger" disabled><i class="ion ion-ios-clock-outline"></i> Booking {{ $booking->status_is }}</span>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="event-chart">
+                              @if(count(explode(',', $event->attendees)) > 0 && explode(',', $event->attendees)[0] != "")
+                                <input id="knob-{{ $event->id }}" type="text" class="knob" value="{{($event->number_of_seats - count(explode(',', $event->attendees)))}}" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
+                              @else
+                                <input id="knob-{{ $event->id }}" type="text" class="knob" value="0" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
+                              @endif 
+                                <p class="knob-label">Available Seats</p>
+                            </div>                        
+                          </div>
+                          <div class="col-md-8">
+                            <div class="event-info">
+                              <span class="label label-success pull-right">{{ $event->status_is }}</span>
+                              <h3 class="event-title no-margin">{{ $event->name }} <br><small>with  <strong>{{ $event->host }}</strong></small>
+                              </h3>
+                                <p>Event Reference: <span style="text-decoration: underline;" class="copy">{{ $event->reference }}</span></p>
+                                  <span class="event-description">
+                                    <strong>Starts </strong> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->start_time }} <br/>
+                                    <strong>Ends</strong> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }} <br>
+                                    <strong>Location</strong> {{ $event->address }}
+                                  </span>
+                            </div>                        
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-12">
+                              <br>
+                              <br>
+                              <p class="pull-right">
+                                <a href="{{ url('view-event', $event->id) }}" class="btn btn-default"
+                                  rel="tooltip" title="View">
+                                    <i class="ion ion-ios-calendar-outline"></i> View Event
+                                </a>
+                                  @if($event->status_is == 'FullyBooked' || $event->number_of_seats == count(explode(',',$event->attendees)))
+                                      <button type="button" class="btn btn-disabled" disabled>Fully Booked</button>
+                                  @elseif($event->status_is == 'Open')
+                                      @if(in_array(Auth::user()->id,explode(',', $event->attendees)))
+                                      @foreach($bookings as $booking)
+                                        @if($booking->event_id == $event->id AND $booking->user_id == Auth::id())
+                                          @if($booking->status_is == 'Paid')
+                                            <span class="btn btn-success btn-disabled" disabled><i class="ion ion-ios-checkmark-outline"></i> Booking Approved</span>
+                                          @else
+                                            <span class="btn btn-danger btn-disabled" disabled><i class="ion ion-ios-clock-outline"></i> Booking {{ $booking->status_is }}</span>
+                                          @endif
                                         @endif
+                                      @endforeach
+                                      @else
+                                          <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
+                                            class="btn btn-danger btn-sm"
+                                            rel="tooltip"
+                                            title="Edit">
+                                              <i class="ion ion-ios-compose-outline"></i> Book Event
+                                          </a>
                                       @endif
-                                    @endforeach
-                                    @else
-                                        <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
-                                          class="btn btn-danger btn-sm"
-                                          rel="tooltip"
-                                          title="Edit">
-                                            <i class="ion ion-ios-compose-outline"></i> Book Event
-                                        </a>
-                                    @endif
-                                @endif
-                            </p>
+                                  @endif
+                              </p>
+                          </div>
                         </div>
-                      </div>
                       </li>
                       <!-- /.item -->
                     @endif
                     @endforeach
-                    @if(count($allEvents) < 1)
+                    @if($events->where('status_is', 'Open')->count() < 1)
                     <li class="item">
                         <h1 class="text-center text-gray">
-                            <i class="ion ion-ios-information-outline"></i><br>No events to display <br><a href="{{url('events/create')}}" class="btn btn-default btn-sm">Create Event</a>
+                            <i class="ion ion-ios-information-outline"></i><br>No events to display <br>
+                            @if(Auth::user()->hasRole('admin'))
+                            <a href="{{url('events/create')}}" class="btn btn-default btn-sm">Create Event</a>
+                            @endif
                         </h1>
                     </li>
                     @endif
@@ -148,13 +155,13 @@
                     @if($event->status_is == "Closed")
                         <li class="item bg-gray-light">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                             <div class="event-chart">
                                 <input type="text" class="knob" value="0" data-thickness="0.2" data-width="100" data-min="0" data-max="{{ $event->number_of_seats }}" data-height="100" data-fgColor="#3c8dbc" data-readonly="true">
                                 <p class="knob-label">Available Seats</p>
                             </div>                        
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                             <div class="event-info">
                                 <span class="label label-danger pull-right">{{ $event->status_is }}</span>
                                 <h3 class="event-title no-margin">{{ $event->name }} <br><small>with  <strong>{{ $event->host }}</strong></small>
@@ -209,6 +216,23 @@
     @endif
 
 @endsection
+
+@section('styles')
+<style>
+.item{position: relative;}
+.loader-seat-container{z-index:99999;text-align:center;background-color:rgba(255,255,255,0.95);position:absolute;top:0;bottom:0;left:0;right:0;border-radius:3px}
+.loader{border:5px solid transparent;border-radius:50%;border-top:5px solid #D2AB66;display:inline-block;width:50px;height:50px;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite;margin-top:10%;border-bottom:5px solid #D2AB66}
+.loader-seat-container p{color:#D2AB66}
+@-webkit-keyframes spin {
+0%{-webkit-transform:rotate(0deg)}
+100%{-webkit-transform:rotate(360deg)}
+}
+@keyframes spin {
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
+}
+</style>
+@stop
 
 @section('javascript')
     <!-- jQuery Knob -->
@@ -286,6 +310,9 @@
               $.each(data.data, function(i, v){
                 $('#knob-'+v.id).val(v.number_of_seats - (v.attendees == '' ? 0 : (v.attendees).split(',').length));
               });
+            });
+            $('.loader-seat-container').fadeOut('normal', function(){
+              $(this).remove();
             });
           }
         }, 3000);
