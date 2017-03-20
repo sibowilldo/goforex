@@ -123,7 +123,8 @@ p {
 .header {
     text-align: center;
     background: url(../../img/pw_maze_black_2X.png) left top repeat;
-    padding: 280px 0;
+    padding: 25vh 0;
+    height: 100vh;
 }
 
 .logo {
