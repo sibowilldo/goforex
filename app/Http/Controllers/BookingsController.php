@@ -8,9 +8,14 @@ use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Traits\NotificationTraits;
+use App\Notification;
 
 class BookingsController extends Controller
 {
+    // User Traits
+    use NotificationTraits;
+
     /**
      * Display a listing of the resource.
      *
@@ -78,6 +83,9 @@ class BookingsController extends Controller
             $message->from('noreply@goforex.co.za');
             $message->to($email, $name)->subject('GoForex - Booking Created');
         });
+
+        $message = 'You, welcome to GoForex Wealth Creation!';
+        $this->saveNotification($message,'profile-verified',Auth::user());
 
         flash("You have successfully created a booking, please make payment to get approval.","success");
 
@@ -172,7 +180,7 @@ class BookingsController extends Controller
                 'event_name' => $event->name,
                 'start_date' => $event->start_date,
                 'end_date' => $event->end_date,
-                'start_time' => $event->start_date,
+                'start_time' => $event->start_time,
                 'address' => $event->address,
                 'host' => $event->host,
                 'booking_ref'=> $booking->reference,
@@ -186,6 +194,8 @@ class BookingsController extends Controller
                 $message->to($email, $name)->subject('GoForex - Booking Confirmed');
             });
 
+            $message = 'Congratulations, your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been approved.';
+            $this->saveNotification($message,'booking-approved',$user);
 
             return view('events.show', compact(['event', 'bookings']));
 
@@ -240,6 +250,9 @@ class BookingsController extends Controller
                 $message->to($email, $name)->subject('GoForex - Booking Declined');
             });
 
+
+            $message = 'We regret to inform you that your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been declined.';
+            $this->saveNotification($message,'booking-declined',$user);
 
             $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
 

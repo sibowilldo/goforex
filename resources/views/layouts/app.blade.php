@@ -90,11 +90,11 @@
               </a>
               <ul class="dropdown-menu">
                 <li class="header" id="notification_count_message"></li>
-                @if(session()->has('unread-notifications:'.Auth::id()))
+                @if(session()->has('unread-notifications:'.Auth::user()->id))
                 <li>
                   <!-- inner menu: contains the actual data -->
                   <ul class="menu">
-                  @foreach(session('unread-notifications:'.Auth::id()) as $item)
+                  @foreach(session('unread-notifications:'.Auth::user()->id) as $item)
                     <li>
                       <a href="{{ url('/notifications/'.$item->id ) }}">
                         <i class="fa fa-{{ $item->type == 'notification' ? 'bell' : 'envelope' }} text-aqua"></i> {{ $item->message }}

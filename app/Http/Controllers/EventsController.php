@@ -30,7 +30,7 @@ class EventsController extends Controller
     public function index()
     {
         //
-        $events = Event::get();
+        $events = Event::orderBy('created_at','desc')->get();
         return view('events.index', compact(['events']));
     }
 

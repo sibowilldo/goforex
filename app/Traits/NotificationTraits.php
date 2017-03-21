@@ -9,6 +9,7 @@ trait NotificationTraits {
 
     public function saveNotification($message, $type, $user, $ref=null) {
         // Generate new reference number
+
         $id = date('dmy') . rand(1000000, 9999999);
         $results = Notification::where('id', $id)->count();
 
@@ -19,7 +20,7 @@ trait NotificationTraits {
         }
 
         // Save notification
-        Notification::create(
+       $notification =  Notification::create(
             [
                 'id'=>$id,
                 'user_id'=>$user->id,

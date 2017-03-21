@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests\VerifyFormRequest;
 use Auth;
 use App\Event;
-use App\Notification;
 use App\User;
 use Image;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Traits\NotificationTraits;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
+    // User Traits
+    use NotificationTraits;
+
     /**
      * Create a new controller instance.
      *
@@ -40,8 +43,13 @@ class HomeController extends Controller
         }
         $events = Event::get();
 
-        $allEvents = Event::whereNotIn('status_is', ['Pending'])->get();
+        $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
         $bookings = Booking::where('user_id', Auth::user()->id)->get();
+
+
+        $message = 'You, welcome to GoForex Wealth Creation!';
+        $this->saveNotification($message,'profile-verified',Auth::user());
+
         return view('home', compact(['allEvents', 'bookings', 'events']));
     }
 
@@ -75,6 +83,10 @@ class HomeController extends Controller
                 $message->from('noreply@goforex.co.za');
                 $message->to($email, $name)->subject('GoForex Profile Complete');
             });
+
+            $message = 'You have successfully verified your profile, welcome to GoForex Wealth Creation!';
+            $this->saveNotification($message,'profile-verified',$user);
+
             flash('Your profile has been verified and is complete!', 'success');
         } else {
             flash('The code you submitted is incorrect, please try again.', 'error');
