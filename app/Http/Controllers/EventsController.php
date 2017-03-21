@@ -18,7 +18,7 @@ class EventsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'boss']);
+        $this->middleware(['auth', 'boss', 'profile']);
     }
 
 
