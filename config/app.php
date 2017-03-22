@@ -183,6 +183,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         *  PDF Service Provider
+         */
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -233,9 +238,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Image'     => Intervention\Image\Facades\Image::class,
-        'Avatar'    => Laravolt\Avatar\Facade::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Avatar' => Laravolt\Avatar\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

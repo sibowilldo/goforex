@@ -199,6 +199,12 @@
               <span>Profile</span>
             </a>
           </li>
+            <li>
+                <a href="{{ url('/invoices')}}">
+                    <i class="fa fa-money"></i>
+                    <span>Invoices</span>
+                </a>
+            </li>
           <li>
             <a href="{{ url('/notifications')}}">
               <i class="fa fa-bell"></i>
@@ -230,6 +236,9 @@
 {!! Html::script('js/app.js') !!}
 
 {!! Html::script('js/jquery-ui.min.js') !!}
+
+{!! Html::script('js/app.js') !!}
+
 <!-- Bootstrap 3.3.6 -->
 {!! Html::script('bootstrap/js/bootstrap.min.js') !!}
 <!-- Slim Scroll -->
