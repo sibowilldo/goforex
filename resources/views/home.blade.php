@@ -17,15 +17,15 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="alert alert-info alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-              <h4><i class="icon ion ion-ios-information-outline"></i> Important!</h4>
-              Please note: upon booking an event (reserving a seat) you are required to make payment and upload the proof of payment with in <strong>12</strong> hours, otherwise your reservation will be cancelled and you will be required to make the reservation again should seats be available. Thank you!
-            </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon ion ion-ios-information-outline"></i> Important!</h4>
+            Please note: upon booking an event (reserving a seat) you are required to make payment and upload the proof of payment with in <strong>12</strong> hours, otherwise your reservation will be cancelled and you will be required to make the reservation again should seats be available. Thank you!
           </div>
         </div>
+      </div>
         <div class="row">
           <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="box box-success">
@@ -44,9 +44,8 @@
                       <li><a href="{{ url('/events/create') }}">Create an Event</a></li>
                     </ul>
                   </div>
-                  
-                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                   @endif
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                 </div>
               </div>
               <!-- /.box-header -->
@@ -104,7 +103,7 @@
                                           @elseif($booking->status_is == 'Pending')
                                             <button class="btn btn-danger btn-disabled" disabled><i class="ion ion-ios-clock-outline"></i> <span data-countdown="{{ $booking->created_at->addHours(12) }}"></span></button>
                                           @else
-                                            <span class="btn btn-danger btn-disabled" disabled>Booking {{ $booking->status_is }}</span>
+                                          <span class="btn btn-danger btn-disabled" disabled>Booking {{ $booking->status_is }}</span>
                                           @endif
                                         @endif
                                       @endforeach
@@ -248,7 +247,7 @@
     <!-- jQuery Knob -->
     {!! Html::script('plugins/knob/jquery.knob.js') !!}
     <!-- ChartJS 1.0.1 -->
-    {!! Html::script('plugins/chartjs/Chart.min.js') !!}"
+    {!! Html::script('plugins/chartjs/Chart.min.js') !!}
     <!-- jQuery Countdown -->
     {!! Html::script('plugins/jcountdown/jquery.countdown.min.js') !!}
     <script>
@@ -328,7 +327,7 @@
             });
           }
         }, 3000);
-        //count down
+
         $('[data-countdown]').each(function() {
           var $this = $(this), finalDate = $(this).data('countdown');
           $this.countdown(finalDate, function(event) {
