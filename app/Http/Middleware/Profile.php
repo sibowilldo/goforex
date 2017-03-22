@@ -21,12 +21,12 @@ class Profile
     {
         // Store user_id in Session
         if(!Session::has('user_id')) {
-            Session::set('user_id', Auth::user()->id);
+            Session::put('user_id', Auth::user()->id);
         }
 
         // Store user in Session
         if(!Session::has(Session::get('user_id').':user')) {
-            Session::set(Session::get('user_id').':user', Auth::user());
+            Session::put(Session::get('user_id').':user', Auth::user());
         }
 
 //        // Store account in Session
@@ -36,7 +36,7 @@ class Profile
 
         $notifications = new Notification;
         $unreadNotifications = $notifications->where('user_id',Auth::user()->id)->where('viewed', false)->take(5)->get();
-        Session::set('unread-notifications:'.Auth::user()->id, $unreadNotifications);
+        Session::put('unread-notifications:'.Auth::user()->id, $unreadNotifications);
 
         return $next($request);
     }

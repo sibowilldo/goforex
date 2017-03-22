@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Booking;
 use Illuminate\Http\Request;
 use App\Http\Requests\VerifyFormRequest;
+use App\Http\Requests\ContactFormRequest;
 use Auth;
 use App\Event;
 use App\User;
+use App\Http\Traits\NotificationTraits;
 use Image;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Traits\NotificationTraits;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
@@ -28,7 +29,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','profile']);
+        $this->middleware('auth', ['except' => 'contact_us']);
+        $this->middleware('profile', ['except' => 'contact_us']);
     }
 
     /**
@@ -43,12 +45,12 @@ class HomeController extends Controller
         }
         $events = Event::get();
 
-        $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
+        $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','asc')->get();
         $bookings = Booking::where('user_id', Auth::user()->id)->get();
 
-
-        $message = 'You, welcome to GoForex Wealth Creation!';
-        $this->saveNotification($message,'profile-verified',Auth::user());
+        //$message, $type, $user, $ref=null
+        $message = 'Welcome to <strong>GoForex Wealth Creation!</strong>';
+        $this->saveNotification($message,'notification', Auth::user());
 
         return view('home', compact(['allEvents', 'bookings', 'events']));
     }
@@ -122,7 +124,8 @@ class HomeController extends Controller
         return view('view-event', compact(['event', 'booking']));
     }
 
-    public function proofOfPayment($bookingID){
+    public function proofOfPayment($bookingID)
+    {
         $booking = Booking::where('id', $bookingID)->first();
 
         $pic = Image::make($booking->proof_of_payment);
@@ -138,5 +141,27 @@ class HomeController extends Controller
     {
         $events = Event::where('status_is', 'Open')->select('id', 'number_of_seats', 'attendees')->get();
         return response()->json(['status'=> 'OK', 'data' => $events]);
+    }
+
+    public function contact_us(ContactFormRequest $request)
+    {
+        $email = 'info@goforexwealth.com';
+        $name = 'GoForex Wealth Creation | Contact us form';
+        $sender_email = $request['email'];
+        $subject = $request['subject'];
+        $parameters = array(
+            'bodymessage' => $request['bodymessage'],
+            'sender' => $request['name'],
+            'sender_email' => $request['email'],
+        );
+
+        Mail::send('emails.contact', $parameters, function ($message)
+        use ($email, $name, $sender_email, $subject) {
+            $message->from($sender_email);
+            $message->to($email, $name)->subject($subject);
+        });
+
+        flash('Thank You! Your message was sent successfuly.', 'success');
+        return back();
     }
 }

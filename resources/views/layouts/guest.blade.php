@@ -79,10 +79,7 @@
                 <li><a href="#contact1">Join / Sign In</a></li>
             @else
                 <li>
-                    <form action="{{url('/home')}}" method="get" role="form" class="form-inline"
-                          style="display:inline-block;">
-                        <button class="btn btn-warning" type="submit">Dashboard</button>
-                    </form>
+                        <a href="{{url('/home')}}" class="btn btn-warning" style="color: white;">Dashboard</a></li>
             @endif
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>

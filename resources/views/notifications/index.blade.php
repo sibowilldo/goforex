@@ -48,7 +48,7 @@
                         <td><i class="fa fa-{{ $notification->viewed == 0 ? 'square text-aqua' : 'square text-gray' }}"></i></td>
                         <td class="mailbox-attachment"><i class="text-gray ion ion-{{ $notification->type == 'notification' ? 'android-notifications' : 'android-mail' }}"></i></td>
                         <td class="mailbox-name"><a href="{{ url('/notifications/'.$notification->id) }}">{{ $notification->reference_number }}</a></td>
-                        <td class="mailbox-subject {{ $notification->viewed == 0 ? 'unread' : '' }}">{{ $notification->message }}</td>
+                        <td class="mailbox-subject {{ $notification->viewed == 0 ? 'unread' : '' }}">{!! $notification->message !!}</td>
                         <td>{{ $notification->created_at->diffForHumans() }}
                         </td>
                     </tr>

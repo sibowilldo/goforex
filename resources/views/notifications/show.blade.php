@@ -34,7 +34,7 @@
               <div class="mailbox-read-message">
                 <p>Greetings {{ Auth::user()->firstname}},</p>
 
-                <p>{{ $notification->message }}</p>
+                <p>{!! $notification->message !!}</p>
 
                 <p>Thanks.<br>Regards,<br>GFX Team</p>
               </div>

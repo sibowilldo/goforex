@@ -25,7 +25,6 @@ class NotificationsController extends Controller
     public function index()
     {
         $notification = new Notification;
-        //$notification->where('user_id', Auth::user()->id)->where('viewed',false)->update(['viewed'=>true]);
         $notifications = $notification->where('user_id', Auth::user()->id)->orderBy('created_at','desc')->get();
 
         return view('notifications.index', compact('notifications'));
@@ -65,6 +64,11 @@ class NotificationsController extends Controller
         $notification = new Notification;
         $notification->where('user_id', Auth::id())->where('id', $id)->update(['viewed'=>true]);
         $notification = $notification->where('user_id', Auth::user()->id)->where('id', $id)->first();
+
+        
+        $notifications = new Notification;
+        $unreadNotifications = $notifications->where('user_id', Auth::id())->where('viewed', false)->take(5)->get();
+        session(['unread-notifications:'.Auth::user()->id =>  $unreadNotifications]);
         return view('notifications.show', compact('notification'));
     }
 
