@@ -60,3 +60,6 @@ Route::get('/unread/notifications', function () {
 
     return response()->json(['status' => 200, 'data' => $unreadNotifications]);
 });
+
+//Contact us form  routes
+Route::post('/contact-us', ['as' => 'contact-us', 'uses' => 'HomeController@contact_us']);

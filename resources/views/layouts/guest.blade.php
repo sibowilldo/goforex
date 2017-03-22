@@ -33,9 +33,25 @@
     {{--{!! Html::script('/js/knight/jquery-ui.min.js') !!}--}}
 
     {{--<script src="contactform/contactform.js"></script>--}}
+    
+    <!-- SweetAlert -->
+    {!! Html::script('plugins/sweetalert/sweetalert-dev.js') !!}
+    {{ Html::style('plugins/sweetalert/sweetalert.css') }}
+
+    
+    <style>
+      *{
+        -moz-transform-origin: inherit !important;
+        -webkit-transform-origin: inherit !important;
+        -o-transform-origin: inherit !important;
+        -ms-transform-origin: inherit !important;
+        transform-origin: inherit !important;
+      }    
+    </style>
 
 </head>
 <body>
+@include('flash::message')
 <header class="header" id="header"><!--header-start-->
     <div class="container">
         <figure class="logo animated fadeInDown delay-07s">
@@ -314,29 +330,50 @@
 
                     <div id="sendmessage">Your message has been sent. Thank you!</div>
                     <div id="errormessage"></div>
-                    <form action="" method="post" role="form" class="contactForm">
+                    <form action="{{ url('/contact-us') }}" method="POST" role="form" class="contactForm" >
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <input type="text" name="name" class="form-control input-text" id="name"
                                    placeholder="Your Name" data-rule="minlen:4"
-                                   data-msg="Please enter at least 4 chars"/>
+                                   data-msg="Please enter at least 4 chars"  value="{{ old('name') }}" required/> 
                             <div class="validation"></div>
+                             @if ($errors->has('name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                             @endif
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control input-text" name="email" id="email"
-                                   placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"/>
+                                   placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"  value="{{ old('email') }}" required/>
                             <div class="validation"></div>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control input-text" name="subject" id="subject"
                                    placeholder="Subject" data-rule="minlen:4"
-                                   data-msg="Please enter at least 8 chars of subject"/>
+                                   data-msg="Please enter at least 8 chars of subject" value="{{ old('subject') }}" required/>
                             <div class="validation"></div>
+                             @if ($errors->has('subject'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('subject') }}</strong>
+                                    </span>
+                             @endif
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control input-text text-area" name="message" rows="5"
+                            <textarea class="form-control input-text text-area" name="bodymessage" rows="5"
                                       data-rule="required" data-msg="Please write something for us"
-                                      placeholder="Message"></textarea>
+                                      placeholder="Message" required></textarea>
                             <div class="validation"></div>
+                            @if ($errors->has('bodymessage'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('bodymessage') }}</strong>
+                                    </span>
+                            @endif
                         </div>
 
                         <div>
