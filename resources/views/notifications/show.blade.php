@@ -26,16 +26,14 @@
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
-                <h3>Notification Ref. {{ $notification->reference_number }}</h3>
+                <h3>{{ $notification->reference_number }}</h3>
                 <h5>From: GFX Wealth Creation Team
                   <span class="mailbox-read-time pull-right">{{ $notification->created_at->toDayDateTimeString()}}</span></h5>
               </div>
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
-                <p>Greetings {{ Auth::user()->firstname}},</p>
-
                 <p>{!! $notification->message !!}</p>
-
+                <br>
                 <p>Thanks.<br>Regards,<br>GFX Team</p>
               </div>
               <!-- /.mailbox-read-message -->

@@ -84,7 +84,7 @@ class BookingsController extends Controller
         $parameters = array(
             'username' => Auth::user()->username,
             'booking_ref' => $booking->reference,
-            'booking_date_time' => $booking->created_date,
+            'booking_date_time' => $booking->created_at,
         );
 
         // Send email to show booking has been created
@@ -94,10 +94,25 @@ class BookingsController extends Controller
             $message->to($email, $name)->subject('GoForex - Booking Created');
         });
 
-        $message = 'You, welcome to GoForex Wealth Creation!';
-        $this->saveNotification($message,'profile-verified',Auth::user());
+        $message = '
+                    <p>You have created a booking with <b>Ref# '.$booking->reference.'</b></p>
+                    <p>Please make payments to the following details, and update your online booking by uploading your proof of payment</p>
+                    <br/>
 
-        flash("You have successfully created a booking, please make payment to get approval.","success");
+                    <p><b>Banking Details :</b><br>
+                        Bank : <b> XXXXX XXXXXXX</b><br>
+                        Acc Holder : <b> X.X XXXXXXX</b><br>
+                        Acc Type : <b> XXXXXXX </b><br>
+                        Acc Number : <b> XXXXXXXXXX</b><br>
+                        Branch Code : <b> XXX XXX</b></p>
+
+                    <p><b>NB : Payment is expected to be made within 12 hours from the booking date/time, or your booking will be reversed.</b></p>
+
+                    <p><b>Booking Date/Time : '. $booking->created_at .'</b></p>';
+
+        $this->saveNotification($message,'notification',Auth::user(), 'Booking Created');
+
+        flash("You have successfully created a booking, please make payment with 12 hours to get approval.","success");
 
 
         return redirect('/home');
@@ -204,8 +219,9 @@ class BookingsController extends Controller
                 $message->to($email, $name)->subject('GoForex - Booking Confirmed');
             });
 
-            $message = 'Congratulations, your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been approved.';
-            $this->saveNotification($message,'booking-approved',$user);
+            $message = '<h5><strong>Hey there!</strong></h5> <br><p>Congratulations, your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been approved.</p><br>
+                        <p>Please be there at least 30min  before the specified start time.</p>';
+            $this->saveNotification($message,'notification',$user, 'Booking Approved');
 
             return view('events.show', compact(['event', 'bookings']));
 
@@ -242,8 +258,6 @@ class BookingsController extends Controller
 
             $booking->delete();
 
-            flash("Booking has been declined successfully.", "success");
-
             $email = $user->email;
             $name = $user->username;
 
@@ -259,14 +273,14 @@ class BookingsController extends Controller
                 $message->from('noreply@goforex.com');
                 $message->to($email, $name)->subject('GoForex - Booking Declined');
             });
-
-
-            $message = 'We regret to inform you that your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been declined.';
-            $this->saveNotification($message,'booking-declined',$user);
+                
+               $message = '<h5><strong>Greetings '. $user->firstname .'!</strong></h5><p> It is in our deepest regrets to inform you that your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been declined. <br>This could be because your proof of payment could not be varified, please contact us for more info.</p> <br>
+                            <p>If you are still interested in this event please create another booking if seats are still available.</p>';
+            $this->saveNotification($message,'notification',$user, 'Booking Declined');
 
             $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
 
-            flash("Booking declined successfully.", "success");
+            flash("Booking declined, and " . $user->firstname . " has been notified!", "success");
             return view('events.show', compact(['event', 'bookings']));
 
         }else {

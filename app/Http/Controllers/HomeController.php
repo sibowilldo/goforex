@@ -48,10 +48,6 @@ class HomeController extends Controller
         $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','asc')->get();
         $bookings = Booking::where('user_id', Auth::user()->id)->get();
 
-        //$message, $type, $user, $ref=null
-        $message = 'Welcome to <strong>GoForex Wealth Creation!</strong>';
-        $this->saveNotification($message,'notification', Auth::user());
-
         return view('home', compact(['allEvents', 'bookings', 'events']));
     }
 
@@ -86,8 +82,10 @@ class HomeController extends Controller
                 $message->to($email, $name)->subject('GoForex Profile Complete');
             });
 
-            $message = 'You have successfully verified your profile, welcome to GoForex Wealth Creation!';
-            $this->saveNotification($message,'profile-verified',$user);
+             $message = 
+            '<h5><strong>Good Work! You have successfully verified your account</strong></h5>
+             <p>Welcome to GoForex Wealth Creation!</p>';
+            $this->saveNotification($message, 'notification', $user, 'Account Verified');
 
             flash('Your profile has been verified and is complete!', 'success');
         } else {

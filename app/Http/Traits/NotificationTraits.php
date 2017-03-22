@@ -9,7 +9,6 @@ trait NotificationTraits {
 
     public function saveNotification($message, $type, $user, $ref=null) {
         // Generate new id number
-
         $id = date('dmy') . rand(1000000, 9999999);
         $results = Notification::where('id', $id)->count();
 
@@ -21,12 +20,12 @@ trait NotificationTraits {
 
         // Generate new reference number
 
-        $ref = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',8)),0,8);
+        $ref .= ' '. substr($user->firstname,0,1) . substr($user->lastname,0,1) . Carbon::now()->timestamp .' ' . $user->id. substr($user->username,0,1);
         $results = Notification::where('reference_number', $ref)->count();
 
         // Loop and regenerate $id while $results is more than 0
         while ($results > 0) {
-            $ref = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',8)),0,8);
+        $ref .= ' '. substr($user->firstname,0,1) . substr($user->lastname,0,1) . Carbon::now()->timestamp . ' ' . $user->id. substr($user->username,0,1);
             $results = Notification::where('reference_number', $ref)->count();
         }
         
@@ -37,7 +36,7 @@ trait NotificationTraits {
                 'user_id'=>$user->id,
                 'message'=>$message,
                 'type'=>$type,
-                'reference_number'=>$ref,
+                'reference_number'=> strtoupper($ref),
                 'viewed'=>false,
             ]
         );

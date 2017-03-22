@@ -97,7 +97,7 @@
                   @foreach(session('unread-notifications:'.Auth::user()->id) as $item)
                     <li>
                       <a href="{{ url('/notifications/'.$item->id ) }}">
-                        <i class="fa fa-{{ $item->type == 'notification' ? 'bell' : 'envelope' }} text-aqua"></i> {!! $item->message !!}
+                        <i class="fa fa-{{ $item->type == 'notification' ? 'bell' : 'envelope' }} text-aqua"></i> {!! strip_tags($item->message) !!}
                       </a>
                     </li>
                   @endforeach
