@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::resource('events','EventsController');
 
+Route::resource('invoices','InvoicesController');
+
 Route::resource('bookings','BookingsController');
 
 Route::get('booking/{bookingId}/approve','BookingsController@approve');
