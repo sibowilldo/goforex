@@ -142,7 +142,14 @@
                                     <tr>
                                         <td>{{ $booking->reference }}</td>
                                         <td>{{ $booking->user->username }}</td>
-                                        <td style="width: 30%"><a target="_blank" href="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"><img class="elevatezoom" style="width: 100%;height: auto" src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}" data-zoom-image="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"/></a></td>
+                                        <td style="width: 30%">
+                                            <button class="btn btn-primary btn-xs" type="button" data-toggle="collapse" data-target="#collapse-{{ $booking->reference }}" aria-expanded="false" aria-controls="collapse-{{ $booking->reference }}">
+                                            Proof of Payment
+                                            </button>
+                                            <div class="collapse" id="collapse-{{ $booking->reference }}">
+                                                <a target="_blank" href="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"><img class="elevatezoom" style="width: 100%;height: auto" src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}" data-zoom-image="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}"/></a>
+                                            </div>
+                                        </td>
                                         <td>{{ $booking->status_is }}</td>
                                         <td>{{ $booking->created_at }}</td>
                                         <td>

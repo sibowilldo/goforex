@@ -107,7 +107,10 @@ class HomeController extends Controller
     {
         // Get the file from the request
         $file = $request->file('image');
-
+        if($file->getSize() >= 2e+6 OR $file->getSize() == 0){
+            flash('Files over 2MB are not allowed!', 'error');
+            return back();
+        }
         // Get the contents of the file
         $contents = $file->openFile()->fread($file->getSize());
 
@@ -119,7 +122,8 @@ class HomeController extends Controller
 
         $event = Event::where('id', $request['eventId'])->first();
 
-        return view('view-event', compact(['event', 'booking']));
+        flash('Proof uploaded successfully!', 'success');
+        return redirect('view-event/'.$event->id);
     }
 
     public function proofOfPayment($bookingID)
@@ -127,7 +131,7 @@ class HomeController extends Controller
         $booking = Booking::where('id', $bookingID)->first();
 
         $pic = Image::make($booking->proof_of_payment);
-        $response = Response::make($pic->encode('jpeg'));
+        $response = Response::make($pic->encode('jpg'));
 
         //setting content-type
         $response->header('Content-Type', $booking->mime_type);

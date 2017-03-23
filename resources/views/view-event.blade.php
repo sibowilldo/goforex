@@ -110,14 +110,18 @@
         @if($event->status_is == 'Open')
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <div class="box">
-                        <div class="box-content">
+                    <div class="box box-info">
+                    <div class="box-header">
+                    <h3 class="box-title">Upload Proof of Payment <small>(Allowed file types: jpg, jpeg, png)</small></h3>
+                    </div>
+                        <div class="box-body">
                             @if(in_array(Auth::user()->id,explode(',', $event->attendees)))
                                 @if($booking != null && $booking->proof_of_payment != null)
                                     {{--{{ $img }}--}}
                                     {{--<img src="proofOfPayment/{{ $booking->id }}">--}}
-                                    <img src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}" class="img-thumbnail"/>
-
+                                    <div class="form-group">
+                                        <img src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}" class="img-thumbnail"/>
+                                    </div>
                                     {!! Form::open(
                                                 array(
                                                     'url' => 'imageUploadForm',
@@ -126,8 +130,7 @@
                                                     'files' => true)) !!}
 
                                     <div class="form-group">
-                                        {!! Form::label('Update Proof Of Payment') !!}
-                                        {!! Form::file('image', null) !!}
+                                        {!! Form::file('image', ['class' => 'inputfile', 'accept' => '.jpeg, .jpg, .png']) !!}
                                     </div>
 
                                     <div class="form-group" hidden>
@@ -136,7 +139,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::submit('Upload Proof Of Payment!', ['class'=>'btn']) !!}
+                                        <button type="submit" class="btn btn-danger"><i class="ion ion-ios-cloud-upload-outline"></i> Update file</button>
                                     </div>
                                     {!! Form::close() !!}
 
@@ -150,8 +153,7 @@
                                                     'files' => true)) !!}
 
                                     <div class="form-group">
-                                        {!! Form::label('Proof Of Payment') !!}
-                                        {!! Form::file('image', null) !!}
+                                        {!! Form::file('image', ['class' => 'inputfile', 'accept' => '.jpeg, .jpg, .png']) !!}
                                     </div>
 
                                     <div class="form-group" hidden>
@@ -160,7 +162,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::submit('Upload Proof Of Payment!', ['class'=>'btn']) !!}
+                                        <button type="submit" class="btn btn-danger"><i class="ion ion-ios-cloud-upload-outline"></i> Upload selected file</button>
                                     </div>
                                     {!! Form::close() !!}
 
