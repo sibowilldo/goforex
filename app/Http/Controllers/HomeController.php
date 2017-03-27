@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Booking;
 use Illuminate\Http\Request;
 use App\Http\Requests\VerifyFormRequest;
+use App\Http\Requests\ContactFormRequest;
 use Auth;
 use App\Event;
 use App\User;
