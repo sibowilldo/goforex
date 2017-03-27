@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1">
 
-    <title>Homepage</title>
+    <title>GoForex - Wealth Creation</title>
     <link rel="icon" 
       type="image/png" 
       href="{{ url('img/All-Black-Bull-Shield-LOGO-1.png') }}">
@@ -76,7 +76,7 @@
             <li><a href="#team">Our Team</a></li>
             <li><a href="#contact">Contact</a></li>
             @if(!Auth::check())
-                <li><a href="#contact1">Join / Sign In</a></li>
+                <li><a href="#contact1">Sign In</a></li>
             @else
                 <li>
                         <a href="{{url('/home')}}" class="btn btn-warning" style="color: white;">Dashboard</a></li>
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
-                <img src="img/macbook-pro.png" alt="">
+                <img src="img/mac_goforex.png" alt="">
             </figure>
 
         </div>
@@ -386,7 +386,7 @@
 
 <section class="business-talking"><!--business-talking-start-->
     <div class="container">
-        <h2>Join GoForex Wealth Creation.</h2>
+        <h2>Be Part Of GoForex Wealth Creation.</h2>
     </div>
 </section><!--business-talking-end-->
 
