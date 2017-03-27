@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','profile']);
+        $this->middleware(['auth','profile'], ['except'=>'contact_us']);
     }
 
     /**
@@ -42,7 +42,7 @@ class HomeController extends Controller
         }
         $events = Event::get();
 
-        $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
+        $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','asc')->get();
         $bookings = Booking::where('user_id', Auth::user()->id)->get();
 
 //
@@ -76,15 +76,17 @@ class HomeController extends Controller
                 'username' => $user->username,
             );
 
+            $message = 
+            '<h5><strong>Great Work! You have successfully verified your account</strong></h5>
+             <p>Welcome to GoForex Wealth Creation!</p>';
+            $this->saveNotification($message, 'notification', $user, 'Account Verified');
+
             // Send email to confirm successful registration
             Mail::send('emails.verified', $parameters, function ($message)
             use ($email, $name) {
                 $message->from('noreply@goforex.co.za');
                 $message->to($email, $name)->subject('GoForex Profile Complete');
             });
-
-            $message = 'You have successfully verified your profile, welcome to GoForex Wealth Creation!';
-            $this->saveNotification($message,'profile-verified',$user);
 
             flash('Your profile has been verified and is complete!', 'success');
         } else {
@@ -141,5 +143,27 @@ class HomeController extends Controller
     {
         $events = Event::where('status_is', 'Open')->select('id', 'number_of_seats', 'attendees')->get();
         return response()->json(['status'=> 'OK', 'data' => $events]);
+    }
+
+    public function contact_us(ContactFormRequest $request)
+    {
+        $email = 'info@goforexwealth.com';
+        $name = 'GoForex Wealth Creation | Contact us form';
+        $sender_email = $request['email'];
+        $subject = $request['subject'];
+        $parameters = array(
+            'bodymessage' => $request['bodymessage'],
+            'sender' => $request['name'],
+            'sender_email' => $request['email'],
+        );
+
+        Mail::send('emails.contact', $parameters, function ($message)
+        use ($email, $name, $sender_email, $subject) {
+            $message->from($sender_email);
+            $message->to($email, $name)->subject($subject);
+        });
+
+        flash('Thank You! Your message was sent successfuly.', 'success');
+        return back();
     }
 }
