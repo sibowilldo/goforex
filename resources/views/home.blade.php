@@ -15,13 +15,20 @@
                 </ol>
             </section>
 
-            <!-- Main content -->
-            <section class="content">
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-md-6 col-lg-6 col-sm-12">
-                        <div class="box box-success">
+            <!-- Main content --> 
+                    <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                        <div class="alert alert-info alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon ion ion-ios-information-outline"></i> Important!</h4>
+                            Please note: upon booking an event (reserving a seat) you are required to make payment and upload the proof of payment with in <strong>12</strong> hours, otherwise your reservation will be cancelled and you will be required to make the reservation again should seats be available. Thank you!
+                        </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="box box-success">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Open Events</h3>
 
@@ -39,9 +46,9 @@
                                                 <li><a href="{{ url('/events/create') }}">Create an Event</a></li>
                                             </ul>
                                         </div>
-                                    @endif
                                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i
                                                 class="fa fa-times"></i></button>
+                                    @endif
                                 </div>
                             </div>
                             <!-- /.box-header -->
@@ -118,11 +125,9 @@
                                                                                 <span class="btn btn-success btn-disabled"
                                                                                       disabled><i
                                                                                             class="ion ion-ios-checkmark-outline"></i> Booking Approved</span>
+                                                                            @elseif($booking->status_is == 'Pending')
+                                                                                    <button class="btn btn-danger btn-disabled" disabled title="Time remaining to make payment" data-toggle="tooltip" data-placement="top"><i class="ion ion-ios-clock-outline"></i> <span data-countdown="{{ $booking->created_at->addHours(12) }}"></span></button>
                                                                             @else
-                                                                                <span
-                                                                                        data-countdown="{{ \Carbon\Carbon::parse($booking->created_at)->addHours(12) }}"><b
-                                                                                            style="color:#57C7D4;">
-                                                            </b></span>
                                                                                 <span class="btn btn-danger btn-disabled"
                                                                                       disabled><i
                                                                                             class="ion ion-ios-clock-outline"></i> Booking {{ $booking->status_is }}</span>
@@ -281,7 +286,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            border-radius: 3px
+            border-radius: 3px;
         }
 
         .loader {
@@ -325,7 +330,9 @@
     <!-- jQuery Knob -->
     {!! Html::script('plugins/knob/jquery.knob.js') !!}
     <!-- ChartJS 1.0.1 -->
-    {!! Html::script('plugins/chartjs/Chart.min.js') !!}"
+    {!! Html::script('plugins/chartjs/Chart.min.js') !!}
+    <!-- jQuery Countdown -->
+    {!! Html::script('plugins/jcountdown/jquery.countdown.min.js') !!}
     <script>
 
         window.onload = function(){
@@ -335,7 +342,7 @@
                 //     // call ajax method to block user
                 // }else {
                 $this.countdown(finalDate, function (event) {
-                    $this.html(event.strftime('<b style="color:#CC382E;font-weight:bold;"> %D days %H:%M:%S </b>'));
+                    $this.html(event.strftime('%H:%M:%S'));
                 });
                 // }
             });
@@ -413,10 +420,13 @@
                         $('#knob-' + v.id).val(v.number_of_seats - (v.attendees == '' ? 0 : (v.attendees).split(',').length));
                     });
                 });
-                $('.loader-seat-container').fadeOut('normal', function () {
-                    $(this).remove();
-                });
             }
         }, 3000);
+
+        $(document).ready(function(){
+            $('.loader-seat-container').fadeOut('normal', function () {
+                $(this).remove();
+            });
+        });
     </script>
 @stop
