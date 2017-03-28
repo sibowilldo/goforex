@@ -8,6 +8,10 @@
 
 /* CSS Document */
 
+a {
+    color: #D2AC67;
+}
+
 
 /* Float Elements 
 ---------------------------------*/
@@ -706,7 +710,7 @@ img {
 ---------------------------------*/
 
 .business-talking {
-    background: url(../../img/section-bg2.jpg) top center no-repeat;
+    background: url(../../img/durban_goforex.jpg) top center no-repeat;
     background-size: cover;
     padding: 60px 0 10px;
     text-align: center;

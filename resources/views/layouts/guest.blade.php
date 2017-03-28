@@ -394,7 +394,7 @@
 @endif
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><a href="#"><img src="{{ url('img/full-logo-white.png')}}" alt=""></a></div>
+        <div class="footer-logo"><a id="back-top" href="#"><img src="{{ url('img/full-logo-white.png')}}" alt=""></a></div>
         <span class="copyright">&copy; GoForex. All Rights Reserved</span>
     </div>
 </footer>
@@ -412,6 +412,14 @@
         $('#myTabs a').click(function (e) {
             e.preventDefault()
             $(this).tab('show')
+        });
+
+        // scroll body to 0px on click
+        $('#back-top').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 1000);
+            return false;
         });
     });
 </script>
