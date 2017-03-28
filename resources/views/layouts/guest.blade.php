@@ -38,7 +38,6 @@
     {!! Html::script('plugins/sweetalert/sweetalert-dev.js') !!}
     {{ Html::style('plugins/sweetalert/sweetalert.css') }}
 
-    
     <style>
       *{
         -moz-transform-origin: inherit !important;
@@ -227,7 +226,7 @@
 <div class="c-logo-part"><!--c-logo-part-start-->
     <div class="container">
         <ul>
-            <h2>Coming Soon.</h2>
+            <h2>Keep In Touch!</h2>
             {{--<li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>--}}
             {{--<li><a href="#"><img src="img/c-liogo2.png" alt=""></a></li>--}}
             {{--<li><a href="#"><img src="img/c-liogo3.png" alt=""></a></li>--}}
@@ -287,12 +286,6 @@
 {{--</div>--}}
 {{--</section><!--main-section-end-->--}}
 
-
-<section class="business-talking"><!--business-talking-start-->
-    <div class="container">
-        <h2>Let’s Talk GoForex Wealth Creation.</h2>
-    </div>
-</section><!--business-talking-end-->
 <div class="container">
     <section class="main-section contact" id="contact">
 
@@ -312,7 +305,7 @@
                 </div>
                 <div class="contact-info-box hours clearfix">
                     <h3><i class="fa-clock-o"></i>Hours:</h3>
-                    <span><strong>Monday - Friday:</strong> 8am - 5pm<br><strong>Saturday - Sunday:</strong> Online Bookings Only.</span>
+                    <span><strong>Monday - Friday:</strong> 8am - 5pm<br><strong>Saturday - Sunday:</strong> Online Bookings Only</span>
                 </div>
                 <ul class="social-link">
                     {{--<li class="twitter"><a href="#"><i class="fa-twitter"></i></a></li>--}}
@@ -325,7 +318,7 @@
             <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
                 <div class="form">
 
-                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="sendmessage">Your message has been sent!</div>
                     <div id="errormessage"></div>
                     <form action="{{ url('/contact-us') }}" method="POST" role="form" class="contactForm" >
                         {{ csrf_field() }}
@@ -386,186 +379,15 @@
 
 <section class="business-talking"><!--business-talking-start-->
     <div class="container">
-        <h2>Be Part Of GoForex Wealth Creation.</h2>
+        <h2>Be Part Of GoForex Wealth Creation</h2>
     </div>
 </section><!--business-talking-end-->
 
 @if(!Auth::check())
     <div class="container">
         <section class="main-section contact" id="contact1">
-
             <div class="row">
-                <div class="col-lg-6 col-sm-7 wow fadeInLeft">
-                    <form class="form" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div>
-                            <h1 class="animated fadeInDown delay-07s">Login</h1><br/>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input id="email" type="email" class="form-control input-text" name="email"
-                                   value="{{ old('email') }}" required placeholder="Email Address">
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input id="password" type="password" class="form-control input-text" name="password"
-                                   required placeholder="Password">
-
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <button type="submit" class="input-btn">Login</button>
-                        </div>
-                    </form>
-
-                    <br/>
-
-                    <br/>
-
-                    <br/>
-
-
-                    <form class="form" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
-
-                        <div>
-                            <h1 class="animated fadeInDown delay-07s">Forgot Password</h1><br/>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input id="email" type="email" class="form-control input-text" name="email"
-                                   value="{{ old('email') }}" required placeholder="Email Address">
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div>
-                            <button type="submit" class="input-btn">Reset Password</button>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
-                    <div id="sendmessage">Your message has been sent. Thank you!</div>
-                    <div id="errormessage"></div>
-                    <h1 class="animated fadeInDown delay-07s">Join Us Now</h1><br/>
-                    <form role="form" class="contactForm" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <input id="firstname" type="text" class="form-control input-text" name="firstname"
-                                   value="{{ old('firstname') }}" required placeholder="First Name">
-
-                            @if ($errors->has('firstname'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('firstname') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                            <input id="lastname" type="text" class="form-control input-text" name="lastname"
-                                   value="{{ old('lastname') }}" required placeholder="Last Name ">
-
-                            @if ($errors->has('lastname'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('lastname') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <input id="username" type="text" class="form-control input-text" name="username"
-                                   value="{{ old('username') }}" required placeholder="Username">
-
-                            @if ($errors->has('username'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('username') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group{{ $errors->has('cell') ? ' has-error' : '' }}">
-                            <input id="cell" type="text" class="form-control input-text" name="cell"
-                                   value="{{ old('cell') }}"
-                                   required autofocu placeholder="Cell Number" s>
-
-                            @if ($errors->has('cell'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('cell') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
-                            <input id="location" type="text" class="form-control input-text" name="location"
-                                   value="{{ old('location') }}" required placeholder="Location">
-
-                            @if ($errors->has('location'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('location') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input id="email" type="email" class="form-control input-text" name="email"
-                                   value="{{ old('email') }}"
-                                   required placeholder="Email Address">
-
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input id="password" type="password" class="form-control input-text" name="password"
-                                   required placeholder="Password">
-
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <input id="password-confirm" type="password" class="form-control input-text"
-                                   name="password_confirmation" required placeholder="Password Confirm">
-                        </div>
-
-
-                        <div>
-                            <button type="submit" class="input-btn">Join</button>
-                        </div>
-                    </form>
-                </div>
+                @include('layouts.tabs')
             </div>
         </section>
     </div>
@@ -573,17 +395,7 @@
 <footer class="footer">
     <div class="container">
         <div class="footer-logo"><a href="#"><img src="{{ url('img/full-logo-white.png')}}" alt=""></a></div>
-        <span class="copyright">&copy; Knight Theme. All Rights Reserved</span>
-        <div class="credits">
-            <!--
-                All the links in the footer should remain intact.
-                You can delete the links only if you purchased the pro version.
-                Licensing information: https://bootstrapmade.com/license/
-                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Knight
-            -->
-            <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap
-                Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
+        <span class="copyright">&copy; GoForex. All Rights Reserved</span>
     </div>
 </footer>
 
@@ -597,6 +409,10 @@
 
         });
 
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
     });
 </script>
 
@@ -632,9 +448,7 @@
 </script>
 
 <script type="text/javascript">
-
     $(window).load(function () {
-
 
         var $container = $('.portfolioContainer'),
             $body = $('body'),
