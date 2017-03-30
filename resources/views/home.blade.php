@@ -22,7 +22,7 @@
                         <div class="alert alert-info alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                             <h4><i class="icon ion ion-ios-information-outline"></i> Important!</h4>
-                            Please note: upon booking an event (reserving a seat) you are required to make payment and upload the proof of payment with in <strong>12</strong> hours, otherwise your reservation will be cancelled and you will be required to make the reservation again should seats be available. Thank you!
+                            Please note: Upon booking an event (reserving a seat) you are required to make payment and upload the proof of payment within <strong>12</strong> hours, otherwise your reservation will be cancelled and you will be required to make the reservation again should seats be available. Thank you!
                         </div>
                         </div>
                     </div>
