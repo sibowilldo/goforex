@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1">
 
     <title>GoForex - Wealth Creation</title>
-    <link rel="icon" 
-      type="image/png" 
-      href="{{ url('img/All-Black-Bull-Shield-LOGO-1.png') }}">
+    {!! Html::style('img/All-Black-Bull-Shield-LOGO-1.png', ['rel'=>'shortcut icon', 'type'=>'image/png']) !!}
 
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600'
@@ -21,7 +19,6 @@
 
     {{--<!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->--}}
 
-
     {!! Html::script('/js/knight/jquery.1.8.3.min.js') !!}
     {!! Html::script('/js/knight/bootstrap.js') !!}
     {!! Html::script('/js/knight/jquery-scrolltofixed.js') !!}
@@ -29,13 +26,9 @@
     {!! Html::script('/js/knight/jquery.isotope.js') !!}
     {!! Html::script('/js/knight/wow.js') !!}
     {!! Html::script('/js/knight/classie.js') !!}
-
-    {{--{!! Html::script('/js/knight/jquery-ui.min.js') !!}--}}
-
-    {{--<script src="contactform/contactform.js"></script>--}}
     
     <!-- SweetAlert -->
-    {!! Html::script('plugins/sweetalert/sweetalert-dev.js') !!}
+    {{ Html::script('plugins/sweetalert/sweetalert-dev.js') }}
     {{ Html::style('plugins/sweetalert/sweetalert.css') }}
 
     <style>
@@ -51,6 +44,7 @@
 </head>
 <body>
 @include('flash::message')
+
 <header class="header" id="header"><!--header-start-->
     <div class="container">
         <figure class="logo animated fadeInDown delay-07s">

@@ -8,12 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'GoForex Wealth Creation') }}</title>
-    <link rel="icon" type="image/png" href="{{ url('img/All-Black-Bull-Shield-LOGO-1.png') }}">
+    <title>{{ config('app.name', 'GoForex - Wealth Creation') }}</title>
+    <!-- ===== FAVICON =====-->
+    {!! Html::style('img/All-Black-Bull-Shield-LOGO-1.png', ['rel'=>'shortcut icon', 'type'=>'image/png']) !!}
 
-    <!-- Styles -->
-    {{ Html::style('css/app.css') }}
-    {{ Html::style('css/font-awesome.min.css') }}
+    <!-- Font Awesome -->
+    {{ Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
+    <!-- JQuery UI -->
     {{ Html::style('css/jquery-ui.css') }}
       <!-- Bootstrap 3.3.6 -->
     {{ Html::style('bootstrap/css/bootstrap.min.css') }}
@@ -23,11 +24,9 @@
     {{ Html::style('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}
       <!-- Theme style -->
     {{ Html::style('css/AdminLTE.min.css') }}
-      <!-- AdminLTE Skins. Choose a skin from the css/skins
-          folder instead of downloading all of them to reduce the load. -->
+      <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     {{ Html::style('css/skins/skin-gold.css') }}
     <!-- SweetAlert -->
-    {!! Html::script('plugins/sweetalert/sweetalert-dev.js') !!}
     {{ Html::style('plugins/sweetalert/sweetalert.css') }}
     <!-- Animate CSS-->
     {{ Html::style('css/knight/animate.css') }}
@@ -36,8 +35,8 @@
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  {!! Html::script('https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js') !!}
+  {!! Html::script('https://oss.maxcdn.com/respond/1.4.2/respond.min.js') !!}
   <![endif]-->
 @yield('styles')
 
@@ -220,24 +219,16 @@
     
 
     <footer class="main-footer">
-      <strong>Copyright &copy; {{ \Carbon\Carbon::now()->year  }} <a href="/">GoForex</a> Wealth Creation.</strong> All rights
-      reserved.
+      <strong>Copyright &copy; {{ \Carbon\Carbon::now()->year  }} <a href="/">GoForex</a> - Wealth Creation.</strong> All rights reserved.
     </footer>
     
 </div>
 <!-- ./wrapper -->
 </div>
 
-<!-- Scripts -->
-
 <!-- jQuery 2.2.3 -->
 {!! Html::script('plugins/jQuery/jquery-2.2.3.min.js') !!}
-
-{!! Html::script('js/app.js') !!}
-
 {!! Html::script('js/jquery-ui.min.js') !!}
-
-{!! Html::script('js/app.js') !!}
 
 <!-- Bootstrap 3.3.6 -->
 {!! Html::script('bootstrap/js/bootstrap.min.js') !!}
@@ -245,14 +236,12 @@
 {!! Html::script('plugins/slimScroll/jquery.slimscroll.min.js') !!}
 <!-- Elevate Zoom -->
 {!! Html::script('plugins/elevatezoom/jquery.elevatezoom.min.js') !!}
+<!-- SweetAlert -->
+{{ Html::script('plugins/sweetalert/sweetalert-dev.js') }}
 
+{!! Html::script('js/app.js') !!}
 @yield('javascript')
+{!! Html::script('js/messages.js') !!}
 
-<script type="text/javascript" language="javascript">
-$(document).ready(function(){
-  $(function(){$('[data-toggle="tooltip"]').tooltip()});
-  $(".elevatezoom").elevateZoom({scrollZoom:!0})});$(function(){$.get('/unread/notifications',function(data){$('#notification_count_message').text('You have '+data.data.length+(data.data.length>1?' new notifications':' new notification'));if(data.data.length>0){$('#notification_count i').addClass('animated infinite tada');console.log('called')}else{$('#notification_count i').removeClass('animated infinite tada')}
-  $('#notification_count span').text(data.data.length)})});$(function(){$("#dialog-make-booking").dialog({autoOpen:!1,resizable:!1,height:"auto",show:{effect:"blind",duration:500},hide:{effect:"explode",duration:500},width:"auto",modal:!0,buttons:{"Delete all items":function(){$(this).dialog("close")},Cancel:function(){$(this).dialog("close")}}})});$(".view-event").on("click",function(){$("#dialog-make-booking").dialog("open")})
-</script>
 </body>
 </html>
