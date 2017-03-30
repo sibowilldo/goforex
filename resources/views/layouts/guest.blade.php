@@ -46,7 +46,13 @@
         -o-transform-origin: inherit !important;
         -ms-transform-origin: inherit !important;
         transform-origin: inherit !important;
-      }    
+      }
+      .no-margin{
+          margin: 0 !important;
+      }
+      .white-text{
+          color: #fff !important;
+      }
     </style>
 
 </head>
@@ -227,7 +233,7 @@
 <div class="c-logo-part"><!--c-logo-part-start-->
     <div class="container">
         <ul>
-            <h2>Coming Soon.</h2>
+            <h2 class="no-margin">Coming Soon! <br><small class="white-text">Brokers Recommended by us</small></h2>
             {{--<li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>--}}
             {{--<li><a href="#"><img src="img/c-liogo2.png" alt=""></a></li>--}}
             {{--<li><a href="#"><img src="img/c-liogo3.png" alt=""></a></li>--}}
