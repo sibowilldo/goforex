@@ -93,13 +93,14 @@
                                                             <p>Event Reference: <span
                                                                         style="text-decoration: underline;"
                                                                         class="copy">{{ $event->reference }}</span></p>
+                                                            
                                                             <span class="event-description">
-                                    <strong>Starts </strong> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->start_time }}
-                                                                <br/>
-                                    <strong>Ends</strong> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }}
-                                                                <br>
-                                    <strong>Location</strong> {{ $event->address }}
-                                  </span>
+                                                            <ul class="fa-ul">
+                                                                <li><i class="fa ion ion-play fa-li"></i> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->start_time }}</li>
+                                                                <li><i class="fa ion ion-stop fa-li"></i> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }}</li>
+                                                                <li><i class="fa ion ion-ios-location fa-li"></i> {{ $event->address }}</li>
+                                                            </ul>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -126,7 +127,7 @@
                                                                                       disabled><i
                                                                                             class="ion ion-ios-checkmark-outline"></i> Booking Approved</span>
                                                                             @elseif($booking->status_is == 'Pending')
-                                                                                    <button class="btn btn-danger btn-disabled" disabled title="Time remaining to make payment" data-toggle="tooltip" data-placement="top"><i class="ion ion-ios-clock-outline"></i> <span data-countdown="{{ $booking->created_at->addHours(12) }}"></span></button>
+                                                                                    <a class="btn btn-danger" href="{{ url('view-event', $event->id) }}" title="Time remaining to make payment" data-toggle="tooltip" data-placement="top"><i class="ion ion-ios-clock-outline"></i> <span data-countdown="{{ $booking->created_at->addHours(12) }}"></span></a>
                                                                             @else
                                                                                 <span class="btn btn-danger btn-disabled"
                                                                                       disabled><i
@@ -216,12 +217,12 @@
                                                                         style="text-decoration: underline;"
                                                                         class="copy">{{ $event->reference }}</span></p>
                                                             <span class="event-description">
-                                    <strong>Started </strong> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->start_time }}
-                                                                <br/>
-                                    <strong>Ended</strong> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }}
-                                                                <br>
-                                    <strong>Location</strong> {{ $event->address }}
-                                    </span>
+                                                            <ul class="fa-ul">
+                                                                <li><i class="fa ion ion-play fa-li"></i> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->start_time }}</li>
+                                                                <li><i class="fa ion ion-stop fa-li"></i> {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%A %d %B %Y') }} @ {{ $event->end_time }}</li>
+                                                                <li><i class="fa ion ion-ios-location fa-li"></i> {{ $event->address }}</li>
+                                                            </ul>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>

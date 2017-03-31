@@ -109,8 +109,12 @@ class HomeController extends Controller
     {
         // Get the file from the request
         $file = $request->file('image');
+        if($file == null){
+            flash('Please select a file', 'error');
+            return back();
+        }
         if($file->getSize() >= 2e+6 OR $file->getSize() == 0){
-            flash('Files over 2MB are not allowed!', 'error');
+            flash('Files over 2MB are not allowed! Please decrease file size', 'error');
             return back();
         }
         // Get the contents of the file

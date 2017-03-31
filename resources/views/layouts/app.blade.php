@@ -26,7 +26,9 @@
     {{ Html::style('css/AdminLTE.min.css') }}
       <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     {{ Html::style('css/skins/skin-gold.css') }}
+    
     <!-- SweetAlert -->
+    {{ Html::script('plugins/sweetalert/sweetalert.min.js') }} {{-- Sweet Alert JS needs to be loaded first, before using it on body--}}
     {{ Html::style('plugins/sweetalert/sweetalert.css') }}
     <!-- Animate CSS-->
     {{ Html::style('css/knight/animate.css') }}
@@ -236,8 +238,6 @@
 {!! Html::script('plugins/slimScroll/jquery.slimscroll.min.js') !!}
 <!-- Elevate Zoom -->
 {!! Html::script('plugins/elevatezoom/jquery.elevatezoom.min.js') !!}
-<!-- SweetAlert -->
-{{ Html::script('plugins/sweetalert/sweetalert-dev.js') }}
 
 {!! Html::script('js/app.js') !!}
 @yield('javascript')

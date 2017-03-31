@@ -30,7 +30,7 @@
     {!! Html::script('/js/knight/classie.js') !!}
     
     <!-- SweetAlert -->
-    {{ Html::script('plugins/sweetalert/sweetalert-dev.js') }}
+    {{ Html::script('plugins/sweetalert/sweetalert.min.js') }}
     {{ Html::style('plugins/sweetalert/sweetalert.css') }}
 
     <style>
