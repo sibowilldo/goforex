@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Event;
+use App\Invoice;
+use App\Item;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -184,6 +186,7 @@ class BookingsController extends Controller
     {
         //
         $booking = Booking::where('id', $bookingId)->first();
+
         if ($booking){
             $booking->update(['status_is'=>'Paid']);
 
@@ -192,6 +195,9 @@ class BookingsController extends Controller
             $attendees = explode(',', $event->attendees);
 
             $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
+
+            // Add Paid Invoice
+            $this->addInvoice($booking);
 
             flash("Booking approved successfully.", "success");
 
@@ -230,6 +236,23 @@ class BookingsController extends Controller
         }
     }
 
+    /**
+     * Add Paid Invoice.
+     */
+    public function addInvoice($booking)
+    {
+        // Create 'Pending' Invoice
+        $invoice = Invoice::create([
+            'user_id'=>$booking->user->id,
+            'amount'=>$booking->event->item->price,
+            'status_is'=>'Paid',
+        ]);
+
+        $items = Item::where('id',$booking->event->item->id)->get();
+        foreach ($items as $item) {
+            $invoice->items()->attach($item->id, ['quantity' => 1, 'price' => $item->price]);
+        }
+    }
 
     /**
      * Booking declined.

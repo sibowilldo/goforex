@@ -207,7 +207,7 @@
             </a>
           </li>
             <li>
-                <a href="{{ url('/invoices')}}">
+                <a href="{{ url('/my-invoices')}}">
                     <i class="fa fa-money"></i>
                     <span>My Invoices</span>
                 </a>

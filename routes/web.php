@@ -41,6 +41,11 @@ Route::get('/events/{id}/submitEvent', 'EventsController@submitEvent');
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/my-invoices', 'HomeController@loadInvoices');
+
+Route::get('/invoices/{id}/print', 'InvoicesController@printInvoice');
+
+
 // Verification function of HomeController
 Route::post('/verification', 'HomeController@verification');
 

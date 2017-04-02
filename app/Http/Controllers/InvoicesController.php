@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InvoiceFormRequest;
 use App\Invoice;
+use Auth;
+use PDF;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -60,7 +62,8 @@ class InvoicesController extends Controller
     public function show(Invoice $invoice)
     {
         // Show invoice of $id
-        return view('invoices.show', compact('invoice'));
+        $user = Auth::user();
+        return view('view-invoice', compact('invoice','user'));
     }
 
     /**
@@ -102,5 +105,19 @@ class InvoicesController extends Controller
         $invoice->delete();
         flash('Invoice has been deleted!', 'success');
         return redirect('invoices');
+    }
+
+    // Generate PDF invoice
+    public function printInvoice($id)
+    {
+        // Get user info from Session
+        $user = Auth::user();
+
+        $invoice = Invoice::findOrFail($id);
+
+        $data=['invoice'=>$invoice, 'user'=>$user];
+        $pdf = PDF::loadView('pdf.invoice', $data);
+
+        return $pdf->download($invoice->created_at->format('YmdHis').'-invoice-'.$invoice->id.'.pdf');
     }
 }

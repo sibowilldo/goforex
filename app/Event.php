@@ -26,8 +26,8 @@ class Event extends Model
         'start_time',
         'end_time',
         'status_is',
+        'item_id'
     ];
-
 
     /**
      * The array of $statuses.
@@ -47,11 +47,15 @@ class Event extends Model
         return $this->belongsTo('App\User');
     }
 
+    // Event belongsTo Item
+    public function item()
+    {
+        return $this->belongsTo('App\Item');
+    }
 
     // A Booking belongsTo User
     public function bookings()
     {
         return $this->hasMany('App\Booking');
     }
-
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Invoice;
 use Illuminate\Http\Request;
 use App\Http\Requests\VerifyFormRequest;
 use App\Http\Requests\ContactFormRequest;
@@ -45,10 +46,6 @@ class HomeController extends Controller
 
         $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','asc')->get();
         $bookings = Booking::where('user_id', Auth::user()->id)->get();
-
-//
-//        $message = 'You, welcome to GoForex Wealth Creation!';
-//        $this->saveNotification($message,'profile-verified',Auth::user());
 
         return view('home', compact(['allEvents', 'bookings', 'events']));
     }
@@ -170,5 +167,11 @@ class HomeController extends Controller
 
         flash('Thank You! Your message was sent successfuly.', 'success');
         return back();
+    }
+
+    public function loadInvoices()
+    {
+        $invoices = Invoice::where('user_id', Auth::user()->id)->get();
+        return view('user-invoices', compact('invoices'));
     }
 }

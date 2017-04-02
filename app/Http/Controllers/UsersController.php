@@ -34,7 +34,7 @@ class UsersController extends Controller
         $profile = User::where('id', Auth::id())->get()->first();
         $bookings = Booking::where('user_id', Auth::id())->get();
         $eventsCount = Booking::where('user_id', Auth::id())->distinct('event_id')->count('event_id');
-        return view('users.profile', compact('profile', 'bookings', 'eventsCount'));
+        return view('user-profile', compact('profile', 'bookings', 'eventsCount'));
     }
 
     public function store()

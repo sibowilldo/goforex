@@ -79,4 +79,10 @@ class Item extends Model
     {
         return $this->belongsToMany('App\Invoice', 'invoice_item');
     }
+
+    // Item hasMany Event
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
 }
