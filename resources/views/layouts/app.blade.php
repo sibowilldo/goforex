@@ -69,8 +69,12 @@
       <!-- Logo -->
       <a href="{{ url('/home')}}" class="logo">
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-mini"><img src="{{ url('/img/All-Black-Bull-Shield-LOGO-1.png') }}" alt="{{ config('app.name') }}" style="height: 40px;"></span>
-        <span class="logo-lg"><img src="{{ url('/img/full-black-and-white-logo.png') }}" alt="{{ config('app.name') }}" style="height: 40px;"></span>
+        <span class="logo-mini">
+            <img src="{{ url('/img/All-Black-Bull-Shield-LOGO-1.png') }}" alt="{{ config('app.name') }}" style="height: 40px;">
+        </span>
+        <span class="logo-lg">
+            <img src="{{ url('/img/full-black-and-white-logo.png') }}" alt="{{ config('app.name') }}" style="height: 40px;">
+        </span>
       </a>
 
       <!-- Header Navbar: style can be found in header.less -->

@@ -1,21 +1,19 @@
-<div style="color:#505050;font-family:Arial,sans-serif;font-size:14px;line-height:150%;text-align:left">
-    <div>Good Day, <b>{{ $username }}</b>.</div>
-    <br/>
+@extends('layouts.emails')
 
-    <div>You have successfully registered with GoForex.</div>
-    <div><h4>Here are your registration details.</h4></div>
-    <div>Full Name: <b>{{ $fullname }}</b></div>
-    <div>Cell No: <b>{{ $cell }}</b></div>
-    <div>Reference Number: <b>{{ $reference }}</b></div>
-    <div>Location: <b>{{ $location }}</b></div>
-    <div>Username: <b>{{ $username }}</b></div>
-    <div>Password: <b>{{ $password }}</b></div>
+@section('content')
+    <h3>Hi,{{ $username }}</h3>
+    <p>You have successfully registered with GoForex.</p>
+    <p><h4>Here are your registration details.</h4></p>
+    <p>Full Name: <b>{{ $fullname }}</b></p>
+    <p>Cell No: <b>{{ $cell }}</b></p>
+    <p>Reference Number: <b>{{ $reference }}</b></p>
+    <p>Location: <b>{{ $location }}</b></p>
+    <p>Username: <b>{{ $username }}</b></p>
+    <p>Password: <b>{{ $password }}</b></p>
     <br/>
-    <div>Here is you verification code <b>{{ $code }}</b> which will verify and complete your online profile.</div>
-    <br/>
+    <p>Here is you verification code <b>{{ $code }}</b> which will verify and complete your online profile.</p>
 
-    <div><b><a href="https://www.facebook.com/Go-Forex-1815375525385158/?hc_ref=SEARCH&fref=nf">Follow us on Facebook</a></b></div><br/>
-
-    <div>Kind Regards,<br/>
-        <b>GoForex</b></div>
-</div>
+    <p>Kind Regards,<br/>
+        <b>GoForex</b>
+    </p>
+@endsection
