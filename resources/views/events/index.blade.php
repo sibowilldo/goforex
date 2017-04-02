@@ -20,10 +20,12 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">All Events <b><a href="{{ url('events/create') }}" class="btn" rel="tooltip"
-                                                                title="View">
-
-                                        [ + ]</a></b></h3>
+                            <h3 class="box-title">All Events
+                                <b>
+                                    <a href="{{ url('events/create') }}" class="btn" rel="tooltip" title="View">[ + ]
+                                    </a>
+                                </b>
+                            </h3>
                         </div>
                         <div class="box-body">
                             <table class="ui table table-hover table-striped table-condensed" id="events">
@@ -90,33 +92,32 @@
 
 @endsection
 
-
 @section('styles')
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css">
 
-<style type="text/css">
-    .ui.grid{
-        margin: 0;
-        padding-left: 2.5rem;
-    }
-    .ui.table td {
-        padding: .58571429em .98571429em;
-    }
-    .ui.table td.unread {
-        font-weight: bold;
-    }
-</style>
+    <style type="text/css">
+        .ui.grid{
+            margin: 0;
+            padding-left: 2.5rem;
+        }
+        .ui.table td {
+            padding: .58571429em .98571429em;
+        }
+        .ui.table td.unread {
+            font-weight: bold;
+        }
+    </style>
 @stop
 
 @section('javascript')
-{{ Html::script('https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js') }}
-{{ Html::script('https://cdn.datatables.net/1.10.13/js/dataTables.semanticui.min.js') }}
-{{ Html::script('http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js') }}
+    {{ Html::script('https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js') }}
+    {{ Html::script('https://cdn.datatables.net/1.10.13/js/dataTables.semanticui.min.js') }}
+    {{ Html::script('http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js') }}
 
-<script>
-    $(document).ready(function() {
-        $('#events').DataTable();
-    } );
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#events').DataTable();
+        } );
+    </script>
 @stop

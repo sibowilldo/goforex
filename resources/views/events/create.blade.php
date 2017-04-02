@@ -24,7 +24,7 @@
                         </div>
                         @include('errors.forms')
                         {!! Form::open(['url'=>'events', 'role'=>'form']) !!}
-                        @include('events._form', ['buttonText'=>'Save'])
+                        @include('events._form', ['buttonText'=>'Save Event'])
                         {!! Form::close() !!}
                     </div>
                 </div>

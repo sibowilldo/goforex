@@ -16,15 +16,12 @@ class CreateInvoicesTable extends Migration
             $table->increments('id');
             $table->string('status_is');
             $table->integer('user_id')->unsigned();
-            $table->integer('address_id')->unsigned();
             $table->decimal('amount',13,2);
             $table->decimal('discount',13,2);
-            $table->string('proof')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('address_id')->references('id')->on('addresses');
         });
 
         Schema::create('invoice_item', function (Blueprint $table) {

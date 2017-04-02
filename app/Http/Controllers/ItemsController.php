@@ -6,7 +6,6 @@ use App\Http\Requests\ItemFormRequest;
 use App\Item;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Unglued\LavaImage\Facades\LavaImage;
 
 class ItemsController extends Controller
 {
@@ -24,7 +23,7 @@ class ItemsController extends Controller
     {
         // Get all items
         $items = Item::all();
-        return view('backend.items.index', compact('items'));
+        return view('items.index', compact('items'));
     }
 
     /**
@@ -35,8 +34,7 @@ class ItemsController extends Controller
     public function create()
     {
         // Create new item
-        $image=null;
-        return view('backend.items.create', compact('image'));
+        return view('items.create');
     }
 
     /**
@@ -47,25 +45,9 @@ class ItemsController extends Controller
      */
     public function store(ItemFormRequest $request)
     {
-        // Save the new item
-        if($request->hasFile('image')) {
-            $fileHash = LavaImage::save($request->file('image'));
-            $request['image']=$fileHash;
-        }
-
-        $request['password']=bcrypt($request['password']);
-        $request['verified']=0;
-        $request['code']=str_random(6);
-
-        $item = Item::create($request->except(['image']));
-
-        // Save image string if upload was successful
-        if(isset($fileHash)) {
-            $item->update(['image'=>$fileHash]);
-        }
-
+        $item = Item::create($request->all());
         flash('New item has been added!', 'success');
-        return redirect('/admin/items');
+        return redirect('items');
     }
 
     /**
@@ -77,7 +59,7 @@ class ItemsController extends Controller
     public function show(Item $item)
     {
         // Show item of $id
-        return view('backend.items.show', compact('item'));
+        return view('items.show', compact('item'));
     }
 
     /**
@@ -88,14 +70,7 @@ class ItemsController extends Controller
      */
     public function edit(Item $item)
     {
-        // Edit existing item
-        $image = null;
-
-        if(!is_null($item->image)) {
-            $image = LavaImage::getImage($item->image);
-        }
-
-        return view('backend.items.edit', compact('item','image'));
+        return view('items.edit', compact('item'));
     }
 
     /**
@@ -107,28 +82,10 @@ class ItemsController extends Controller
      */
     public function update(ItemFormRequest $request, Item $item)
     {
-        // Update the existing item
-        if(strlen($request['password'])>6) {
-            $request['password']=bcrypt($request['password']);
-        } else {
-            $request['password']=$item->password;
-        }
-
-        if($request->hasFile('image')) {
-            $fileHash = LavaImage::save($request->file('image'));
-            $request['image']=$fileHash;
-        }
-
         // Update other data except image
-        $item->update($request->except(['image']));
-
-        // Save image string if upload was successful
-        if(isset($fileHash)) {
-            $item->update(['image'=>$fileHash]);
-        }
-
+        $item->update($request->all());
         flash('Item has been successfully updated!', 'success');
-        return redirect('/admin/items');
+        return redirect('items');
     }
 
     /**
@@ -142,14 +99,6 @@ class ItemsController extends Controller
         // Delete a item
         $item->delete();
         flash('Item has been deleted!', 'success');
-        return redirect('/admin/items');
-    }
-
-    // Delete a item file
-    public function deleteItemFile($id)
-    {
-        $item = Item::where('image',$id)->first();
-        $item->update(['image'=>null]);
-        return redirect()->back();
+        return redirect('items');
     }
 }

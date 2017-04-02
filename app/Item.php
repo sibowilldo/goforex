@@ -19,7 +19,6 @@ class Item extends Model
         'rate_is',
         'category_is',
         'status_is',
-        'image',
         'featured',
         'url',
     ];
@@ -40,6 +39,7 @@ class Item extends Model
      * @var array
      */
     public static $rates = [
+        'Seat' => 'Per seat',
         'Item' => 'Per item',
         'Hour' => 'Per hour',
         'Litre' => 'Per litre',
@@ -60,6 +60,8 @@ class Item extends Model
         'Finance' => 'Finance',
         'Branding' => 'Branding',
         'Internet' => 'Internet',
+        'Training' => 'Training',
+        'Webinar' => 'Webinar',
     ];
 
     /**

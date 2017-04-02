@@ -187,23 +187,29 @@
             </a>
           </li>
           @if(Auth::user()->hasRole('admin'))
-          <li>
-            <a href="{{ url('/events')}}">
-              <i class="fa fa-calendar-o"></i>
-              <span>Events</span>
-            </a>
-          </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>Administrator</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu" style="display: none;">
+                    <li><a href="{{ url('/events') }}"><i class="fa fa-circle-o"></i> Events</a></li>
+                    <li><a href="{{ url('/items') }}"><i class="fa fa-circle-o"></i> Items</a></li>
+                    <li><a href="{{ url('/invoices') }}"><i class="fa fa-circle-o"></i> Invoices</a></li>
+                </ul>
+            </li>
           @endif
           <li>
             <a href="{{ url('/profile')}}">
               <i class="fa fa-user"></i>
-              <span>Profile</span>
+              <span>My Profile</span>
             </a>
           </li>
             <li>
                 <a href="{{ url('/invoices')}}">
                     <i class="fa fa-money"></i>
-                    <span>Invoices</span>
+                    <span>My Invoices</span>
                 </a>
             </li>
           <li>
