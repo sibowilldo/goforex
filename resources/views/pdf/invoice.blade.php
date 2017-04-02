@@ -3,21 +3,22 @@
 @section('content')
     <header class="clearfix">
         <div id="logo">
-            {{ Html::image('img/brands-logo.png', '') }}
+            {{ Html::image('img/Full-LOGO-1.png', '') }}
         </div>
         <h1>INVOICE {{ $invoice->id }}</h1>
         <div id="company" class="clearfix">
-            <div>BANTU BRANDS</div>
-            <div>B25 Point Bastille,<br /> 21 Signal street, Durban, 4001</div>
-            <div>+27 81-778-7702</div>
-            <div><a href="mailto:accounts@bantubrands.co.za">accounts@bantubrands.co.za</a></div>
+            <div>GOFOREX</div>
+            <div>87 Bulwer Rd <br/>Glenwood, Durban, 4001</div>
+            <div>+27 71-920-0123</div>
+            <div><a href="mailto:accounts@goforex.co.za">accounts@goforex.co.za</a></div>
         </div>
         <div id="project">
-            <div><span>CLIENT</span> {{ Auth::user()->username }}</div>
-            <div></div>
+            <div><span>CLIENT</span> {{ Auth::user()->firstname .' '.Auth::user()->lastname }}</div>
+            <div><span>MOBILE</span> {{ Auth::user()->cell }}</div>
+            <div><span>LOCATION</span> {{ Auth::user()->location }}</div>
             <div><span>EMAIL</span> <a href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}</a></div>
             <div><span>DATE</span> {{ $invoice->created_at->format('F d, Y') }}</div>
-            <div><span>DUE DATE</span> {{ $invoice->created_at->addDays(14)->format('F d, Y') }}</div>
+            <div><span>DATE PAID</span> {{ $invoice->created_at->format('F d, Y') }}</div>
             <div><span>STATUS</span> {{ $invoice->status_is }}</div>
         </div>
     </header>
@@ -64,10 +65,10 @@
             <div class="notice">An unpaid Invoice will be removed from the system after 14 days.<br><br>
                 Payment should be made via direct deposit or EFT to:
                 <div id="project">
-                    <span>Holder:</span> Ndalokuhle Consulting (Pty) Ltd,<br>
+                    <span>Holder:</span> AJ Hastibeer,<br>
                     <span>Bank:</span> First National Bank,<br>
-                    <span>Account:</span> 625-21226-292,<br>
-                    <span>Branch:</span> 222-126
+                    <span>Account:</span> 626-06406-909,<br>
+                    <span>Branch:</span> 250-655
                 </div>
             </div>
         </div>

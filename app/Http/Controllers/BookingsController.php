@@ -221,7 +221,7 @@ class BookingsController extends Controller
             // Send email to confirm successful registration
             Mail::send('emails.booking_confirmed', $parameters, function ($message)
             use ($email, $name) {
-                $message->from('noreply@goforex.com');
+                $message->from('noreply@goforex.co.za');
                 $message->to($email, $name)->subject('GoForex - Booking Confirmed');
             });
 
@@ -293,7 +293,7 @@ class BookingsController extends Controller
             // Send email to confirm successful registration
             Mail::send('emails.booking_declined', $parameters, function ($message)
             use ($email, $name) {
-                $message->from('noreply@goforex.com');
+                $message->from('noreply@goforex.co.za');
                 $message->to($email, $name)->subject('GoForex - Booking Declined');
             });
                 

@@ -85,4 +85,10 @@ class Item extends Model
     {
         return $this->hasMany('App\Event');
     }
+
+    // Custom ItemName Accessor
+    public function getItemNameAttribute()
+    {
+        return $this->attributes['name'] .' @ R'. $this->attributes['price'];
+    }
 }

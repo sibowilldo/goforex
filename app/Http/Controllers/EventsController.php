@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Event;
+use App\Item;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventsFormRequest;
 use Auth;
@@ -42,7 +43,8 @@ class EventsController extends Controller
     public function create()
     {
         //
-        return view('events.create');
+        $items=Item::get()->pluck('item_name', 'id');
+        return view('events.create',compact('items'));
     }
 
     /**
@@ -56,7 +58,6 @@ class EventsController extends Controller
         $event = $request->all();
         $event['status_is'] = 'Pending';
         $event['reference'] = str_random(7);
-//        dd($event);
         Event::create($event);
         flash('You have successfully created an Event.', 'success');
 
@@ -73,13 +74,8 @@ class EventsController extends Controller
     public function show(Event $event)
     {
         //
-
         $attendees = explode(',', $event->attendees);
-
         $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
-
-//        dd($users);
-
         return view('events.show', compact(['event', 'bookings']));
     }
 
@@ -92,7 +88,8 @@ class EventsController extends Controller
     public function edit(Event $event)
     {
         //
-        return view('events.edit', compact(['event']));
+        $items=Item::get()->pluck('item_name', 'id');
+        return view('events.edit', compact('event','items'));
     }
 
     /**
@@ -104,7 +101,6 @@ class EventsController extends Controller
      */
     public function update(EventsFormRequest $request, Event $event)
     {
-        //
         // Update the existing account
         $event->update($request->all());
         flash('Event has been updated!', 'success');

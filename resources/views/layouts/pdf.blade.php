@@ -10,7 +10,7 @@
             clear: both;
         }
         a {
-            color: #f49022;
+            color: #D2AC67;
             text-decoration: underline;
         }
         body {
@@ -20,7 +20,6 @@
             margin: 0 auto;
             color: #001028;
             background: #FFFFFF;
-            font-family: "Myriad Pro", sans-serif;
             font-size: 12px;
             font-family: Arial;
         }
@@ -33,12 +32,12 @@
             margin-bottom: 10px;
         }
         #logo img {
-            width: 90px;
+            width: 200px;
         }
         h1 {
-            border-top: 1px solid  #79471c;
-            border-bottom: 1px solid  #79471c;
-            color: #79471c;
+            border-top: 1px solid  #D2AC67;
+            border-bottom: 1px solid  #D2AC67;
+            color: #D2AC67;
             font-size: 2.4em;
             line-height: 1.4em;
             font-weight: normal;
@@ -49,7 +48,7 @@
             float: left;
         }
         #project span {
-            color: #79471c;
+            color: #D2AC67;
             text-align: right;
             width: 52px;
             margin-right: 10px;
@@ -71,7 +70,7 @@
             margin-bottom: 20px;
         }
         table tr:nth-child(2n-1) td {
-            background: #fce0c1;
+            background: #f1d2b6;
         }
         table th,
         table td {
@@ -79,8 +78,8 @@
         }
         table th {
             padding: 5px 20px;
-            color: #79471c;
-            border-bottom: 1px solid #79471c;
+            color: #D2AC67;
+            border-bottom: 1px solid #D2AC67;
             white-space: nowrap;
             font-weight: normal;
         }
@@ -102,19 +101,19 @@
             font-size: 1.2em;
         }
         table td.grand {
-            border-top: 1px solid #79471c;;
+            border-top: 1px solid #D2AC67;;
         }
         #notices .notice {
             color: #5D6975;
             font-size: 1.2em;
         }
         footer {
-            color: #79471c;
+            color: #D2AC67;
             width: 100%;
             height: 30px;
             position: absolute;
             bottom: 0;
-            border-top: 1px solid #79471c;
+            border-top: 1px solid #D2AC67;
             padding: 8px 0;
             text-align: center;
         }

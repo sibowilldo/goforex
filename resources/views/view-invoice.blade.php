@@ -43,18 +43,18 @@
                                 <address>
                                     <strong>Payment Method:</strong><br>
                                     Deposit to: <br>
-                                    NDALOKUHLE CONSULTING (PTY) LTD<br>
+                                    AJ HASTIBEER<br>
                                     FIRST NATIONAL BANK<br>
-                                    625 2122 6292<br>
-                                    222 126
+                                    626-06406-909<br>
+                                    250-655
                                 </address>
                             </div>
                             <div class="col-xs-6 text-right">
                                 <address>
                                     <strong>Invoice Date:</strong><br>
                                     {{ $invoice->created_at->format('F d, Y') }}<br><br>
-                                    <strong>Due Date:</strong><br>
-                                    {{ $invoice->created_at->addDays(7)->format('F d, Y') }}<br><br>
+                                    <strong>Paid On:</strong><br>
+                                    {{ $invoice->created_at->format('F d, Y') }}<br><br>
                                     <strong>Status:</strong><br>
                                     {{ $invoice->status_is }}<br>
                                 </address>

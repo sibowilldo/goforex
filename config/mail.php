@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply@innobrand.co.za'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@goforex.co.za'),
         'name' => env('MAIL_FROM_NAME', 'GoForex'),
     ],
 

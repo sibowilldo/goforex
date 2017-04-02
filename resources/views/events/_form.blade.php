@@ -19,6 +19,10 @@
 		{!! Form::label('number_of_seats', 'Number Of Seats:') !!}
 		{!! Form::number('number_of_seats', null, ['class'=>'form-control']) !!}
 	</div>
+	<div class="form-group">
+		{!! Form::label('item_id', 'Item:') !!}
+		{!! Form::select('item_id', $items, null, ['class'=>'form-control']) !!}
+	</div>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
