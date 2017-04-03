@@ -398,7 +398,7 @@
 @endif
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><a id="back-top" href="#"><img src="{{ url('img/full-logo-white.png')}}" alt=""></a></div>
+        <div class="footer-logo"><a id="back-top" href="#"><img src="{{ url('img/Full-logo-white.png')}}" alt=""></a></div>
         <span class="copyright">&copy; GoForex. All Rights Reserved</span>
     </div>
 </footer>
