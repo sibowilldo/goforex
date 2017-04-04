@@ -298,15 +298,15 @@
                 <div class="contact-info-box hours clearfix">
                     <h3><i class="fa-clock-o"></i>Hours:</h3>
                     <span id="contact_form"><strong>Monday - Friday:</strong> 8am - 5pm<br><strong>Saturday - Sunday:</strong>
-                        Online Bookings Only | <a class="signin_link" href="#signin">Sign In</a>
+                        Online Bookings Only <br><a class="signin_link" href="#signin">Sign In</a>
                     </span>
                 </div>
                 <ul class="social-link">
                     {{--<li class="twitter"><a href="#"><i class="fa-twitter"></i></a></li>--}}
-                    <li class="facebook"><a href="https://www.facebook.com/goforexwealth/?fref=ts"><i class="fa-facebook"></i></a></li>
+                    <li class="facebook"><a target="_blank" href="https://www.facebook.com/goforexwealth/?fref=ts"><i class="fa-facebook"></i></a></li>
                     {{--<li class="pinterest"><a href="#"><i class="fa-pinterest"></i></a></li>--}}
                     {{--<li class="gplus"><a href="#"><i class="fa-google-plus"></i></a></li>--}}
-                    <li class="instagram"><a href="https://www.instagram.com/goforex_wealth_creation/?hl=en"><i class="fa-instagram"></i></a></li>
+                    <li class="instagram"><a target="_blank" href="https://www.instagram.com/goforex_wealth_creation/?hl=en"><i class="fa-instagram"></i></a></li>
                 </ul>
             </div>
             <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
