@@ -102,11 +102,10 @@ class BookingsController extends Controller
                     <br/>
 
                     <p><b>Banking Details :</b><br>
-                        Bank : <b> XXXXX XXXXXXX</b><br>
-                        Acc Holder : <b> X.X XXXXXXX</b><br>
-                        Acc Type : <b> XXXXXXX </b><br>
-                        Acc Number : <b> XXXXXXXXXX</b><br>
-                        Branch Code : <b> XXX XXX</b></p>
+                        Bank : <b> First National Bank</b><br>
+                        Acc Holder : <b> AJ Hastibeer</b><br>
+                        Acc Number : <b> 626-06406-909</b><br>
+                        Branch Code : <b> 250655 </b></p>
 
                     <p><b>NB : Payment is expected to be made within 12 hours from the booking date/time, or your booking will be reversed.</b></p>
 
@@ -297,7 +296,7 @@ class BookingsController extends Controller
                 $message->to($email, $name)->subject('GoForex - Booking Declined');
             });
                 
-               $message = '<h5><strong>Greetings '. $user->firstname .'!</strong></h5><p> It is in our deepest regrets to inform you that your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been declined. <br>This could be because your proof of payment could not be varified, please contact us for more info.</p> <br>
+               $message = '<h5><strong>Greetings '. $user->firstname .'!</strong></h5><p> It is in our deepest regrets to inform you that your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been declined. <br>This could be because your proof of payment could not be verified, please contact us for more info.</p> <br>
                             <p>If you are still interested in this event please create another booking if seats are still available.</p>';
             $this->saveNotification($message,'notification',$user, 'Booking Declined');
 

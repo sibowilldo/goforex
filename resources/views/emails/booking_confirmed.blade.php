@@ -1,7 +1,7 @@
 <div style="color:#505050;font-family:Arial,sans-serif;font-size:14px;line-height:150%;text-align:left">
     <div>Good Day, <b>{{ $username }}</b>,</div>
     <br/>
-    <div><p>Your booking with <b>Ref#{{ $booking_ref }}</b> has been confirmed, bellow are the event details.</p></div>
+    <div><p>Your booking with <b>Ref#{{ $booking_ref }}</b> has been confirmed, below are the event details.</p></div>
     <br/>
 
     <p><b>Event Details :</b></p>
