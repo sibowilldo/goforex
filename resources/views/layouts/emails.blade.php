@@ -100,7 +100,7 @@
         </td>
     </tr>
     <tr>
-        <td bgcolor="#ffeda8" align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 70px 15px 70px 15px;" class="section-padding">
+        <td bgcolor="#ffeda8" align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 40px 15px 40px 15px;" class="section-padding">
             <!--[if (gte mso 9)|(IE)]>
             <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
                 <tr>
@@ -178,7 +178,7 @@
                     <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color:#666666;">
                         Email: <a href="noreply@goforex.co.za" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">noreply@goforex.co.za</a>
                         <br>
-                        <a href="http://litmus.com" target="_blank" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color: #666666; text-decoration: none;">Unsubscribe</a>
+                        <a href="{{ url('/unsubscribe') }}" target="_blank" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color: #666666; text-decoration: none;">Unsubscribe</a>
                     </td>
                 </tr>
             </table>
