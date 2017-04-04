@@ -1,9 +1,8 @@
-<div style="color:#505050;font-family:Arial,sans-serif;font-size:14px;line-height:150%;text-align:left">
-    <div>Hey Again, <b>{{ $username }}</b>,</div>
-    <br/>
-    <div>Your GoForex account has been verified, and you are good to go.</div>
+@extends('layouts.emails')
+
+@section('content')
+
+    Your GoForex account has been verified, and you are good to go.
     <br/>
 
-    <div>Kind Regards,<br/>
-        <b>GoForex</b></div>
-</div>
+@endsection

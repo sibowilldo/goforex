@@ -75,6 +75,8 @@ class HomeController extends Controller
 
             $parameters = array(
                 'username' => $user->username,
+                'callout_button' => 'Sign In',
+                'callout_url' => url('login'),
             );
 
             $message = 
@@ -86,10 +88,10 @@ class HomeController extends Controller
             Mail::send('emails.verified', $parameters, function ($message)
             use ($email, $name) {
                 $message->from('noreply@goforex.co.za');
-                $message->to($email, $name)->subject('GoForex Profile Complete');
+                $message->to($email, $name)->subject('Your GoForex profile is activated!');
             });
 
-            flash('Your profile has been verified and is complete!', 'success');
+            flash('Your profile has been verified and activated!', 'success');
         } else {
             flash('The code you submitted is incorrect, please try again.', 'error');
         }
