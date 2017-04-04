@@ -17,10 +17,13 @@ use App\Http\Traits\NotificationTraits;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use App\Notification;
 
 class HomeController extends Controller
 {
 
+    // User Traits
+    use NotificationTraits;
 
     /**
      * Create a new controller instance.

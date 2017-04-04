@@ -105,6 +105,10 @@ body {
     z-index: 800
 }
 
+.content-wrapper {
+    background: #ecf0f5 url(/img/svgbull.svg) no-repeat 50%/50%;
+}
+
 .main-footer {
     background: #fff;
     padding: 15px;
