@@ -389,7 +389,7 @@
 <footer class="footer">
     <div class="container">
         <div class="footer-logo"><a id="back-top" href="#">
-                {{ Html::image('img/full-logo-white.png') }}
+                {{ Html::image('img/Full-logo-white.png') }}
             </a></div>
         <span class="copyright">&copy; GoForex. All Rights Reserved</span>
     </div>
