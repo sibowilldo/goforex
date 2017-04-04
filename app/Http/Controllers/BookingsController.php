@@ -218,7 +218,7 @@ class BookingsController extends Controller
             Mail::send('emails.booking_confirmed', $parameters, function ($message)
             use ($email, $name) {
                 $message->from('noreply@goforex.co.za');
-                $message->to($email, $name)->subject('GoForex - Booking Confirmed');
+                $message->to($email, $name)->subject('GoForex - Booking Confirmed!');
             });
 
             $message = '<h5><strong>Hey there!</strong></h5> <br><p>Congratulations, your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been approved.</p><br>
