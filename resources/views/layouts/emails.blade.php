@@ -1,125 +1,192 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-    <!-- If you delete this meta tag, Half Life 3 will never be released. -->
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>GoForex - Wealth Creation</title>
+    <title>GoForex - Wealth Creation!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <style type="text/css">
-        @media only screen and (max-width: 600px) {
-            a[class="btn"] { display:block!important; margin-bottom:10px!important; background-image:none!important; margin-right:0!important;}
-            div[class="column"] { width: auto!important; float:none!important;}
-            table.social div[class="column"] {
-                width:auto!important;
+        /* CLIENT-SPECIFIC STYLES */
+        /* Prevent WebKit and Windows mobile changing default text sizes */
+        /* Allow smoother rendering of resized image in Internet Explorer */
+        /* iOS BLUE LINKS */
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+        /* MOBILE STYLES */
+        @media screen and (max-width: 525px) {
+            .wrapper {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            /* ADJUSTS LAYOUT OF LOGO IMAGE */
+            .logo img {
+                margin: 0 auto !important;
+            }
+            /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
+            .mobile-hide {
+                display: none !important;
+            }
+            .img-max {
+                max-width: 100% !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+            /* FULL-WIDTH TABLES */
+            .responsive-table {
+                width: 100% !important;
+            }
+            .padding {
+                padding: 10px 5% 15px 5% !important;
+            }
+            .padding-meta {
+                padding: 30px 5% 0px 5% !important;
+                text-align: center;
+            }
+            .padding-copy {
+                padding: 10px 5% 10px 5% !important;
+                text-align: center;
+            }
+            .no-padding {
+                padding: 0 !important;
+            }
+            .section-padding {
+                padding: 50px 15px 50px 15px !important;
+            }
+            /* ADJUST BUTTONS ON MOBILE */
+            .mobile-button-container {
+                margin: 0 auto;
+                width: 100% !important;
+            }
+            .mobile-button {
+                padding: 15px !important;
+                border: 0 !important;
+                font-size: 16px !important;
+                display: block !important;
             }
         }
+        /* ANDROID CENTER FIX */
     </style>
 </head>
-<body bgcolor="#FFFFFF" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none;height:100%;width:100% !important;'>
+<body style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;height:100% !important;margin:0 !important;padding:0 !important;width:100% !important;margin: 0 !important; padding: 0 !important;">
 <!-- HEADER -->
-<table class="head-wrap" bgcolor="#d2ac67" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;width:100%;'>
-    <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-        <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'></td>
-        <td class="header container" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;display:block !important;max-width:600px !important;margin:0 auto !important;clear:both !important;'>
-            <div class="content" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;max-width:600px;margin:0 auto;display:block;padding:15px;margin-bottom:15px;'>
-                <table bgcolor="#d2ac67" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;width:100%;'>
-                    <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                        <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                            <img src="{{ url('/img/Full-Black-and-white-LOGO-1.png') }}" width="200" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;max-width:100%;'/></td>
-                        <td align="right" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                            <h6 class="collapse" style='font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;line-height:1.1;margin-bottom:15px;color:#000;font-weight:900;font-size:14px;text-transform:uppercase;color:#444;margin:0;padding:0;margin:0 !important;'>@yield('heading')</h6>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;">
+    <tr>
+        <td bgcolor="#ffffff" align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
+                <tr>
+                    <td align="center" valign="top" width="500">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;max-width: 500px;" class="wrapper">
+                <tr>
+                    <td align="center" valign="top" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 15px 0;" class="logo">
+                        <a href="{{ url('/') }}" target="_blank" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+                            {{ Html::image("img/Full-LOGO-1.png","Logo", array('width'=>"300", 'style'=>"-ms-interpolation-mode:bicubic;border:0;height:auto;line-height:100%;outline:none;text-decoration:none;display: block; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;", 'border'=>"0")) }}
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
         </td>
-        <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'></td>
+    </tr>
+    <tr>
+        <td bgcolor="#d2ac67" align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 70px 15px 70px 15px;" class="section-padding">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
+                <tr>
+                    <td align="center" valign="top" width="500">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;max-width: 500px;" class="responsive-table">
+                <tr>
+                    <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+                        <!-- HERO IMAGE -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;">
+                            <tr>
+                                <td style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+                                    <!-- COPY -->
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;">
+                                        <tr>
+                                            <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-size: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333; padding-top: 30px;" class="padding">Hi {{ $username }},
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding">
+                                                @yield('content')
+                                            </td>
+                                            <td align="left" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding">
+                                                <i>Kind Regards,<br/>
+                                                    <b>GoForex Team</b>
+                                                </i>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+                                    <!-- BULLETPROOF BUTTON -->
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;">
+                                        <tr>
+                                            <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding-top: 25px;" class="padding">
+                                                <table border="0" cellspacing="0" cellpadding="0" class="mobile-button-container" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;">
+                                                    <tr>
+                                                        <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-radius: 3px;" bgcolor="#000000">
+                                                            <a href="{{ url($callout_url) }}" target="_blank" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 15px 25px; border: 1px solid #000000; display: inline-block;" class="mobile-button">
+                                                                {{ $callout_button }} &rarr;
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff" align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 20px 0px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
+                <tr>
+                    <td align="center" valign="top" width="500">
+            <![endif]-->
+            <!-- UNSUBSCRIBE COPY -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;max-width: 500px;" class="responsive-table">
+                <tr>
+                    <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color:#666666;">
+                        Email: <a href="noreply@goforex.co.za" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">noreply@goforex.co.za</a>
+                        <br>
+                        <a href="http://litmus.com" target="_blank" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color: #666666; text-decoration: none;">Unsubscribe</a>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
     </tr>
 </table>
-<!-- /HEADER -->
-<!-- BODY -->
-<table class="body-wrap" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;width:100%;'>
-    <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-        <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'></td>
-        <td class="container" bgcolor="#FFFFFF" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;display:block !important;max-width:600px !important;margin:0 auto !important;clear:both !important;'>
-            <div class="content" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;max-width:600px;margin:0 auto;display:block;padding:15px;margin-bottom:15px;'>
-                <table style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;width:100%;'>
-                    <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                        <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                            <div class="content" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;max-width:600px;margin:0 auto;display:block;padding:15px;margin-bottom:15px;'>
-                                @yield('content')
-                            </div>
-                            <!-- Callout Panel -->
-                            <p class="callout" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;padding:15px;background-color:#fff6cc;margin-bottom:15px;'>
-                                @yield('callout')
-                            </p>
-                            <!-- /Callout Panel -->
-                            <!-- social & contact -->
-                            <table class="social" width="100%" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;background-color:#000000;color:#ffffff;width:100%;'>
-                                <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                                    <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                                        <!-- column 1 -->
-                                        <table align="left" class="column" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;width:300px;width:100%;width:280px;min-width:279px;float:left;'>
-                                            <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                                                <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;padding:15px;'>
-                                                    <h5 class="" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;line-height:1.1;margin-bottom:15px;color:#000;font-weight:900;font-size:17px;background-color:#000000;color:#ffffff;'>Connect with Us:</h5>
-                                                    <p class="" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;'>
-                                                        <a href="https://www.facebook.com/goforexwealth/?fref=ts" class="soc-btn fb" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;color:#d2ac67;padding:3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color:#FFF;font-weight:bold;display:block;text-align:center;background-color:#3B5998 !important;'>Facebook</a>
-                                                        <a href="https://www.instagram.com/goforex_wealth_creation/?hl=en" class="soc-btn gp" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;color:#d2ac67;padding:3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color:#FFF;font-weight:bold;display:block;text-align:center;background-color:#DB4A39 !important;'>Instagram</a>
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <!-- /column 1 -->
-                                        <!-- column 2 -->
-                                        <table align="left" class="column" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;width:300px;width:100%;width:280px;min-width:279px;float:left;'>
-                                            <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                                                <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;padding:15px;'>
-                                                    <h5 class="" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;line-height:1.1;margin-bottom:15px;color:#000;font-weight:900;font-size:17px;background-color:#000000;color:#ffffff;'>Contact Info:</h5>
-                                                    <p style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;'>Phone: <strong style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>+27 71 920 0123</strong><br style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'/>
-                                                        Email: <strong style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'><a href="emailto:info@goforex.co.za" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;color:#d2ac67;'>info@goforex.co.za</a></strong>
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <!-- /column 2 -->
-                                        <span class="clear" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;display:block;clear:both;'></span>
-                                    </td>
-                                </tr>
-                            </table>
-                            <!-- /social & contact -->
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <!-- /content -->
-        </td>
-        <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'></td>
-    </tr>
-</table>
-<!-- /BODY -->
-<!-- FOOTER -->
-<table class="footer-wrap" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;width:100%;clear:both !important;'>
-    <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-        <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'></td>
-        <td class="container" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;display:block !important;max-width:600px !important;margin:0 auto !important;clear:both !important;'>
-            <!-- content -->
-            <div class="content" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;max-width:600px;margin:0 auto;display:block;padding:15px;margin-bottom:15px;'>
-                <table style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;width:100%;'>
-                    <tr style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                        <td align="center" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                            <p style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;'>
-                                <a href="#" style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;color:#d2ac67;'><unsubscribe style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>Unsubscribe</unsubscribe></a>
-                            </p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <!-- /content -->
-        </td>
-        <td style='margin:0;padding:0;font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'></td>
-    </tr>
-</table>
-<!-- /FOOTER -->
 </body>
 </html>

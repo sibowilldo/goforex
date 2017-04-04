@@ -99,8 +99,10 @@ class RegisterController extends Controller
         $email = $user->email;
         $name = $user->username;
 
-
-        $parameters = array('username' => $user->username,
+        $parameters = array(
+            'username' => $user->username,
+            'callout_button' => 'Sign In',
+            'callout_url' => url('login'),
             'password' => $data['password'],
             'cell' => $user->cell,
             'reference' => $user->reference,
@@ -112,11 +114,11 @@ class RegisterController extends Controller
         // Send email to confirm successful registration
         Mail::send('emails.welcome', $parameters, function ($message)
         use ($email, $name) {
-            $message->from('noreply@innobrand.co.za');
-            $message->to($email, $name)->subject('Welcome To Go Forex.');
+            $message->from('noreply@goforex.co.za');
+            $message->to($email, $name)->subject('Welcome To GoForex!');
         });
 
-        flash('You have registered successfully with Go Forex.', 'success' );
+        flash('Awesome! You have successfully registered with GoForex :-)', 'success' );
 
         return $user;
     }

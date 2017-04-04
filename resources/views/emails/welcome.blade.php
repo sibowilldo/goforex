@@ -1,19 +1,14 @@
 @extends('layouts.emails')
 
 @section('content')
-    <h3>Hi,{{ $username }}</h3>
-    <p>You have successfully registered with GoForex.</p>
-    <p><h4>Here are your registration details.</h4></p>
-    <p>Full Name: <b>{{ $fullname }}</b></p>
-    <p>Cell No: <b>{{ $cell }}</b></p>
-    <p>Reference Number: <b>{{ $reference }}</b></p>
-    <p>Location: <b>{{ $location }}</b></p>
-    <p>Username: <b>{{ $username }}</b></p>
-    <p>Password: <b>{{ $password }}</b></p>
-    <br/>
-    <p>Here is you verification code <b>{{ $code }}</b> which will verify and complete your online profile.</p>
+    You have successfully registered with GoForex. Here are your registration details:<br><br>
 
-    <p>Kind Regards,<br/>
-        <b>GoForex</b>
-    </p>
+    Full Name: <b>{{ $fullname }}</b><br>
+    Cell No: <b>{{ $cell }}</b><br>
+    Reference Number: <b>{{ $reference }}</b><br>
+    Location: <b>{{ $location }}</b><br>
+    Username: <b>{{ $username }}</b><br>
+    Password: <b>{{ $password }}</b><br><br/>
+
+    Here is you verification code <b>{{ $code }}</b> which will verify and complete your online profile.<br>
 @endsection
