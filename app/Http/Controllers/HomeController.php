@@ -88,7 +88,7 @@ class HomeController extends Controller
             Mail::send('emails.verified', $parameters, function ($message)
             use ($email, $name) {
                 $message->from('noreply@goforex.co.za');
-                $message->to($email, $name)->subject('Your GoForex profile is activated!');
+                $message->to($email, $name)->subject('GoForex - Your profile is activated!');
             });
 
             flash('Your profile has been verified and activated!', 'success');

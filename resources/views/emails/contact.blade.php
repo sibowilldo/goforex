@@ -2,8 +2,8 @@
 
 @section('content')
 
-    Message from Contact us form, sent by <strong>{{ $sender }}</strong>:<br/>
-    <i>{{ $bodymessage }}</i>
+    This is a message from Contact us form, sent by <strong>{{ $sender }}</strong>:<br/><br>
+    <i>{{ $bodymessage }}</i><br><br>
 
     <strong>From:</strong> {{ $sender }} <br>
     <strong>Email:</strong> {{ $sender_email}}

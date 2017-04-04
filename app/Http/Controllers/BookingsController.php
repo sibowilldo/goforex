@@ -69,22 +69,22 @@ class BookingsController extends Controller
                 $event->attendees = implode(',', $attendees);
                 $event->save();
             }
-        }else{
+        } else {
             $event->update(['attendees'=>Auth::user()->id]);
         }
-
 
         $booking = Booking::create(['user_id'=>Auth::user()->id,
                         'event_id'=>$eventId,
                         'reference'=>'BO'.str_random(9),
                         'status_is'=>'Pending']);
 
-
         $email = Auth::user()->email;
         $name = Auth::user()->username;
 
         $parameters = array(
             'username' => Auth::user()->username,
+            'callout_button' => 'View Booking',
+            'callout_url' => url('/view-event/'.$eventId),
             'booking_ref' => $booking->reference,
             'booking_date_time' => $booking->created_at,
         );
@@ -93,28 +93,23 @@ class BookingsController extends Controller
         Mail::send('emails.booking_created', $parameters, function ($message)
         use ($email, $name) {
             $message->from('noreply@goforex.co.za');
-            $message->to($email, $name)->subject('GoForex - Booking Created');
+            $message->to($email, $name)->subject('GoForex - Your booking is successful!');
         });
 
-        $message = '
-                    <p>You have created a booking with <b>Ref# '.$booking->reference.'</b></p>
-                    <p>Please make payments to the following details, and update your online booking by uploading your proof of payment</p>
+        $message = '<p>You have created a booking of <b>Ref# '.$booking->reference.'</b></p>
+                    <p>Please make a payment to below details, and update your online booking by uploading proof of payment:</p>
                     <br/>
-
-                    <p><b>Banking Details :</b><br>
+                    <p><i>Banking Details :</i><br>
                         Bank : <b> First National Bank</b><br>
                         Acc Holder : <b> AJ Hastibeer</b><br>
                         Acc Number : <b> 626-06406-909</b><br>
                         Branch Code : <b> 250655 </b></p>
-
-                    <p><b>NB : Payment is expected to be made within 12 hours from the booking date/time, or your booking will be reversed.</b></p>
-
+                    <p><b>NB: You are expected to make payment within 12 hours from the booking date/time, or your booking will be cancelled.</b></p>
                     <p><b>Booking Date/Time : '. $booking->created_at .'</b></p>';
 
         $this->saveNotification($message,'notification',Auth::user(), 'Booking Created');
 
-        flash("You have successfully created a booking, please make payment with 12 hours to get approval.","success");
-
+        flash("You have successfully created a booking, please make payment within 12 hours to complete your reservations.", "success");
 
         return redirect('/home');
     }
