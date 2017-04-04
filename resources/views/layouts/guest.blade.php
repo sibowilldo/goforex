@@ -56,13 +56,13 @@
 <header class="header" id="header"><!--header-start-->
     <div class="container">
         <figure class="logo animated fadeInDown delay-07s">
-           <img src="{{ url('img/Full-logo-white.png')}}" alt="{{ config('app.name') }}">
+            {{ Html::image('img/Full-logo-white.png',config('app.name')) }}
         </figure>
         <h1 class="animated fadeInDown delay-07s">Welcome To GoForex Wealth Creation</h1>
         <ul class="we-create animated fadeInUp delay-1s">
             <li>Your adaptive and Selective approach to trading Forex.</li>
         </ul>
-        <a class="link animated fadeInUp delay-1s servicelink" href="#service">Lets GoForex</a>
+        <a class="link animated fadeInUp delay-1s servicelink" href="#training">Lets GoForex</a>
     </div>
 </header><!--header-end-->
 
@@ -70,17 +70,22 @@
     <div class="container">
         <ul class="main-nav">
             <li><a href="#header">Home</a></li>
-            <li><a href="#service">Vision</a></li>
-            <li><a href="#client">About Us</a></li>
-            <li class="small-logo"><a href="#header"><img src="img/All-Black-Bull-Shield-LOGO-1.png" alt=""></a></li>
+            <li><a href="#training">Training</a></li>
+            <li><a href="#aboutus">About Us</a></li>
+            <li class="small-logo">
+                <a href="#header">
+                    {{ Html::image('img/All-Black-Bull-Shield-LOGO-1.png',config('app.name')) }}
+                </a>
+            </li>
             {{--<li><a href="#Portfolio">Portfolio</a></li>--}}
             <li><a href="#team">Our Team</a></li>
             <li><a href="#contact">Contact</a></li>
             @if(!Auth::check())
-                <li><a href="#contact1">Sign In</a></li>
+                <li><a href="#signin">Sign In</a></li>
             @else
                 <li>
-                        <a href="{{url('/home')}}" class="btn btn-warning" style="color: white;">Dashboard</a></li>
+                    <a href="{{url('/home')}}" class="btn btn-warning" style="color: white;">Dashboard</a>
+                </li>
             @endif
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
@@ -88,29 +93,20 @@
 </nav><!--main-nav-end-->
 
 
-<section class="main-section" id="service"><!--main-section-start-->
+<section class="main-section" id="training"><!--main-section-start-->
     <div class="container">
-        <h2>Vision</h2>
-        <h6>We offer exceptional service with complimentary hugs.</h6>
+        <h2>GoForex Education Calendar</h2>
+        <h6>Book your seat for the next on-demand Forex Trading training near you in South Africa,
+            <br/>with GoForex exclusive and user-friendly booking system.</h6>
         <div class="row">
             <div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
                 <div class="service-list">
                     <div class="service-list-col1">
-                        <i class="ion ion-university"></i>
+                        <i class="ion ion-laptop"></i>
                     </div>
                     <div class="service-list-col2">
-                        <h3>experience &amp; knowledge</h3>
-                        <p>To bring some order and respectability to this industry by sharing our experiences and
-                            knowledge</p>
-                    </div>
-                </div>
-                <div class="service-list">
-                    <div class="service-list-col1">
-                        <i class="ion ion-ios-star-half"></i>
-                    </div>
-                    <div class="service-list-col2">
-                        <h3>good & bad</h3>
-                        <p>As well as what works and what does not.</p>
+                        <h3>Easy &amp; booking</h3>
+                        <p>GoForex has a smart online training booking system. Customers can <a class="signin_link" href="#signin">register</a> for training events, pay and upload proof of payment.</p>
                     </div>
                 </div>
                 <div class="service-list">
@@ -119,8 +115,8 @@
                     </div>
                     <div class="service-list-col2">
                         <h3>guidance &amp; mentorship</h3>
-                        <p>Help the new entrant with the best possible opportunity to make a success of forex trading
-                            and build a profitable home business.</p>
+                        <p>In GoForex training we help beginners with the best possible opportunity to make a success of Forex trading
+                            and build a profitable profile.</p>
                     </div>
                 </div>
                 <div class="service-list">
@@ -128,9 +124,9 @@
                         <i class="ion ion-thumbsup"></i>
                     </div>
                     <div class="service-list-col2">
-                        <h3>formula of success</h3>
-                        <p>We intend to shorten the time,cost and pain required to reach their goal by teaching them the
-                            formula of success in this business..</p>
+                        <h3>Formula to success</h3>
+                        <p>We intend to shorten the time, cost and pain required to reach your goal by training you on the
+                            formula to success in Forex markets.</p>
                     </div>
                 </div>
             </div>
@@ -143,17 +139,18 @@
 </section><!--main-section-end-->
 
 
-<section class="main-section client-part" id="client"><!--main-section client-part-start-->
+<section class="main-section client-part" id="aboutus"><!--main-section client-part-start-->
     <div class="container">
         <b class="quote-right wow fadeInDown delay-03"><i class="fa-quote-right"></i></b>
         <div class="row">
             <div class="col-lg-12">
-                <p class="client-part-haead wow fadeInDown delay-05">We want to erase the current perspective that
-                    people have of forex trading as just another kind of gambling and prove that when sound business
-                    principles are followed and one can build a low risk profitable business to support your family and
-                    all their needs. We also aim to remove the excessive stress levels normally associated with forex
-                    trading and change it into a non-emotional business investment practise that is viable option for
-                    starting a home business.</p>
+                <p class="client-part-haead wow fadeInDown delay-05">GoForex wish to erase the current perspective that
+                    people have of Forex trading as just another kind of gambling and prove that when sound trading
+                    principles are followed, one can build a low risk profitable account to support their family and
+                    other needs. We also aim to remove the excessive stress levels normally associated with Forex
+                    trading and change it into a non-emotional investment activity that can become a viable option of
+                    working from the comfort of your home.
+                </p>
             </div>
         </div>
         {{--<ul class="client wow fadeIn delay-05s">--}}
@@ -168,57 +165,48 @@
 
 <section class="main-section team" id="team"><!--main-section team-start-->
     <div class="container">
-        <h2>team</h2>
-        <h6>Take a closer look into our amazing team. We won’t bite.</h6>
+        <h2>Our Team</h2>
+        <h6>Take a closer look into our amazing team. <br/>We won’t bite :)</h6>
         <div class="team-leader-block clearfix">
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-03s">
                     <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="img/team-leader-pic1.jpg" alt="">
+                    {{ Html::image("img/ashley_goforex.jpg", 'Joel') }}
                     <ul>
-                        <li><a href="#" class="fa-twitter"></a></li>
-                        <li><a href="#" class="fa-facebook"></a></li>
-                        <li><a href="#" class="fa-pinterest"></a></li>
-                        <li><a href="#" class="fa-google-plus"></a></li>
+                        <li><a href="https://www.facebook.com/rowan.jnr" class="fa-facebook" target="_blank"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Ashley Hastibeer</h3>
+                <h3 class="wow fadeInDown delay-03s">Ashley</h3>
                 <span class="wow fadeInDown delay-03s">Mentor & Managing Director</span>
-                <p class="wow fadeInDown delay-03s">A professional mentor who has prided himself in offering the most
-                    honest and relevant training and mentorship to the forex trading community.</p>
+                <p class="wow fadeInDown delay-03s">A professional mentor who prides himself in offering the most
+                    honest and relevant training and mentorship to the Forex trading community.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader  wow fadeInDown delay-06s">
                     <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="img/team-leader-pic2.jpg" alt="">
+                    {{ Html::image("img/andile_goforex.jpg", 'Joel') }}
                     <ul>
-                        <li><a href="#" class="fa-twitter"></a></li>
                         <li><a href="#" class="fa-facebook"></a></li>
-                        <li><a href="#" class="fa-pinterest"></a></li>
-                        <li><a href="#" class="fa-google-plus"></a></li>
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-06s">Andile</h3>
                 <span class="wow fadeInDown delay-06s">Mentor & Managing Director</span>
-                <p class="wow fadeInDown delay-06s">Teaches and makesure best practise is applied when offering the best
-                    and reliable ways of trading the forex market.</p>
+                <p class="wow fadeInDown delay-06s">Teaches and ensures that the best practice is
+                    applied when offering high standard and reliable ways of trading Forex markets.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-09s">
                     <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="img/team-leader-pic3.jpg" alt="">
+                    {{ Html::image("img/joel_goforex.jpg", 'Joel') }}
                     <ul>
-                        <li><a href="#" class="fa-twitter"></a></li>
                         <li><a href="#" class="fa-facebook"></a></li>
-                        <li><a href="#" class="fa-pinterest"></a></li>
-                        <li><a href="#" class="fa-google-plus"></a></li>
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-09s">Joel</h3>
                 <span class="wow fadeInDown delay-09s">Sales and Marketing Director</span>
                 <p class="wow fadeInDown delay-09s">
-                    Ensures all marketing posters as well as classes advertised in the specified area in which we are
-                    teaching.</p>
+                    Ensures all GoForex marketing activities as well as training events are advertised in all areas
+                    around South Africa in which we are training Forex lovers.</p>
             </div>
         </div>
     </div>
@@ -301,15 +289,17 @@
                 </div>
                 <div class="contact-info-box phone clearfix">
                     <h3><i class="fa-phone"></i>Phone:</h3>
-                    <span>+27 71 920 0123 / +27 63 000 5773</span>
+                    <span><a href="tel:+27719200123">+27 71 920 0123</a> / <a href="tel:+27630005773">+27 63 000 5773</a></span>
                 </div>
                 <div class="contact-info-box email clearfix">
                     <h3><i class="fa-pencil"></i>email:</h3>
-                    <span>info@goforexwealth.com</span>
+                    <span><a href="mailto:info@goforex.co.za">info@goforex.co.za</a></span>
                 </div>
                 <div class="contact-info-box hours clearfix">
                     <h3><i class="fa-clock-o"></i>Hours:</h3>
-                    <span><strong>Monday - Friday:</strong> 8am - 5pm<br><strong>Saturday - Sunday:</strong> Online Bookings Only</span>
+                    <span id="contact_form"><strong>Monday - Friday:</strong> 8am - 5pm<br><strong>Saturday - Sunday:</strong>
+                        Online Bookings Only | <a class="signin_link" href="#signin">Sign In</a>
+                    </span>
                 </div>
                 <ul class="social-link">
                     {{--<li class="twitter"><a href="#"><i class="fa-twitter"></i></a></li>--}}
@@ -389,7 +379,7 @@
 
 @if(!Auth::check())
     <div class="container">
-        <section class="main-section contact" id="contact1">
+        <section class="main-section contact" id="signin">
             <div class="row">
                 @include('layouts.tabs')
             </div>
@@ -398,7 +388,9 @@
 @endif
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><a id="back-top" href="#"><img src="{{ url('img/Full-logo-white.png')}}" alt=""></a></div>
+        <div class="footer-logo"><a id="back-top" href="#">
+                {{ Html::image('img/full-logo-white.png') }}
+            </a></div>
         <span class="copyright">&copy; GoForex. All Rights Reserved</span>
     </div>
 </footer>

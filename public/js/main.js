@@ -25,7 +25,7 @@ $(document).ready(function (e) {
     // Something to do with NavBar
     $(window).load(function () {
 
-        $('.main-nav li a, .servicelink').bind('click', function (event) {
+        $('.main-nav li a, .servicelink, .signin_link').bind('click', function (event) {
             var $anchor = $(this);
 
             $('html, body').stop().animate({
