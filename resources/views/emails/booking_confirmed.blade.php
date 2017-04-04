@@ -1,16 +1,17 @@
-<div style="color:#505050;font-family:Arial,sans-serif;font-size:14px;line-height:150%;text-align:left">
-    <div>Good Day, <b>{{ $username }}</b>,</div>
-    <br/>
-    <div><p>Your booking with <b>Ref#{{ $booking_ref }}</b> has been confirmed, below are the event details.</p></div>
-    <br/>
+@extends('layouts.emails')
 
-    <p><b>Event Details :</b></p>
-    <p>Event Name : <b> {{ $event_name }}</b></p>
-    <p>Host : <b> {{ $host }}</b></p>
-    <p>Date : <b> {{ $start_date }}</b></p>
-    <p>Time : <b> {{ $start_time  }}</b></p>
-    <p>Location : <b> {{ $address }}</b></p>
+@section('content')
 
-    <div>Kind Regards,<br/>
-        <b>GoForex</b></div>
-</div>
+    Your booking of <b>Ref#{{ $booking_ref }}</b> has been confirmed, please find event details below:<br/><br>
+
+    <p style="font-size: 12px; line-height: 15px;">
+        <i>Event Details :</i><br>
+        Event Name : <b> {{ $event_name }}</b><br>
+        Host : <b> {{ $host }}</b><br>
+        Date : <b> {{ $start_date }}</b><br>
+        Time : <b> {{ $start_time  }}</b><br>
+        Location : <b> {{ $address }}</b><br>
+    </p>
+    <br>
+
+@endsection

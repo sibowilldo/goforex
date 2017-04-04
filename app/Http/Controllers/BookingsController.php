@@ -202,6 +202,8 @@ class BookingsController extends Controller
 
             $parameters = array(
                 'username' => $user->username,
+                'callout_button' => 'View Event',
+                'callout_url' => url('/view-event/'.$event->id),
                 'event_name' => $event->name,
                 'start_date' => $event->start_date,
                 'end_date' => $event->end_date,
@@ -225,7 +227,7 @@ class BookingsController extends Controller
 
             return view('events.show', compact(['event', 'bookings']));
 
-        }else {
+        } else {
             flash("The booking you are searching for doesn't exist.", "error");
         }
     }
