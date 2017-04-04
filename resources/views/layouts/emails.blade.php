@@ -100,7 +100,7 @@
         </td>
     </tr>
     <tr>
-        <td bgcolor="#d2ac67" align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 70px 15px 70px 15px;" class="section-padding">
+        <td bgcolor="#ffeda8" align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 70px 15px 70px 15px;" class="section-padding">
             <!--[if (gte mso 9)|(IE)]>
             <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
                 <tr>
@@ -122,11 +122,6 @@
                                         <tr>
                                             <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding">
                                                 @yield('content')
-                                            </td>
-                                            <td align="left" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding">
-                                                <i>Kind Regards,<br/>
-                                                    <b>GoForex Team</b>
-                                                </i>
                                             </td>
                                         </tr>
                                     </table>
@@ -150,6 +145,13 @@
                                             </td>
                                         </tr>
                                     </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding">
+                                    <i>Kind Regards,<br/>
+                                        <b>GoForex Team</b>
+                                    </i>
                                 </td>
                             </tr>
                         </table>
