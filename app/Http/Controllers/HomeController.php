@@ -154,11 +154,14 @@ class HomeController extends Controller
 
     public function contact_us(ContactFormRequest $request)
     {
-        $email = 'info@goforexwealth.com';
+        $email = 'info@goforex.co.za';
         $name = 'GoForex Wealth Creation | Contact us form';
         $sender_email = $request['email'];
         $subject = $request['subject'];
         $parameters = array(
+            'username' => 'Admin',
+            'callout_button' => 'Visit Website',
+            'callout_url' => url('/'),
             'bodymessage' => $request['bodymessage'],
             'sender' => $request['name'],
             'sender_email' => $request['email'],

@@ -1,11 +1,12 @@
-<div style="color:#505050;font-family:Arial,sans-serif;font-size:14px;line-height:150%;text-align:left">
-    <div>Message from Contact us form, sent by <strong>{{ $sender }}</strong>,</div>
-    <br/>
-    <div><p>{{ $bodymessage }}</p></div>
+@extends('layouts.emails')
 
-    <p>
+@section('content')
+
+    Message from Contact us form, sent by <strong>{{ $sender }}</strong>:<br/>
+    <i>{{ $bodymessage }}</i>
+
     <strong>From:</strong> {{ $sender }} <br>
     <strong>Email:</strong> {{ $sender_email}}
-    </p>
     <br/>
-</div>
+
+@endsection
