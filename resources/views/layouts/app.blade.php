@@ -217,6 +217,12 @@
                 </a>
             </li>
           <li>
+            <a href="{{ url('/bookings')}}">
+              <i class="fa fa-calendar-check-o"></i>
+              <span>{{ Auth::user()->hasRole('user') ? "My " : "" }}Bookings</span>
+            </a>
+          </li>
+          <li>
             <a href="{{ url('/notifications')}}">
               <i class="fa fa-bell"></i>
               <span>Notifications</span>
