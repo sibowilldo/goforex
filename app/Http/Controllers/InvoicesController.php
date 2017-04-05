@@ -13,7 +13,8 @@ class InvoicesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['boss','auth']);
+        $this->middleware('auth');
+        $this->middleware('boss', ['except' => ['show', 'printInvoice']]);
     }
 
     /**
