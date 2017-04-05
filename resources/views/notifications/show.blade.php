@@ -34,7 +34,7 @@
               <div class="mailbox-read-message">
                 <p>{!! $notification->message !!}</p>
                 <br>
-                <p>Thanks.<br>Regards,<br>GFX Team</p>
+                <p style="clear:both;">Thanks.<br>Regards,<br>GFX Team</p>
               </div>
               <!-- /.mailbox-read-message -->
             </div>

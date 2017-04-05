@@ -129,10 +129,10 @@
                                                     'novalidate' => 'novalidate',
                                                     'files' => true)) !!}
 
+                                    @if($booking->status_is != 'Paid')
                                     <div class="form-group">
                                         {!! Form::file('image', ['class' => 'inputfile', 'accept' => '.jpeg, .jpg, .png']) !!}
                                     </div>
-
                                     <div class="form-group" hidden>
                                         {!! Form::label('eventId') !!}
                                         {!! Form::text('eventId', $event->id, ['class'=>'form-control']) !!}
@@ -141,6 +141,7 @@
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-danger"><i class="ion ion-ios-cloud-upload-outline"></i> Update file</button>
                                     </div>
+                                    @endif
                                     {!! Form::close() !!}
 
                                 @else
@@ -152,6 +153,7 @@
                                                     'novalidate' => 'novalidate',
                                                     'files' => true)) !!}
 
+                                    @if($booking->status_is != 'Paid')
                                     <div class="form-group">
                                         {!! Form::file('image', ['class' => 'inputfile', 'accept' => '.jpeg, .jpg, .png']) !!}
                                     </div>
@@ -164,6 +166,7 @@
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-danger"><i class="ion ion-ios-cloud-upload-outline"></i> Upload selected file</button>
                                     </div>
+                                    @endif
                                     {!! Form::close() !!}
 
                                 @endif
