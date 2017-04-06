@@ -219,7 +219,7 @@
           <li>
             <a href="{{ url('/bookings')}}">
               <i class="fa fa-calendar-check-o"></i>
-              <span>{{ Auth::user()->hasRole('user') ? "My " : "" }}Bookings</span>
+              <span>{{ Auth::user()->hasRole('user') || Auth::user()->hasRole('member')  ? "My " : "" }}Bookings</span>
             </a>
           </li>
           <li>

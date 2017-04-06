@@ -12,6 +12,7 @@ use Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Traits\NotificationTraits;
 use App\Notification;
+use Carbon\Carbon;
 
 class CronsController extends Controller
 {
@@ -50,21 +51,26 @@ class CronsController extends Controller
                     $parameters = array(
                         'username' => $user->username,
                         'booking_ref'=> $booking_ref,
+                        'event_url' => url('/view-event/'.$event->id),
+                        'event_name' => $event->name,
                         'callout_button' => 'Sign In',
                         'callout_url' => url('login'),
                     );
                     // TODO add queue
 
+                    $message = '<h5><strong>Hi '. $user->firstname .'!</strong></h5>
+                                <p> Please note that because you have missed the 12 hour time window to make the payment for the <b>'
+                                . $event->name .'</b> event that is taking place on '. $event->start_date .' @ '. $event->start_time 
+                                .', your booking has therefore been reversed and you no longer have a seat reserved.</p> <br><br>
+                                <p>Should you still be interested in this event please create a new booking if seats are still available.</p><br>';
+                    $this->saveNotification($message,'notification',$user, 'Booking Reversed');
+                    
                     // Send email to confirm successful registration
-                    Mail::send('emails.booking_declined', $parameters, function ($message)
-                    use ($email, $name) {
+                    Mail::send('emails.booking_reversed', $parameters, function ($message)
+                    use ($email, $name, $booking_ref) {
                         $message->from('noreply@goforex.co.za');
-                        $message->to($email, $name)->subject('GoForex - Your booking is declined!');
+                        $message->to($email, $name)->subject('GoForex - Booking with ref #' . $booking_ref .' was reversed!');
                     });
-
-                    $message = '<h5><strong>Greetings '. $user->firstname .'!</strong></h5><p> It is in our deepest regrets to inform you that your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been declined. <br>This could be because your proof of payment could not be verified, please contact us for more info.</p> <br>
-                            <p>If you are still interested in this event please create another booking if seats are still available.</p>';
-                    $this->saveNotification($message,'notification',$user, 'Booking Declined');
 
                 }
 
