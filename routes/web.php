@@ -46,6 +46,8 @@ Route::get('/my-invoices', 'HomeController@loadInvoices');
 Route::get('/invoices/{id}/print', 'InvoicesController@printInvoice');
 
 
+Route::get('/process-bookings', 'CronsController@processBookings');
+
 // Verification function of HomeController
 Route::post('/verification', 'HomeController@verification');
 
