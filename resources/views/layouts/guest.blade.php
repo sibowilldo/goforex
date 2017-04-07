@@ -177,7 +177,7 @@
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-03s">Ashley</h3>
-                <span class="wow fadeInDown delay-03s">Mentor & Managing Director</span>
+                <span class="wow fadeInDown delay-03s">Mentor</span>
                 <p class="wow fadeInDown delay-03s">A professional mentor who prides himself in offering the most
                     honest and relevant training and mentorship to the Forex trading community.</p>
             </div>
@@ -190,7 +190,7 @@
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-06s">Andile</h3>
-                <span class="wow fadeInDown delay-06s">Mentor & Managing Director</span>
+                <span class="wow fadeInDown delay-06s">Mentor</span>
                 <p class="wow fadeInDown delay-06s">Teaches and ensures that the best practice is
                     applied when offering high standard and reliable ways of trading Forex markets.</p>
             </div>
@@ -203,7 +203,7 @@
                     </ul>
                 </div>
                 <h3 class="wow fadeInDown delay-09s">Joel</h3>
-                <span class="wow fadeInDown delay-09s">Sales and Marketing Director</span>
+                <span class="wow fadeInDown delay-09s">Marketing</span>
                 <p class="wow fadeInDown delay-09s">
                     Ensures all GoForex marketing activities as well as training events are advertised in all areas
                     around South Africa in which we are training Forex lovers.</p>
