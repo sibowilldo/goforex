@@ -28,25 +28,27 @@
     {!! Html::script('/js/knight/jquery.isotope.js') !!}
     {!! Html::script('/js/knight/wow.js') !!}
     {!! Html::script('/js/knight/classie.js') !!}
-    
-    <!-- SweetAlert -->
+
+<!-- SweetAlert -->
     {{ Html::script('plugins/sweetalert/sweetalert.min.js') }}
     {{ Html::style('plugins/sweetalert/sweetalert.css') }}
 
     <style>
-      *{
-        -moz-transform-origin: inherit !important;
-        -webkit-transform-origin: inherit !important;
-        -o-transform-origin: inherit !important;
-        -ms-transform-origin: inherit !important;
-        transform-origin: inherit !important;
-      }
-      .no-margin{
-          margin: 0 !important;
-      }
-      .white-text{
-          color: #fff !important;
-      }
+        * {
+            -moz-transform-origin: inherit !important;
+            -webkit-transform-origin: inherit !important;
+            -o-transform-origin: inherit !important;
+            -ms-transform-origin: inherit !important;
+            transform-origin: inherit !important;
+        }
+
+        .no-margin {
+            margin: 0 !important;
+        }
+
+        .white-text {
+            color: #fff !important;
+        }
     </style>
 
 </head>
@@ -106,7 +108,9 @@
                     </div>
                     <div class="service-list-col2">
                         <h3>Easy &amp; booking</h3>
-                        <p>GoForex has a smart online training booking system. Customers can <a class="signin_link" href="#signin">register</a> for training events, pay and upload proof of payment.</p>
+                        <p>GoForex has a smart online training booking system. Customers can <a class="signin_link"
+                                                                                                href="#signin">register</a>
+                            for training events, pay and upload proof of payment.</p>
                     </div>
                 </div>
                 <div class="service-list">
@@ -115,7 +119,8 @@
                     </div>
                     <div class="service-list-col2">
                         <h3>guidance &amp; mentorship</h3>
-                        <p>In GoForex training we help beginners with the best possible opportunity to make a success of Forex trading
+                        <p>In GoForex training we help beginners with the best possible opportunity to make a success of
+                            Forex trading
                             and build a profitable profile.</p>
                     </div>
                 </div>
@@ -125,7 +130,8 @@
                     </div>
                     <div class="service-list-col2">
                         <h3>Formula to success</h3>
-                        <p>We intend to shorten the time, cost and pain required to reach your goal by training you on the
+                        <p>We intend to shorten the time, cost and pain required to reach your goal by training you on
+                            the
                             formula to success in Forex markets.</p>
                     </div>
                 </div>
@@ -144,21 +150,19 @@
         <b class="quote-right wow fadeInDown delay-03"><i class="fa-quote-right"></i></b>
         <div class="row">
             <div class="col-lg-12">
-                <p class="client-part-haead wow fadeInDown delay-05">GoForex wish to erase the current perspective that
-                    people have of Forex trading as just another kind of gambling and prove that when sound trading
-                    principles are followed, one can build a low risk profitable account to support their family and
-                    other needs. We also aim to remove the excessive stress levels normally associated with Forex
-                    trading and change it into a non-emotional investment activity that can become a viable option of
-                    working from the comfort of your home.
+                <p class="client-part-haead wow fadeInDown delay-05">GoForex is a movement that aims on empowering
+                    people about Forex Trading, by teaching people what really works and all the secretes and techniques
+                    of trading the markets. We have empowered many people with our strategy called the Major Key that
+                    was developed by one of our mentors and the strategy has changed many people's lives.
                 </p>
             </div>
         </div>
         {{--<ul class="client wow fadeIn delay-05s">--}}
-            {{--<li><a href="#">--}}
-                    {{--<img src="img/client-pic1.jpg" alt="">--}}
-                    {{--<h3>James Bond</h3>--}}
-                    {{--<span>License To Drink Inc.</span>--}}
-                {{--</a></li>--}}
+        {{--<li><a href="#">--}}
+        {{--<img src="img/client-pic1.jpg" alt="">--}}
+        {{--<h3>James Bond</h3>--}}
+        {{--<span>License To Drink Inc.</span>--}}
+        {{--</a></li>--}}
         {{--</ul>--}}
     </div>
 </section><!--main-section client-part-end-->
@@ -178,8 +182,14 @@
                 </div>
                 <h3 class="wow fadeInDown delay-03s">Ashley</h3>
                 <span class="wow fadeInDown delay-03s">Mentor</span>
-                <p class="wow fadeInDown delay-03s">A professional mentor who prides himself in offering the most
-                    honest and relevant training and mentorship to the Forex trading community.</p>
+                <p class="wow fadeInDown delay-03s">A young professional Forex Trader from Richards Bay, that is 24
+                    years old, passion driven and who wishes to see everyone doing well in life through Trading Forex.
+                    Ashley studied I.T at Durban University of Technology and started trading Forex in his final year.
+                    He has been very consistent after developing a new technique for himself around May 2016 that works
+                    of which is called "The Major Key". He eventually decided to release his working strategy to the
+                    public after seeing his friends that he helped in 2016 doing extremely well in Trading Forex. Ashley
+                    and his team have helped many people with their trading careers and aim on taking the Major Key
+                    movement very far with the support from GFX Family.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader  wow fadeInDown delay-06s">
@@ -191,8 +201,11 @@
                 </div>
                 <h3 class="wow fadeInDown delay-06s">Andile</h3>
                 <span class="wow fadeInDown delay-06s">Mentor</span>
-                <p class="wow fadeInDown delay-06s">Teaches and ensures that the best practice is
-                    applied when offering high standard and reliable ways of trading Forex markets.</p>
+                <p class="wow fadeInDown delay-06s">Andile Tshona from Lusikisiki Eastern Cape is a mentor that also
+                    studied I.T at Durban University of Technology. Andile produced extreme results in his first week of
+                    trading after learning the secret key and has been consistent. After seeing many people that were
+                    struggling and consulting Ashley, Andile and others, they then decided to start the movement called
+                    "The Major Key" and it has produced outstanding results.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-09s">
@@ -205,8 +218,9 @@
                 <h3 class="wow fadeInDown delay-09s">Joel</h3>
                 <span class="wow fadeInDown delay-09s">Marketing</span>
                 <p class="wow fadeInDown delay-09s">
-                    Ensures all GoForex marketing activities as well as training events are advertised in all areas
-                    around South Africa in which we are training Forex lovers.</p>
+                    Joel Babandakana is a 24 year old very active and young professional from Congo that was inspired by
+                    the movement after struggling trading forex for many years. Joel now ensures that all GoForex
+                    activities are in order and ensures that every student's voice is heard even after training.</p>
             </div>
         </div>
     </div>
@@ -216,7 +230,7 @@
 <div class="c-logo-part"><!--c-logo-part-start-->
     <div class="container">
         <ul>
-            
+
             {{--<h2 class="no-margin">Coming Soon! <br><small class="white-text">Brokers Recommended by us</small></h2>--}}
             <h2>Keep In Touch!</h2>
             {{--<li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>--}}
@@ -289,7 +303,8 @@
                 </div>
                 <div class="contact-info-box phone clearfix">
                     <h3><i class="fa-phone"></i>Phone:</h3>
-                    <span><a href="tel:+27719200123">+27 71 920 0123</a> / <a href="tel:+27630005773">+27 63 000 5773</a></span>
+                    <span><a href="tel:+27719200123">+27 71 920 0123</a> / <a
+                                href="tel:+27630005773">+27 63 000 5773</a></span>
                 </div>
                 <div class="contact-info-box email clearfix">
                     <h3><i class="fa-pencil"></i>email:</h3>
@@ -303,10 +318,13 @@
                 </div>
                 <ul class="social-link">
                     {{--<li class="twitter"><a href="#"><i class="fa-twitter"></i></a></li>--}}
-                    <li class="facebook"><a target="_blank" href="https://www.facebook.com/goforexwealth/?fref=ts"><i class="fa-facebook"></i></a></li>
+                    <li class="facebook"><a target="_blank" href="https://www.facebook.com/goforexwealth/?fref=ts"><i
+                                    class="fa-facebook"></i></a></li>
                     {{--<li class="pinterest"><a href="#"><i class="fa-pinterest"></i></a></li>--}}
                     {{--<li class="gplus"><a href="#"><i class="fa-google-plus"></i></a></li>--}}
-                    <li class="instagram"><a target="_blank" href="https://www.instagram.com/goforex_wealth_creation/?hl=en"><i class="fa-instagram"></i></a></li>
+                    <li class="instagram"><a target="_blank"
+                                             href="https://www.instagram.com/goforex_wealth_creation/?hl=en"><i
+                                    class="fa-instagram"></i></a></li>
                 </ul>
             </div>
             <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
@@ -314,22 +332,23 @@
 
                     <div id="sendmessage">Your message has been sent!</div>
                     <div id="errormessage"></div>
-                    <form action="{{ url('/contact-us') }}" method="POST" role="form" class="contactForm" >
+                    <form action="{{ url('/contact-us') }}" method="POST" role="form" class="contactForm">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <input type="text" name="name" class="form-control input-text" id="name"
                                    placeholder="Your Name" data-rule="minlen:4"
-                                   data-msg="Please enter at least 4 chars"  value="{{ old('name') }}" required/> 
+                                   data-msg="Please enter at least 4 chars" value="{{ old('name') }}" required/>
                             <div class="validation"></div>
-                             @if ($errors->has('name'))
+                            @if ($errors->has('name'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
-                             @endif
+                            @endif
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control input-text" name="email" id="email"
-                                   placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"  value="{{ old('email') }}" required/>
+                                   placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"
+                                   value="{{ old('email') }}" required/>
                             <div class="validation"></div>
                             @if ($errors->has('email'))
                                 <span class="help-block">
@@ -340,13 +359,14 @@
                         <div class="form-group">
                             <input type="text" class="form-control input-text" name="subject" id="subject"
                                    placeholder="Subject" data-rule="minlen:4"
-                                   data-msg="Please enter at least 8 chars of subject" value="{{ old('subject') }}" required/>
+                                   data-msg="Please enter at least 8 chars of subject" value="{{ old('subject') }}"
+                                   required/>
                             <div class="validation"></div>
-                             @if ($errors->has('subject'))
+                            @if ($errors->has('subject'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('subject') }}</strong>
                                     </span>
-                             @endif
+                            @endif
                         </div>
                         <div class="form-group">
                             <textarea class="form-control input-text text-area" name="bodymessage" rows="5"
