@@ -18,16 +18,16 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">All Events
-                                <b>
-                                    <a href="{{ url('events/create') }}" class="btn" rel="tooltip" title="View">[ + ]
-                                    </a>
-                                </b>
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <a href="{{ url('events/create') }}" class="btn btn-sm pull-right btn-default" rel="tooltip" title="View"><i class="fa fa-plus-circle"></i> Create Event
+                            </a>
+                            <h3 class="box-title">All Events 
                             </h3>
                         </div>
                         <div class="box-body">
+                        
+                            @if(count($events)> 0)
                             <table class="ui table table-hover table-striped table-condensed" id="events">
                                 <thead>
                                 <tr>
@@ -83,6 +83,15 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            @else
+                            <div class="panel panel-default">
+                            <div class="panel-body">
+                            <h2 class="text-gray text-center">Nothing to see here! :) Yet...</h2><p class="text-center">Why don't you check again later? Greater things are coming!</p>
+                            
+                            </div>
+                            </div>
+                            
+                            @endif
                         </div>
                     </div>
                 </div>

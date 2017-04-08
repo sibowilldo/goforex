@@ -17,14 +17,18 @@
     <section class="content">
         <div class="row">  
             <div class="col-md-10 col-md-offset-1">
-          <div class="box box-danger">
-            <div class="box-header with-border">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <a href="{{ url('/home') }}" class="btn btn-sm pull-right btn-default" rel="tooltip" title="Book an event"><i class="fa fa-calendar-check-o"></i> Book an Event
+                        </a>
               <h3 class="box-title">Bookings</h3>
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding">
+            <div class="box-body">
               <div class="table-responsive mailbox-messages">
+              
+                @if(count($bookings) > 0)
                 <table id="bookings" class="ui table table-hover table-striped">
                     <thead>
                         <tr>
@@ -37,7 +41,6 @@
                         </tr>
                     </thead>
                   <tbody>
-                @if(count($bookings) > 0)
                 @foreach($bookings as $booking)
                     <tr>
                         <td>{{ $booking->id }}</td>
@@ -58,13 +61,16 @@
                         </td>
                     </tr>
                 @endforeach
-                @else
-                    <tr>
-                        <td colspan="6"><h2 class="text-gray text-center">Nothing to see here! :) Yet...</h2><p class="text-center">Why don't you come back after you've booked an event?</p></td>
-                    </tr>
-                @endif
                   </tbody>
                 </table>
+                @else
+                <div class="panel panel-default">
+                <div class="panel-body">
+                <h2 class="text-gray text-center">Nothing to see here! :) Yet...</h2><p class="text-center">Why don't you come back after you've booked an event?</p>
+                </div>
+                </div>
+                
+                @endif
                 <!-- /.table -->
               </div>
               <!-- /.mail-box-messages -->
