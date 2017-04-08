@@ -25,6 +25,7 @@ class User extends Authenticatable
         'reference',
         'status_is',
         'location',
+        'subscription',
         'verified',
         'code',
         'sponsor',

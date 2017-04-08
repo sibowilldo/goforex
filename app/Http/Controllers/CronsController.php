@@ -55,6 +55,7 @@ class CronsController extends Controller
                         'event_name' => $event->name,
                         'callout_button' => 'Sign In',
                         'callout_url' => url('login'),
+                        'user' => $user,
                     );
                     // TODO add queue
 
@@ -65,12 +66,15 @@ class CronsController extends Controller
                                 <p>Should you still be interested in this event please create a new booking if seats are still available.</p><br>';
                     $this->saveNotification($message,'notification',$user, 'Booking Reversed');
                     
-                    // Send email to confirm successful registration
-                    Mail::send('emails.booking_reversed', $parameters, function ($message)
-                    use ($email, $name, $booking_ref) {
-                        $message->from('noreply@goforex.co.za');
-                        $message->to($email, $name)->subject('GoForex - Booking with ref #' . $booking_ref .' was reversed!');
-                    });
+                    if($user->subscription){
+                            // Send email to confirm successful registration
+                        Mail::send('emails.booking_reversed', $parameters, function ($message)
+                        use ($email, $name, $booking_ref) {
+                            $message->from('noreply@goforex.co.za');
+                            $message->to($email, $name)->subject('GoForex - Booking with ref #' . $booking_ref .' was reversed!');
+                        });
+                    }
+                    
 
                 }
 

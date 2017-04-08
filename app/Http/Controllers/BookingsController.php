@@ -92,15 +92,20 @@ class BookingsController extends Controller
             'callout_url' => url('/view-event/'.$eventId),
             'booking_ref' => $booking->reference,
             'booking_date_time' => $booking->created_at,
+            'user' => Auth::user()
         );
 
-        // Send email to show booking has been created
-        Mail::send('emails.booking_created', $parameters, function ($message)
-        use ($email, $name) {
-            $message->from('noreply@goforex.co.za');
-            $message->to($email, $name)->subject('GoForex - Your booking is successful!');
-        });
 
+        if(Auth::user()->subscription){
+                
+            // Send email to show booking has been created
+            Mail::send('emails.booking_created', $parameters, function ($message)
+            use ($email, $name) {
+                $message->from('noreply@goforex.co.za');
+                $message->to($email, $name)->subject('GoForex - Your booking is successful!');
+            });
+
+        }
         $message = '<p>You have created a booking of <b>Ref# '.$booking->reference.'</b></p>
                     <p>Please make a payment to below details, and update your online booking by uploading proof of payment:</p>
                     <br/>
@@ -216,16 +221,20 @@ class BookingsController extends Controller
                 'address' => $event->address,
                 'host' => $event->host,
                 'booking_ref'=> $booking->reference,
+                'user' => $user,
             );
             // TODO add que
 
-            // Send email to confirm successful registration
-            Mail::send('emails.booking_confirmed', $parameters, function ($message)
-            use ($email, $name) {
-                $message->from('noreply@goforex.co.za');
-                $message->to($email, $name)->subject('GoForex - Booking Confirmed!');
-            });
+            if($user->subscription){
+                    
+                // Send email to confirm successful registration
+                Mail::send('emails.booking_confirmed', $parameters, function ($message)
+                use ($email, $name) {
+                    $message->from('noreply@goforex.co.za');
+                    $message->to($email, $name)->subject('GoForex - Booking Confirmed!');
+                });
 
+            }
             $message = '<h5><strong>Hey there!</strong></h5> <br><p>Congratulations, your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been approved.</p><br>
                         <p>Please be there at least 30min  before the specified start time.</p>';
             $this->saveNotification($message,'notification',$user, 'Booking Approved');
@@ -290,17 +299,21 @@ class BookingsController extends Controller
                 'booking_ref'=> $booking_ref,
                 'callout_button' => 'Sign In',
                 'callout_url' => url('login'),
+                'user' => $user
             );
             // TODO add queue
 
-            // Send email to confirm successful registration
-            Mail::send('emails.booking_declined', $parameters, function ($message)
-            use ($email, $name) {
-                $message->from('noreply@goforex.co.za');
-                $message->to($email, $name)->subject('GoForex - Your booking is declined!');
-            });
+            if($user->subscription){
+                    
+                // Send email to confirm successful registration
+                Mail::send('emails.booking_declined', $parameters, function ($message)
+                use ($email, $name) {
+                    $message->from('noreply@goforex.co.za');
+                    $message->to($email, $name)->subject('GoForex - Your booking is declined!');
+                });
                 
-               $message = '<h5><strong>Greetings '. $user->firstname .'!</strong></h5><p> It is in our deepest regrets to inform you that your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been declined. <br>This could be because your proof of payment could not be verified, please contact us for more info.</p> <br>
+            }
+            $message = '<h5><strong>Greetings '. $user->firstname .'!</strong></h5><p> It is in our deepest regrets to inform you that your booking for '. $event->name .' on '. $event->start_date .' @ '. $event->start_time .' has been declined. <br>This could be because your proof of payment could not be verified, please contact us for more info.</p> <br>
                             <p>If you are still interested in this event please create another booking if seats are still available.</p>';
             $this->saveNotification($message,'notification',$user, 'Booking Declined');
 

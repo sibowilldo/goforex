@@ -178,7 +178,9 @@
                     <td align="center" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color:#666666;">
                         Email: <a href="noreply@goforex.co.za" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">noreply@goforex.co.za</a>
                         <br>
-                        <a href="{{ url('/unsubscribe') }}" target="_blank" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color: #666666; text-decoration: none;">Unsubscribe</a>
+                        @if(isset($user))
+                        <a href="{{ url('/unsubscribe/'. $user->id . '/' . $user->code) }}" target="_blank" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color: #666666; text-decoration: none;">Unsubscribe</a>
+                        @endif
                     </td>
                 </tr>
             </table>

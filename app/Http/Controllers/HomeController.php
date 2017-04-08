@@ -77,6 +77,7 @@ class HomeController extends Controller
                 'username' => $user->username,
                 'callout_button' => 'Sign In',
                 'callout_url' => url('login'),
+                'user' => $user,
             );
 
             $message = 
@@ -84,13 +85,16 @@ class HomeController extends Controller
              <p>Welcome to GoForex Wealth Creation!</p>';
             $this->saveNotification($message, 'notification', $user, 'Account Verified');
 
-            // Send email to confirm successful registration
-            Mail::send('emails.verified', $parameters, function ($message)
-            use ($email, $name) {
-                $message->from('noreply@goforex.co.za');
-                $message->to($email, $name)->subject('GoForex - Your profile is activated!');
-            });
+            if($user->subscription){
+                    // Send email to confirm successful registration
+                Mail::send('emails.verified', $parameters, function ($message)
+                use ($email, $name) {
+                    $message->from('noreply@goforex.co.za');
+                    $message->to($email, $name)->subject('GoForex - Your profile is activated!');
+                });
 
+            }
+           
             flash('Your profile has been verified and activated!', 'success');
         } else {
             flash('The code you submitted is incorrect, please try again.', 'error');

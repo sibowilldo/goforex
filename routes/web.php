@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+//Logout route
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::resource('events','EventsController');
 
@@ -74,3 +76,16 @@ Route::get('/unread/notifications', function () {
 
 //Contact us form  routes
 Route::post('/contact-us', ['as' => 'contact-us', 'uses' => 'HomeController@contact_us']);
+
+//unsuscribe Route
+Route::get('/unsubscribe/{id}/{verification}', function($id, $verification){
+    $user = App\User::where(['id' => $id, 'code' => $verification])->first();
+    
+    return view('layouts.unsubscribe', compact('user'));
+});//unsuscribe Route
+Route::post('/unsubscribe/{id}/{verification}', function($id, $verification){
+    $user = App\User::where(['id' => $id, 'code' => $verification])->update(['subscription' => false]);
+    
+    flash('You\'ve unsubscribed successfully to our email communications', 'info');
+    return redirect('/');
+});

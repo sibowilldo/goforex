@@ -170,6 +170,16 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group row">
+                                        <div class="col-md-12 text-center">
+                                         <div class="checkbox icheck">
+                                            <label>
+                                                <input type="checkbox" name="subscription" id="subscription" {{ ($profile->subscription) ? 'checked' : '' }}>
+                                                Subscribe to our email communications
+                                            </label>
+                                         </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group text-center">
                                             <button type="submit" class="btn btn-primary">
                                                 Update Profile
@@ -225,6 +235,9 @@
 @stop
 
 @section('styles')
+
+<!-- iCheck -->
+{{ Html::style('plugins/iCheck/all.css') }}
 <style type="text/css">
     .bg-gold-active{
         background-color: #D2AB66;
@@ -252,9 +265,19 @@
 @stop
 
 @section('javascript')
+    <!-- iCheck -->
+    {!! Html::script('plugins/iCheck/icheck.min.js') !!}
+    <script>
+    $(function () {
+        $('input').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        increaseArea: '20%' // optional
+        });
+    });
+    </script>
     @if ($errors->has('password') || $errors->has('current_password'))
         <script>
-            $('#profiletabs a[href="#password"]').tab('show'); 
+            $('#profiletabs a[href="#password"]').tab('show');
         </script>
     @endif
 @stop

@@ -53,6 +53,7 @@ class UsersController extends Controller
 
     public function update(ProfileFormRequest $request, User $profile)
     {
+        $request['subscription'] = ($request['subscription'] == 'on' ? true : false);
         $profile->update($request->all());
         flash('Profile updated', 'success');
         return redirect('profile');
