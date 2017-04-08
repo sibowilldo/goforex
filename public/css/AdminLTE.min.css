@@ -106,7 +106,7 @@ body {
 }
 
 .content-wrapper {
-    background: #ecf0f5 url(/img/svgbull.svg) no-repeat 50%/50%;
+    background: #ecf0f5 url(/img/svgbull.svg) no-repeat fixed 50%/50%;
 }
 
 .main-footer {
