@@ -45,9 +45,9 @@ class HomeController extends Controller
         if(Auth::user()->verified==0){
                 return view('auth.verification');
         }
-        $events = Event::get();
+        $events = Event::orderBy('created_at','desc')->get();
 
-        $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','asc')->get();
+        $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
         $bookings = Booking::where('user_id', Auth::user()->id)->get();
 
         return view('home', compact(['allEvents', 'bookings', 'events']));

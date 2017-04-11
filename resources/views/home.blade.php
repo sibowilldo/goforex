@@ -110,12 +110,12 @@
                                                         <br>
                                                         <p class="pull-right">
                                                             <a href="{{ url('view-event', $event->id) }}"
-                                                               class="btn btn-default"
+                                                               class="btn btn-default btn-sm"
                                                                rel="tooltip" title="View">
                                                                 <i class="ion ion-ios-calendar-outline"></i> View Event
                                                             </a>
                                                             @if($event->status_is == 'FullyBooked' || $event->number_of_seats == count(explode(',',$event->attendees)))
-                                                                <button type="button" class="btn btn-disabled" disabled>
+                                                                <button type="button" class="btn btn-disabled btn-sm" disabled>
                                                                     Fully Booked
                                                                 </button>
                                                             @elseif($event->status_is == 'Open')
@@ -123,13 +123,13 @@
                                                                     @foreach($bookings as $booking)
                                                                         @if($booking->event_id == $event->id AND $booking->user_id == Auth::id())
                                                                             @if($booking->status_is == 'Paid')
-                                                                                <span class="btn btn-success btn-disabled"
+                                                                                <span class="btn btn-success btn-disabled btn-sm"
                                                                                       disabled><i
                                                                                             class="ion ion-ios-checkmark-outline"></i> Booking Approved</span>
                                                                             @elseif($booking->status_is == 'Pending')
-                                                                                    <a class="btn btn-danger" href="{{ url('view-event', $event->id) }}" title="Time remaining to make payment" data-toggle="tooltip" data-placement="top"><i class="ion ion-ios-clock-outline"></i> <span data-countdown="{{ $booking->created_at->addHours(12) }}"></span></a>
+                                                                                    <a class="btn btn-danger btn-sm" href="{{ url('view-event', $event->id) }}" title="Time remaining to make payment" data-toggle="tooltip" data-placement="top"><i class="ion ion-ios-clock-outline"></i> <span data-countdown="{{ $booking->created_at->addHours(12) }}"></span></a>
                                                                             @else
-                                                                                <span class="btn btn-danger btn-disabled"
+                                                                                <span class="btn btn-danger btn-disabled btn-sm"
                                                                                       disabled><i
                                                                                             class="ion ion-ios-clock-outline"></i> Booking {{ $booking->status_is }}</span>
                                                                             @endif
