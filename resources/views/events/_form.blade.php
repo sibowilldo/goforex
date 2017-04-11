@@ -1,23 +1,23 @@
 <div class="box-body">
 	<div class="form-group">
 		{!! Form::label('name', 'Name:') !!}
-		{!! Form::text('name', null, ['class'=>'form-control']) !!}
+		{!! Form::text('name', null, ['class'=>'form-control', 'placeholder' => 'eg. Durban Forex Class']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::label('host', 'Host:') !!}
-		{!! Form::text('host', null, ['class'=>'form-control']) !!}
+		{!! Form::text('host', null, ['class'=>'form-control', 'placeholder' => 'eg. Ashley Hestibeer']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::label('address', 'Address:') !!}
-		{!! Form::text('address', null, ['class'=>'form-control']) !!}
+		{!! Form::text('address', null, ['class'=>'form-control', 'placeholder' => 'eg. Elangeni Hotel, 63 Snell Parade, North Beach, Durban']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::label('description', 'Description:') !!}
-		{!! Form::text('description', null, ['class'=>'form-control']) !!}
+		{!! Form::text('description', null, ['class'=>'form-control', 'placeholder' => 'eg. Beginner\'s class']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::label('number_of_seats', 'Number Of Seats:') !!}
-		{!! Form::number('number_of_seats', null, ['class'=>'form-control']) !!}
+		{!! Form::number('number_of_seats', null, ['class'=>'form-control', 'placeholder' => '']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::label('item_id', 'Item:') !!}
@@ -33,7 +33,7 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				{!! Form::label('end_date', 'End Date:') !!}
-				{!! Form::text('end_date', null, ['class'=>'form-control eventdatepicker']) !!}
+				{!! Form::text('end_date', null, ['class'=>'form-control eventdatepicker', 'placeholder' => 'Select Start Date first', 'disabled' => 'disabled']) !!}
 			</div>
 		</div>
 	</div>

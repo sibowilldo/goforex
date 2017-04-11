@@ -20,7 +20,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add New</h3>
+                            <h3 class="box-title">Create a new Event</h3>
                         </div>
                         @include('errors.forms')
                         {!! Form::open(['url'=>'events', 'role'=>'form']) !!}
@@ -60,5 +60,20 @@
         autoclose: true,
         startDate: '1d'
     });
+
+    $('#start_date').datepicker().on('change', function(e){
+        $('#end_date').removeAttr('disabled placeholder');
+        $('#end_date').datepicker('setStartDate', $('#start_date').val());
+        
+        if($('#end_date').val() != ''){
+            if(($('#start_date').datepicker('getDate') - $('#end_date').datepicker('getDate')) < 0 ){
+                //Nothing to do here all is well
+            }else{//NaN is returned if false
+               $('#end_date').val($('#start_date').val());
+            }
+        }
+        
+    });
+
 </script>
 @stop
