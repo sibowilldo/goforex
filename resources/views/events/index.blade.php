@@ -18,26 +18,32 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
+                
+                        <div class="callout callout-info">
+                        <h4>Legend (Action icons)</h4>
+                            <div class="row">
+                                <div class="col-sm-3"><span class="btn btn-xs btn-warning"><i class="fa fa-eye"></i></span> View event info</div>
+                                <div class="col-sm-3"><span class="btn btn-xs btn-danger"><i class="fa fa-pencil-square-o"></i></span> Edit event info</div>
+                                <div class="col-sm-3"><span class="btn btn-xs btn-primary"><i class="fa fa-send"></i></span> Publish Event</div>
+                                <div class="col-sm-3"><span class="btn btn-xs btn-success"><i class="fa fa-check"></i></span> Event Published</div>
+                            </div>
+                        </div>
                     <div class="box box-default">
                         <div class="box-header with-border">
-                            <a href="{{ url('events/create') }}" class="btn btn-sm pull-right btn-default" rel="tooltip" title="View"><i class="fa fa-plus-circle"></i> Create Event
+                            <a href="{{ url('events/create') }}" class="btn btn-sm pull-right btn-primary" rel="tooltip" title="View"><i class="fa fa-plus-circle"></i> Create Event
                             </a>
                             <h3 class="box-title">All Events 
                             </h3>
                         </div>
                         <div class="box-body">
-                        
                             @if(count($events)> 0)
                             <table class="ui table table-hover table-striped table-condensed" id="events">
                                 <thead>
                                 <tr>
-                                    <th>Reference</th>
                                     <th>Name</th>
                                     <th>Host</th>
                                     <th>Attendees</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Status</th>
+                                    <th>Event Dates</th>
                                     <th>Created</th>
                                     <th>Actions</th>
                                 </tr>
@@ -45,8 +51,7 @@
                                 <tbody>
                                 @foreach($events as $event)
                                     <tr>
-                                        <td>{{ $event->reference }}</td>
-                                        <td>{{ $event->name }}</td>
+                                        <td>{{ $event->name }} <em class="pull-right label label-info">({{ $event->reference }})</em></td>
                                         <td>{{ $event->host }}</td>
 
                                         @if(count(explode(',', $event->attendees)) > 0 && explode(',', $event->attendees)[0] != "")
@@ -57,26 +62,27 @@
                                                 / {{ $event->number_of_seats }}</td>
                                         @endif
 
-                                        <td>{{ $event->start_date }}</td>
-                                        <td>{{ $event->end_date }}</td>
-                                        <td>{{ $event->status_is }}</td>
-                                        <td>{{ $event->created_at }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($event->start_date)->toFormattedDateString() }} <br> <strong>to</strong> 
+                                        {{ \Carbon\Carbon::parse($event->end_date)->toFormattedDateString() }}</td>
+                                        <td>{{ $event->created_at->toFormattedDateString() }}</td>
                                         <td>
-                                            <a href="{{ url('events', $event->id) }}" class="btn" rel="tooltip" title="View">
-                                                <b>Show</b>
+                                            <a href="{{ url('events', $event->id) }}" class="btn btn-sm btn-warning" rel="tooltip" title="View">
+                                                <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ url('events/'.$event->id.'/edit') }}" class="btn" rel="tooltip"
-                                            title="Edit">
-                                                <b>Edit</b>
+                                            <a href="{{ url('events/'.$event->id.'/edit') }}" class="btn btn-sm btn-danger" rel="tooltip"
+                                            title="Edit"><i class="fa fa-pencil-square-o"></i>
                                             </a>
                                             @if($event->status_is == 'Pending')
-                                                <a href="{{ url('events/'.$event->id.'/submitEvent') }}" class="btn"
+                                                <a href="{{ url('events/'.$event->id.'/submitEvent') }}" class="btn btn-sm btn-primary"
                                                 rel="tooltip"
-                                                title="Edit">
-                                                    <b>Submit</b>
+                                                title="Publish"><i class="fa fa-paper-plane"></i>
                                                 </a>
-                                            @elseif($event->status_is == 'Open')
-                                                <b>Open</b>
+                                                @else
+                                                
+                                                <span class="btn btn-sm btn-success"
+                                                rel="tooltip"
+                                                title="Published"><i class="fa fa-check"></i>
+                                                </span>
                                             @endif
                                         </td>
                                     </tr>

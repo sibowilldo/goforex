@@ -23,7 +23,7 @@
 
               <div class="box-tools pull-right">
                 <div class="has-feedback text-gray">
-                    {{count($notifications)}} Messages
+                    {{count($notifications)}} Notification(s)
                 </div>
               </div>
               <!-- /.box-tools -->
@@ -45,8 +45,8 @@
                 @if(count($notifications) > 0)
                 @foreach($notifications as $notification)
                     <tr>
-                        <td><i class="fa fa-{{ $notification->viewed == 0 ? 'square text-aqua' : 'square text-gray' }}"></i></td>
-                        <td class="mailbox-attachment"><i class="text-gray ion ion-{{ $notification->type == 'notification' ? 'android-notifications' : 'android-mail' }}"></i></td>
+                        <td><i class="fa fa-{{ $notification->viewed == 0 ? 'square text-aqua' : 'check-square text-gray' }}"></i></td>
+                        <td class="mailbox-attachment"><i class="text-orange ion ion-{{ $notification->type == 'notification' ? 'android-notifications' : 'android-mail' }}"></i></td>
                         <td class="mailbox-name"><a href="{{ url('/notifications/'.$notification->id) }}">{{ $notification->reference_number }}</a></td>
                         <td class="mailbox-subject {{ $notification->viewed == 0 ? 'unread' : '' }}"><p class="truncate">{{ strip_tags($notification->message) }}</p></td>
                         <td>{{ $notification->created_at->diffForHumans() }}
