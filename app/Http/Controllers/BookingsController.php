@@ -65,6 +65,11 @@ class BookingsController extends Controller
         $event = Event::where('id', $eventId)->first();
 
         $attendees = explode(',', $event->attendees);
+        if(in_array(Auth::id(), $attendees)){
+
+            flash('You\'ve already booked a seat for this event!', 'info');
+            return back();
+        }
         if(count($attendees) > 0 && $attendees[0] != ""){
             if (count($attendees) == $event->number_of_seats || $event->status_is == "FullyBooked"){
                 flash("Sorry this event is fully booked.","error");
@@ -121,7 +126,7 @@ class BookingsController extends Controller
 
         flash("You have successfully created a booking, please make payment within 12 hours to complete your reservations.", "success");
 
-        return redirect('/home');
+        return view('view-event', compact('event', 'booking'));
     }
 
     /**

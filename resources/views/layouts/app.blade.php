@@ -217,9 +217,12 @@
                 </a>
             </li>
           <li>
-            <a href="{{ url('/bookings')}}">
+            <a href="{{ url('/bookings')}}" id="bookings-mi">
               <i class="fa fa-calendar-check-o"></i>
-              <span>{{ Auth::user()->hasRole('user') || Auth::user()->hasRole('member')  ? "My " : "" }}Bookings</span>
+              <span>{{ Auth::user()->hasRole('user') || Auth::user()->hasRole('member')  ? "My " : "" }}Bookings 
+              <small class="label pull-right bg-red"><span>{{ \App\Booking::where(['user_id' => \Auth::id(), 'status_is' => 'Pending', 'proof_of_payment' => null])->count() }}</span> unpaid</small>
+              
+              </span>
             </a>
           </li>
           <li>

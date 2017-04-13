@@ -53,9 +53,9 @@
                             <a href="{{ url('/view-event/'.$booking->event_id) }}" class="btn btn-danger btn-sm">Upload Proof of Payment</a>
                         @else
                             @if($booking->status_is == 'Paid')
-                                <b>No further action!</b>
+                                <span class="label bg-green"><i class="fa fa-check-square-o"></i> All is well. No further action!</span>
                             @elseif($booking->status_is == 'Pending')
-                                <b>Your proof is being validated...</b>
+                                <span class="label bg-orange"> <i class="fa fa-circle-o-notch fa-spin fa-fw" style="height: .83em; animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);"></i> Your proof is being validated...</span>
                             @endif
                         @endif
                         </td>
