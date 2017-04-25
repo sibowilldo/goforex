@@ -121,7 +121,7 @@
                                     <div class="form-group row has-feedback{{ $errors->has('username') ? ' has-error' : '' }}">
                                         <div class="col-md-12">
                                             <label for="username">Username</label>
-                                            <input id="username" type="text" class="form-control"  placeholder="Username" name="username" value="{{ $profile->username }}" disabled required autofocus>
+                                            <input id="username" type="text" class="form-control"  placeholder="Username" name="username" value="{{ $profile->username }}" {{ ($profile->username == $profile->email) ? '' : 'disabled' }} required autofocus>
                                             <i class="glyphicon glyphicon-user form-control-feedback"></i>
                                             @if ($errors->has('username'))
                                                 <span class="help-block">

@@ -43,14 +43,12 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->verified==0){
-                return view('auth.verification');
+            return view('auth.verification');
         }
-        $events = Event::orderBy('created_at','desc')->get();
+        $events = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
+        $bookings = Booking::get();
 
-        $allEvents = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
-        $bookings = Booking::where('user_id', Auth::user()->id)->get();
-
-        return view('home', compact(['allEvents', 'bookings', 'events']));
+        return view('home', compact(['events', 'bookings']));
     }
 
     /**
@@ -127,7 +125,7 @@ class HomeController extends Controller
         $contents = $file->openFile()->fread($file->getSize());
 
         // Store the contents to the database
-        $booking = Booking::where(['event_id'=> $request['eventId'], 'user_id' => Auth::id() ])->first();
+        $booking = Booking::where(['event_id'=> $request['eventId'], 'user_id' => $request['userId']])->first();
         $booking->proof_of_payment = $contents;
         $booking->mime_type = $file->getClientMimeType();
         $booking->save();
@@ -135,7 +133,8 @@ class HomeController extends Controller
         $event = Event::where('id', $request['eventId'])->first();
 
         flash('Proof uploaded successfully!', 'success');
-        return redirect('view-event/'.$event->id);
+
+        return back();
     }
 
     public function proofOfPayment($bookingID){
@@ -152,8 +151,16 @@ class HomeController extends Controller
 
     public function updateKnobs(Request $request)
     {
-        $events = Event::where('status_is', 'Open')->select('id', 'number_of_seats', 'attendees')->get();
-        return response()->json(['status'=> 'OK', 'data' => $events]);
+        $events = Event::where('status_is', 'Open')->select('id', 'number_of_seats')->get();
+        $bookings =  Booking::whereIn('event_id', $events->pluck('id'))->get();
+
+        $data = collect();
+        foreach($events as $event){
+            $attendees = $bookings->where('event_id', $event->id)->where('status_is', 'Paid')->count();
+            $array = $event->toArray();
+            $data->push(array_merge($array, ['attendees'=> $attendees]));
+        }
+        return response()->json(['status'=> 'OK', 'data' => $data]);
     }
 
     public function contact_us(ContactFormRequest $request)

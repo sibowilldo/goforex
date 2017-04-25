@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>FourOFour</title>
+        <title>FourOh!Four</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -41,12 +41,12 @@
     <body>
         <div class="container">
             <div class="content">
-                <h1>404 <br>
+                <h1>FourOh!Four<br>
                 <small>We could not find what you were looking for!</small></h1>
                 <div class="title">You gotta give us credit for trying though.</div>
-                <strong><a href="{{ url('/') }}">Home</a> | <a href="{{ url('/home') }}">Dashboard</a> @if(!Auth::check()) 
+                <strong><a href="{{ url('/') }}">Home</a>
                 | <a href="{{ url('/login') }}">Login</a> 
-                @endif</strong>
+                </strong>
             </div>
         </div>
     </body>

@@ -16,10 +16,10 @@
 
     <section class="content">
         <div class="row">  
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-xs-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <a href="{{ url('/home') }}" class="btn btn-sm pull-right btn-default" rel="tooltip" title="Book an event"><i class="fa fa-calendar-check-o"></i> Book an Event
+                        <a href="{{ url('/home') }}" class="btn btn-sm pull-right btn-primary btn-social" rel="tooltip" title="Book an event"><i class="fa fa-calendar-check-o"></i> Book an Event
                         </a>
               <h3 class="box-title">Bookings</h3>
               <!-- /.box-tools -->
@@ -29,7 +29,7 @@
               <div class="table-responsive mailbox-messages">
               
                 @if(count($bookings) > 0)
-                <table id="bookings" class="ui table table-hover table-striped">
+                <table id="bookings" class="nowrap dt-responsive table table-hover table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -49,14 +49,12 @@
                         <td>{{ $booking->status_is }}</td>
                         <td>{{ $booking->created_at->toFormattedDateString() }}</td>
                         <td>
-                        @if(!$booking->proof_of_payment)
-                            <a href="{{ url('/view-event/'.$booking->event_id) }}" class="btn btn-danger btn-sm">Upload Proof of Payment</a>
+                        @if($booking->status_is == 'Paid')
+                            <span class="label bg-green"><i class="fa fa-check-square-o"></i> All is well. No further action!</span>
+                        @elseif($booking->status_is == 'Declined')
+                            <span class="label bg-red"> <i class="fa ion ion-android-cancel"></i> {{$booking->status_is}}</span>
                         @else
-                            @if($booking->status_is == 'Paid')
-                                <span class="label bg-green"><i class="fa fa-check-square-o"></i> All is well. No further action!</span>
-                            @elseif($booking->status_is == 'Pending')
-                                <span class="label bg-orange"> <i class="fa fa-circle-o-notch fa-spin fa-fw" style="height: .83em; animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);"></i> Your proof is being validated...</span>
-                            @endif
+                            <span class="label bg-orange"> <i class="fa ion ion-load-d fa-spin fa-fw" style="animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);"></i> {{$booking->status_is}} payment...</span>
                         @endif
                         </td>
                     </tr>
@@ -85,31 +83,19 @@
 @stop
 
 @section('styles')
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css">
-
-<style type="text/css">
-    .ui.grid{
-        margin: 0;
-        padding-left: 2.5rem;
-    }
-    .ui.table td {
-        padding: .58571429em .98571429em;
-    }
-    .ui.table td.unread {
-        font-weight: bold;
-    }
-</style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css">
 @stop
 
 @section('javascript')
-{{ Html::script('https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js') }}
-{{ Html::script('https://cdn.datatables.net/1.10.13/js/dataTables.semanticui.min.js') }}
-{{ Html::script('http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js') }}
+    {{ Html::script('https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js') }}
+    {{ Html::script('https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js') }}
 
-<script>
-    $(document).ready(function() {
-        $('#bookings').DataTable();
-    } );
-</script>
+    {{ Html::script('https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js') }}
+    {{ Html::script('https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js') }}
+    <script>
+        $(document).ready(function() {
+            $('#bookings').DataTable({responsive: true});
+        } );
+    </script>
 @stop

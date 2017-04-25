@@ -12,6 +12,8 @@
     <!-- ===== FAVICON =====-->
     {!! Html::style('img/All-Black-Bull-Shield-LOGO-1.png', ['rel'=>'shortcut icon', 'type'=>'image/png']) !!}
 
+    <!-- Select2 -->
+    {!! Html::style('plugins/select2/select2.min.css') !!}
     <!-- Font Awesome -->
     {{ Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
     <!-- JQuery UI -->
@@ -240,7 +242,7 @@
     
 
     <footer class="main-footer">
-      <strong>Copyright &copy; {{ \Carbon\Carbon::now()->year  }} <a href="/">GoForex</a> - Wealth Creation.</strong> All rights reserved.
+      <strong>Copyright &copy; {{ \Carbon\Carbon::now()->year  }} <a href="/">GoForex - Wealth Creation.</a></strong> All rights reserved.
     </footer>
     
 </div>
@@ -255,6 +257,7 @@
 {!! Html::script('bootstrap/js/bootstrap.min.js') !!}
 <!-- Slim Scroll -->
 {!! Html::script('plugins/slimScroll/jquery.slimscroll.min.js') !!}
+
 <!-- Elevate Zoom -->
 {!! Html::script('plugins/elevatezoom/jquery.elevatezoom.min.js') !!}
 

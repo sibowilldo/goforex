@@ -17,16 +17,16 @@
 		<!-- Main Content -->
 		<section class="content">
 			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
+				<div class="col-xs-12">
                     <div class="box box-default">
                         <div class="box-header with-border">
-                            <a href="{{ url('items/create') }}" class="btn btn-sm pull-right btn-default" rel="tooltip" title="View"><i class="fa fa-plus-circle"></i> Create Item
+                            <a href="{{ url('items/create') }}" class="btn btn-sm pull-right btn-primary btn-social" rel="tooltip" title="View"><i class="fa fa-plus-circle"></i> Create Item
                             </a>
 							<h3 class="box-title">All Items
 							</h3>
 						</div>
 						<div class="box-body">
-							<table class="ui table table-hover table-striped table-condensed" id="events">
+							<table class="nowrap table table-hover table-striped table-condensed" id="items">
 								<thead>
 								<tr>
 									<th>ID</th>
@@ -46,10 +46,10 @@
 										<td>{{ $item->category_is }}</td>
 										<td>{{ $item->status_is }}</td>
 										<td>
-											<a href="{{ url('items', $item->id) }}" class="btn" rel="tooltip" title="View">
+											<a href="{{ url('items', $item->id) }}" class="btn btn-default btn-sm" rel="tooltip" title="View">
 												<b>Show</b>
 											</a>
-											<a href="{{ url('items/'.$item->id.'/edit') }}" class="btn" rel="tooltip"
+											<a href="{{ url('items/'.$item->id.'/edit') }}" class="btn btn-default btn-sm" rel="tooltip"
 											   title="Edit">
 												<b>Edit</b>
 											</a>
@@ -68,31 +68,19 @@
 @endsection
 
 @section('styles')
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css">
-
-	<style type="text/css">
-		.ui.grid{
-			margin: 0;
-			padding-left: 2.5rem;
-		}
-		.ui.table td {
-			padding: .58571429em .98571429em;
-		}
-		.ui.table td.unread {
-			font-weight: bold;
-		}
-	</style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css">
 @stop
 
 @section('javascript')
-	{{ Html::script('https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js') }}
-	{{ Html::script('https://cdn.datatables.net/1.10.13/js/dataTables.semanticui.min.js') }}
-	{{ Html::script('http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js') }}
+    {{ Html::script('https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js') }}
+    {{ Html::script('https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js') }}
 
-	<script>
-		$(document).ready(function() {
-			$('#events').DataTable();
-		} );
-	</script>
+    {{ Html::script('https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js') }}
+    {{ Html::script('https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js') }}
+    <script>
+        $(document).ready(function() {
+            $('#items').DataTable({responsive: true});
+        } );
+    </script>
 @stop

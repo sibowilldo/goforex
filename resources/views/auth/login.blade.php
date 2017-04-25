@@ -17,7 +17,7 @@
             @endif
         </div>
         <div class="form-group has-feedback">
-            <input id="password" type="password" class="form-control" name="password" required>
+            <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
             <i class="glyphicon glyphicon-lock form-control-feedback"></i>
             @if ($errors->has('password'))
                 <span class="help-block">

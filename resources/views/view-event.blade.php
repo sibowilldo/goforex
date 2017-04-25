@@ -27,7 +27,6 @@
                     @endif
                 @endif
             @endif
-
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="box box-success">
@@ -127,71 +126,70 @@
                     </div>
                     <div class="box-footer">
                         <div class="row" id="proof">
-                            <div class="col-xs-12 text-center">
+                            <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
                                 <h3>Proof of Payment</h3>
-                                <br>
                                 @if($event->status_is == 'Open')
-                                    @if(in_array(Auth::user()->id,explode(',', $event->attendees)))
+                                    @if($booking != null && $booking->user_id == Auth::id() && $booking->event_id == $event->id)
                                         @if($booking != null && $booking->proof_of_payment != null)
                                             <div class="form-group">
-                                                <img src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}" class="img-thumbnail"/>
+                                                <img src="data:{{ $booking->mime_type }};base64,{{base64_encode($booking->proof_of_payment)}}" class="img-responsive img-thumbnail"/>
                                             </div>
-                                            {!! Form::open(
-                                                        array(
-                                                            'url' => 'imageUploadForm',
-                                                            'class' => 'form',
-                                                            'novalidate' => 'novalidate',
-                                                            'files' => true)) !!}
-
                                             @if($booking->status_is != 'Paid')
-                                            <div class="form-group">
-                                                {!! Form::file('image', ['class' => 'inputfile well', 'accept' => '.jpeg, .jpg, .png', 'style' => 'width: 100%']) !!}
-                                            </div>
-                                            <div class="form-group" hidden>
-                                                {!! Form::label('eventId') !!}
-                                                {!! Form::text('eventId', $event->id, ['class'=>'form-control']) !!}
-                                            </div>
-
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-danger btn-md"><i class="ion ion-ios-cloud-upload-outline"></i> Update file</button>
-                                            </div>
-                                            @endif
+                                            {!! Form::open(['url' => 'imageUploadForm', 'class' => 'form', 'novalidate' => 'novalidate', 'files' => true]) !!}
+                                                <div class="form-group">
+                                                    {!! Form::file('image', ['class' => 'inputfile well', 'accept' => '.jpeg, .jpg, .png', 'style' => 'width: 100%']) !!}
+                                                </div>
+                                                <div class="form-group" hidden>
+                                                    {!! Form::label('eventId') !!}
+                                                    {!! Form::text('eventId', $event->id, ['class'=>'form-control']) !!}
+                                                </div>
+                                                <div class="form-group" hidden>
+                                                    {!! Form::label('userId') !!}
+                                                    {!! Form::text('userId', Auth::id(), ['class'=>'form-control']) !!}
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-danger btn-md"><i class="ion ion-ios-cloud-upload-outline"></i> Update file</button>
+                                                </div>
                                             {!! Form::close() !!}
-
+                                            @endif
                                         @else
-
-                                            {!! Form::open(
-                                                        array(
-                                                            'url' => 'imageUploadForm',
-                                                            'class' => 'form',
-                                                            'novalidate' => 'novalidate',
-                                                            'files' => true)) !!}
-
                                             @if($booking->status_is != 'Paid')
-                                            <div class="form-group">
-                                                {!! Form::file('image', ['class' => 'inputfile well', 'accept' => '.jpeg, .jpg, .png', 'style' => 'width: 100%']) !!}
-                                            </div>
+                                            {!! Form::open(['url' => 'imageUploadForm', 'class' => 'form', 'novalidate' => 'novalidate', 'files' => true]) !!}
+                                                <div class="form-group">
+                                                    {!! Form::file('image', ['class' => 'inputfile well', 'accept' => '.jpeg, .jpg, .png', 'style' => 'width: 100%']) !!}
+                                                </div>
 
-                                            <div class="form-group" hidden>
-                                                {!! Form::label('eventId') !!}
-                                                {!! Form::text('eventId', $event->id, ['class'=>'form-control']) !!}
-                                            </div>
+                                                <div class="form-group" hidden>
+                                                    {!! Form::label('eventId') !!}
+                                                    {!! Form::text('eventId', $event->id, ['class'=>'form-control']) !!}
+                                                </div>
 
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-md btn-danger"><i class="ion ion-ios-cloud-upload-outline"></i> Upload selected file</button>
-                                            </div>
-                                            @endif
+                                                <div class="form-group" hidden>
+                                                    {!! Form::label('userId') !!}
+                                                    {!! Form::text('userId', Auth::id(), ['class'=>'form-control']) !!}
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-md btn-danger"><i class="ion ion-ios-cloud-upload-outline"></i> Upload selected file</button>
+                                                </div>
                                             {!! Form::close() !!}
-
+                                            @endif
                                         @endif
                                     @else
-                                        <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
-                                            class="btn btn-md btn-success"
-                                            rel="tooltip"
-                                            title="Reserve a seat">
-                                            Book Now
-                                        </a>
+                                    <a href="{{ url('/booking/create-event-booking/'.$event->id) }}" class="btn btn-social btn-success btn-sm" rel="tooltip" title="Edit">
+                                        <i class="ion ion-ios-compose-outline"></i> Book this Event
+                                    </a>
                                     @endif
+                                @else
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+
+                                    <div class="info-box-content">
+                                    <span class="info-box-text">Event Status</span>
+                                    <span class="info-box-number">{{ $event->status_is }}</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -205,77 +203,7 @@
 
 
 @section('styles')
-<style>
-    .event-header {
-        position: relative;
-    }
 
-    .event-header img {
-        position: relative;
-        top: 0;
-    }
-
-    .event-header h1 {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 5px;
-        color: #fff;
-        font-size: 2em;
-        font-weight: 100;
-        letter-spacing: -1px;
-    }
-.event-header h1 small{
-    color: #BBBBBB;
-}
-    .row.event-ls > p
-    i, .row.event-dt > p
-    i {color: rgba(0,0,0,.3);display: inline-block;font-size: 2em;line-height: 1.5em;margin-right: .5em;background-color: #00C0EF;width: 1.5em;text-align: center;color: #fff;}
-
- .event-dt p strong {
-        display: block;
-        /* padding: 1.1em 0; */
-    }
-    .event-counter{
-        background-image: url("{{url('img/boxed-bg.png')}}");
-        background-repeat: repeat;
-        background-attachment: fixed;
-        background-size: 10%;
-        padding: .8em 0
-    }
-        .event-dt i.fa{
-        display: block;
-        text-align: center;
-        font-size: 3em;
-        color: rgba(150,150,150,.3);
-        margin: .3em 0;
-    }
-
-    .event-dt p{
-        text-align: center;
-        display: block;
-        line-height: 1.5em;
-    }
-
-    .event-dt::after {
-        width: 100%;
-        height: 1px;
-        transform: rotateY(10deg);
-        box-shadow: 0 0px 0px 0px rgba(0,0,0, .5);
-        background-color: rgba(0,0,0,.1);
-
-        animation-name: expandafter;
-        animation-duration: 2s;
-        animation-timing-function: ease-in
-    }
-    /* The animation code */
-    @keyframes expandafter {
-        from {transform: rotateY(90deg)}
-        to { transform: rotateY(10deg)}
-    }
-
-</style>
 @stop
 
 @section('javascript')
@@ -285,6 +213,7 @@
     {!! Html::script('plugins/chartjs/Chart.min.js') !!}
     <!-- jQuery Countdown -->
     {!! Html::script('plugins/jcountdown/jquery.countdown.min.js') !!}
+   
     <script>
 
         window.onload = function(){

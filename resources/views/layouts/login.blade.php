@@ -3,7 +3,7 @@
         {{ csrf_field() }}
 
         <div>
-            <h1 class="animated fadeInDown">Login</h1><br/>
+            <h1 class="animated fadeInDown">Sign in</h1><br/>
         </div>
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

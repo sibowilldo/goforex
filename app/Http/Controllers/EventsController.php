@@ -32,7 +32,9 @@ class EventsController extends Controller
     {
         //
         $events = Event::orderBy('created_at','desc')->get();
-        return view('events.index', compact(['events']));
+        $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
+
+        return view('events.index', compact(['events', 'bookings']));
     }
 
     /**
@@ -74,8 +76,7 @@ class EventsController extends Controller
     public function show(Event $event)
     {
         //
-        $attendees = explode(',', $event->attendees);
-        $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
+        $bookings = Booking::where('event_id', $event->id)->get();
         return view('events.show', compact(['event', 'bookings']));
     }
 
@@ -140,4 +141,24 @@ class EventsController extends Controller
         $events = Event::get();
         return view('events.index', compact(['events']));
     }
+
+    /**
+    *
+    *
+    *
+    *
+    */
+    public function print_attendees(Event $event)
+    {
+
+        $bookings = Booking::where('event_id', $event->id)->select('id', 'event_id', 'user_id', 'status_is', 'created_at', 'updated_at')->get();
+
+        // return view('pdf.attendee_register', compact('bookings', 'event'));
+        $data=['bookings'=>$bookings, 'event'=>$event];
+        $pdf = PDF::loadView('pdf.attendee_register', $data);
+
+        return $pdf->download($event->start_date .' '. $event->start_time.'-attendee register- '.$event->name.'.pdf');
+        
+    }
+    
 }
