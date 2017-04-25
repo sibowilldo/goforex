@@ -10,7 +10,7 @@
 
 html,
 body {
-    height: 100%
+    height: 100% !important;
 }
 
 .layout-boxed html,
@@ -22,7 +22,6 @@ body {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
     overflow-x: hidden;
-    overflow-y: auto
 }
 
 .wrapper {
@@ -2336,7 +2335,7 @@ a:focus {
 
 .info-box {
     display: block;
-    min-height: 90px;
+    min-height: 60px;
     background: #fff;
     width: 100%;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -2370,11 +2369,11 @@ a:focus {
     border-bottom-left-radius: 2px;
     display: block;
     float: left;
-    height: 90px;
-    width: 90px;
+    height: 60px;
+    width: 60px;
     text-align: center;
-    font-size: 45px;
-    line-height: 90px;
+    font-size: 25px;
+    line-height: 60px;
     background: rgba(0, 0, 0, 0.2)
 }
 
@@ -2384,7 +2383,7 @@ a:focus {
 
 .info-box-content {
     padding: 5px 10px;
-    margin-left: 90px
+    margin-left: 65px
 }
 
 .info-box-number {
@@ -5704,5 +5703,209 @@ table.text-center th {
     .table-responsive>.table tr th,
     .table-responsive>.table tr td {
         white-space: normal !important
+    }
+}
+
+
+/**
+*
+*----------- Dashboard Events list -------------
+*
+*/
+
+ul#event-wrap {
+    margin-bottom: 0px;
+}
+
+.event-title {
+    margin-top: 0em;
+    letter-spacing: -1px;
+    font-weight: 300;
+}
+
+.event-meta span {
+    margin: 0 1em .5em 0;
+    display: inline-block;
+}
+
+.event-action {
+    position: relative;
+    bottom: 0;
+}
+
+.event-info {
+    position: relative;
+    height: 100%;
+    padding: 5px 0;
+}
+
+.event-status {
+    position: relative;
+    height: 10%;
+    font-size: 1em;
+}
+
+.event-status p {
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    right: 5px;
+}
+
+.event-seats {
+    position: relative;
+    height: 150px;
+}
+
+.event-meta span i {
+    color: #BDBDBD;
+    width: 20px;
+    text-align: center;
+}
+
+.event-description i {
+    color: #BDBDBD;
+    width: 20px;
+    text-align: center;
+}
+
+.event-item {
+    border: 0;
+    background-color: #FAFAFA;
+    border-radius: 0 !important;
+    display: block;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    transition: box-shadow 1s ease;
+}
+
+.event-item::after {
+    width: 3px;
+    display: block;
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    content: '';
+    right: 0;
+}
+
+.Open.event-item::after {
+    background-color: #00C853;
+}
+
+.Closed.event-item::after {
+    background-color: #D50000;
+}
+
+.FullyBooked.event-item::after {
+    background-color: #FFAB00;
+}
+
+.event-item::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-top: 1px dashed #BDBDBD;
+    left: 0;
+    right: 0;
+    bottom: 1px;
+}
+
+.event-item:last-child::before {
+    border-top: none
+}
+
+.event-item:hover {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, .2);
+}
+
+.event-action * {
+    display: inline-block;
+}
+
+.event-header {
+    position: relative;
+}
+
+.event-header img {
+    position: relative;
+    top: 0;
+}
+
+.event-header h1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    color: #fff;
+    font-size: 2em;
+    font-weight: 100;
+    letter-spacing: -1px;
+}
+
+.event-header h1 small {
+    color: #BBBBBB;
+}
+
+.row.event-ls>p i,
+.row.event-dt>p i {
+    color: rgba(0, 0, 0, .3);
+    display: inline-block;
+    font-size: 2em;
+    line-height: 1.5em;
+    margin-right: .5em;
+    background-color: #00C0EF;
+    width: 1.5em;
+    text-align: center;
+    color: #fff;
+}
+
+.event-dt p strong {
+    display: block;
+    /* padding: 1.1em 0; */
+}
+
+.event-counter {
+    background-image: url("{{url('img/boxed-bg.png')}}");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 10%;
+    padding: .8em 0
+}
+
+.event-dt i.fa {
+    display: block;
+    text-align: center;
+    font-size: 3em;
+    color: rgba(150, 150, 150, .3);
+    margin: .3em 0;
+}
+
+.event-dt p {
+    text-align: center;
+    display: block;
+    line-height: 1.5em;
+}
+
+.event-dt::after {
+    width: 100%;
+    height: 1px;
+    transform: rotateY(10deg);
+    box-shadow: 0 0px 0px 0px rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .1);
+    animation-name: expandafter;
+    animation-duration: 2s;
+    animation-timing-function: ease-in
+}
+
+
+/* The animation code */
+
+@keyframes expandafter {
+    from {
+        transform: rotateY(90deg)
+    }
+    to {
+        transform: rotateY(10deg)
     }
 }
