@@ -31,6 +31,8 @@ class Booking extends Model
     public static $statuses = [
         'Paid' => 'Paid',
         'Pending' => 'Pending',
+        'Waiting' => 'Waiting',
+        'Declined' => 'Declined',
         'Rejected' => 'Rejected',
     ];
 

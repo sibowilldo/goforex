@@ -6,7 +6,9 @@ use App\Booking;
 use App\Event;
 use App\Invoice;
 use App\Item;
+use App\Transaction;
 use App\User;
+use App\Http\Requests\AttendeeFormRequest;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -25,7 +27,11 @@ class BookingsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['profile']);
+        $this->middleware(['profile'], ['except' => [
+                                                    'sagepay_accepted', 
+                                                    'sagepay_declined', 
+                                                    'sagepay_redirect', 
+                                                    'sagepay_notify']]);
     }
 
     /**
@@ -63,24 +69,15 @@ class BookingsController extends Controller
     {
         //
         $event = Event::where('id', $eventId)->first();
+        $bookings = Booking::where('event_id', $event->id)->select('id', 'event_id', 'user_id', 'status_is', 'created_at', 'updated_at')->get();
 
-        $attendees = explode(',', $event->attendees);
-        if(in_array(Auth::id(), $attendees)){
-
+        if($bookings->where('user_id', Auth::id())->count() > 0){
             flash('You\'ve already booked a seat for this event!', 'info');
             return back();
         }
-        if(count($attendees) > 0 && $attendees[0] != ""){
-            if (count($attendees) == $event->number_of_seats || $event->status_is == "FullyBooked"){
-                flash("Sorry this event is fully booked.","error");
-                return redirect('/home');
-            }else{
-                array_push($attendees, Auth::user()->id);
-                $event->attendees = implode(',', $attendees);
-                $event->save();
-            }
-        } else {
-            $event->update(['attendees'=>Auth::user()->id]);
+        if ($bookings->count() == $event->number_of_seats || $event->status_is == "FullyBooked"){
+            flash("Sorry this event is fully booked.","error");
+            return redirect('/home');
         }
 
         $booking = Booking::create(['user_id'=>Auth::user()->id,
@@ -102,15 +99,30 @@ class BookingsController extends Controller
 
 
         if(Auth::user()->subscription){
-                
             // Send email to show booking has been created
             Mail::send('emails.booking_created', $parameters, function ($message)
             use ($email, $name) {
                 $message->from('noreply@goforex.co.za');
-                $message->to($email, $name)->subject('GoForex - Your booking is successful!');
+                $message->to($email, $name)->subject('GoForex - Your booking was created successfully!');
             });
-
         }
+
+        if(!Auth::user()->hasRole('admin')){
+            $parameters = [ 'username' => 'Admin',
+                            'user' => Auth::user(), 
+                            'bookings' => $bookings,
+                            'booking' => $booking,
+                            'event' => $event,
+                            'callout_button' => 'Login to Dashboard',
+                            'callout_url' => url('/login')];
+
+            Mail::send('emails.booking_created_notify_admin', $parameters, function ($message)
+            use ($email, $name) {
+                $message->from('noreply@goforex.co.za');
+                $message->to($email, $name)->subject('GoForex - A user has created a new Booking.');
+            });
+        }
+
         $message = '<p>You have created a booking of <b>Ref# '.$booking->reference.'</b></p>
                     <p>Please make a payment to below details, and update your online booking by uploading proof of payment:</p>
                     <br/>
@@ -123,10 +135,9 @@ class BookingsController extends Controller
                     <p><b>Booking Date/Time : '. $booking->created_at .'</b></p>';
 
         $this->saveNotification($message,'notification',Auth::user(), 'Booking Created');
-
         flash("You have successfully created a booking, please make payment within 12 hours to complete your reservations.", "success");
 
-        return view('view-event', compact('event', 'booking'));
+        return back();
     }
 
     /**
@@ -191,7 +202,7 @@ class BookingsController extends Controller
      * @param  \App\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function approve($bookingId)
+    public function approve(Request $request, $bookingId)
     {
         //
         $booking = Booking::where('id', $bookingId)->first();
@@ -202,6 +213,8 @@ class BookingsController extends Controller
             $event = Event::where('id', $booking->event_id)->first();
 
             $attendees = explode(',', $event->attendees);
+
+
 
             $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
 
@@ -228,7 +241,7 @@ class BookingsController extends Controller
                 'booking_ref'=> $booking->reference,
                 'user' => $user,
             );
-            // TODO add que
+            // TODO add queue
 
             if($user->subscription){
                     
@@ -244,7 +257,8 @@ class BookingsController extends Controller
                         <p>Please be there at least 30min  before the specified start time.</p>';
             $this->saveNotification($message,'notification',$user, 'Booking Approved');
 
-            return view('events.show', compact(['event', 'bookings']));
+                return back();
+
 
         } else {
             flash("The booking you are searching for doesn't exist.", "error");
@@ -329,7 +343,244 @@ class BookingsController extends Controller
 
         }else {
             flash("Failed to decline booking.", "error");
+            return back();
         }
     }
 
+    /**
+    *
+    *
+    *
+    *
+    *
+    *
+    */
+    public function add_attendees(Event $event)
+    {
+        
+        $event = $event;
+        $events = Event::where('status_is', 'Open')->pluck('name', 'id');
+        $bookings = Booking::where('event_id', $event->id)->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
+        $attendees = User::where(['status_is' => 'Active', 'verified' => 1])->orderBy('email', 'asc')->pluck('email', 'id');
+        if($event->number_of_seats == $bookings->where('status_is', 'Paid')->count() || $event->status == "FullyBooked"){
+            flash('The event is now fully booked!', 'info');
+            return redirect('/home');
+        }
+        return view('bookings.create', compact('event', 'events', 'bookings', 'attendees'));
+    }
+
+    /**
+    *
+    *
+    *
+    *
+    *
+    *
+    */
+    public function save_attendees(AttendeeFormRequest $request, Event $event)
+    {
+
+        $password = str_random(8);
+        $username = $request['email'];
+        
+        // Generate new reference number
+        $ref = rand(1000000, 9999999);
+        $results = User::where('reference', $ref)->count();
+
+        // Loop and regenerate $ref while $results is more than 0
+        while ($results > 0) {
+            $ref = rand(100000, 999999);
+            $results = User::where('reference', $ref)->count();
+        }
+
+        $user = User::firstOrCreate([
+            'reference' => $ref,
+            'verified' => 0, // Not yet verified
+            'code' => str_random(6),
+            'username' => $username,
+            'cell' => $request['cell'],
+            'email' => $request['email'],
+            'firstname' => $request['firstname'],
+            'lastname' => $request['lastname'],
+            'password' => bcrypt($password),
+            'status_is' => User::$statuses['Active'],
+            'location' => $request['location'],
+            'sponsor' => '',
+        ]);
+
+        // Assign Role to User 'member'
+        $user->actAs('member');
+
+        $email = $user->email;
+        $name = $user->username;
+
+        $parameters = array(
+            'username' => $user->username,
+            'callout_button' => 'Sign In',
+            'callout_url' => url('login'),
+            'password' => $password,
+            'user' => $user,
+        );
+
+        // Send email to confirm successful registration
+        Mail::send('emails.attendee_account_created', $parameters, function ($message)
+        use ($email, $name) {
+            $message->from('noreply@goforex.co.za');
+            $message->to($email, $name)->subject('Welcome To GoForex!');
+        });
+
+        //Add Booking
+        $request['user'] = $user->id;
+        $this->add_attendees_booking($request, $event);
+
+        flash('Booking for ' . $user->firstname . ' ' . $user->lastname . ' was created successfully!', 'success');
+        return back();
+    }
+
+    //Add Booking method, use both in this class and via routes
+    public function add_attendees_booking(Request $request, Event $event)
+    {
+        $user = User::findOrFail($request['user']);
+        $bookings = Booking::where('event_id', $event->id)->select('id', 'event_id', 'user_id', 'status_is', 'created_at', 'updated_at')->get();
+        
+        if($bookings->where('user_id', $user->id)->count() > 0){
+            flash('A user with an identical email address is already booked a seat for this event!', 'info');
+            return back();
+        }
+        $booking = Booking::create(['user_id'=> $user->id,
+                        'event_id'=>$event->id,
+                        'reference'=>'BO'.str_random(9),
+                        'status_is'=>'Pending']);
+
+        $email = $user->email;
+        $name = $user->username;
+        
+        $parameters = array(
+            'username' => $user->username,
+            'callout_button' => 'Sign In',
+            'callout_url' => url('login'),
+            'user' => $user,
+            'booking' => $booking,
+            'event' => $event,
+        );
+
+        // Send email to confirm successful booking
+        Mail::send('emails.attendee_booking_created', $parameters, function ($message)
+        use ($email, $name) {
+            $message->from('noreply@goforex.co.za');
+            $message->to($email, $name)->subject('Booking created on your behalf!');
+        });
+        
+        if($booking->count() >= $event->number_of_seats AND $booking->where('status_is', 'Pending')->count() > 0 ){
+            flash('Booking created but ... Caution! This event is fully booked, with pending bookings.', 'info');
+            return back();
+        }elseif($booking->count() >= $event->number_of_seats AND $booking->where('status_is', 'Pending')->count() == 0 ){
+            flash('Event is fully booked, no further bookings allowed.', 'warning');
+            return redirect('/home');
+        }
+
+        flash('Booking for ' . $user->firstname . ' ' . $user->lastname . ' was created successfully!', 'success');
+        return redirect('/attendees' . $event->id . '/add');
+
+    }
+    /**
+     * Sagepay payment accepted.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sagepay_accepted(Request $request)
+    {
+        $transaction = Transaction::updateOrCreate(['reference' => $request['reference']], $request->all());
+        $transaction->update(['reason' => null]);
+        $booking = Booking::where('id', $transaction->extra2)->update(['status_is' => 'Paid']);
+
+        return response()->json(['status' => 'OK']);
+    }
+
+    /**
+     * Sagepay payment notify.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sagepay_notify(Request $request)
+    {
+        $transaction = Transaction::updateOrCreate(['reference' => $request['reference']], $request->all());
+        $booking = Booking::where('id', $transaction->extra2)->update(['status_is' => 'Waiting']);
+
+        return response()->json(['status' => 'OK']);
+    }
+
+    /**
+     * Sagepay payment declined.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sagepay_declined(Request $request)
+    {
+        $transaction = Transaction::updateOrCreate(['reference' => $request['reference']], $request->all());
+        $booking = Booking::where('id', $transaction->extra2)->first();
+
+        $user = User::where('id', $transaction->extra1)->first();
+        $event = Event::where('id', $transaction->extra3)->first();
+
+        $attendees = explode(',', $event->attendees);
+
+        if (($key = array_search($user->id, $attendees)) !== false) {
+            unset($attendees[$key]);
+        }
+
+        $event->update(['attendees'=>implode(',', $attendees),]);
+
+        $email = $user->email;
+        $name = $user->username;
+
+        $parameters = array(
+            'username' => $user->username,
+            'user' => $user,
+            'event'=> $event,
+            'transaction' => $transaction,
+            'callout_button' => 'Sign In',
+            'callout_url' => url('login'),
+        );
+        // TODO add queue
+
+        if($user->subscription){
+                
+            // Send email to confirm successful registration
+            Mail::send('emails.payment_declined', $parameters, function ($message)
+            use ($email, $name) {
+                $message->from('noreply@goforex.co.za');
+                $message->to($email, $name)->subject('GoForex - Payment Declined by Service Provider!');
+            });
+            
+        }
+        $message = '<h5><strong>Greetings '. $user->firstname .'!</strong></h5><p> We\'ve received a response from our service provider SagePay PayNow that your payment request for '. $event->name .', amount of R'. $event->item->price .' was declined.
+                        <p>Please click -> <a href="https://ws.sagepay.co.za/PayNow/TransactionStatus/Check?RequestTrace='. $transaction->requestTrace .'">here</a> <- or copy and paste the link below to your browser to find out why.</p><br>
+                        <strong>Request Trace link:</strong><br>
+                        <a href="https://ws.sagepay.co.za/PayNow/TransactionStatus/Check?RequestTrace='. $transaction->requestTrace .'">https://ws.sagepay.co.za/PayNow/TransactionStatus/Check?RequestTrace='. $transaction->requestTrace .'</a>
+                        ';
+        $this->saveNotification($message,'notification',$user, 'Payment declined by Service Provider');
+
+
+        $transaction->delete();
+        $booking->delete();
+        return response()->json(['status' => 'OK']);
+    }
+
+    /**
+     * Sagepay payment redirect.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sagepay_redirect(Request $request)
+    {
+        $transaction = Transaction::updateOrCreate(['reference' => $request['reference']], $request->all());
+        $booking = Booking::where('id', $transaction->extra2)->update(['status_is' => 'Waiting']);
+
+        return response()->json(['status' => 'OK']);
+    }
 }

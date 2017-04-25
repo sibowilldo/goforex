@@ -68,24 +68,36 @@ Route::resource('notifications',  'NotificationsController');
 // Get Unread Notifications route
 Route::get('/unread/notifications', function () { 
     $notifications = new App\Notification;
-    $unreadNotifications = $notifications->where('user_id', Auth::id())->where('viewed', false)->take(5)->get();
+    $unreadNotifications = $notifications->where(['user_id' => Auth::id(), 'viewed'=> false])->get();
     session(['unread-notifications:'.Auth::user()->id =>  $unreadNotifications]);
-
     return response()->json(['status' => 200, 'data' => $unreadNotifications]);
 });
 
 //Contact us form  routes
 Route::post('/contact-us', ['as' => 'contact-us', 'uses' => 'HomeController@contact_us']);
 
-//unsuscribe Route
+//unsuscribe get Route
 Route::get('/unsubscribe/{id}/{verification}', function($id, $verification){
     $user = App\User::where(['id' => $id, 'code' => $verification])->first();
-    
     return view('layouts.unsubscribe', compact('user'));
-});//unsuscribe Route
+});
+
+//unsuscribe post Route
 Route::post('/unsubscribe/{id}/{verification}', function($id, $verification){
-    $user = App\User::where(['id' => $id, 'code' => $verification])->update(['subscription' => false]);
-    
+    $user = App\User::where(['id' => $id, 'code' => $verification])->update(['subscription' => false]);  
     flash('You\'ve unsubscribed successfully to our email communications', 'info');
     return redirect('/');
 });
+
+// Payment post Routes
+Route::post('/payment/accepted', ['as' => 'payment.accepted', 'uses' => 'BookingsController@sagepay_accepted']);
+Route::post('/payment/declined', ['as' => 'payment.declined', 'uses' => 'BookingsController@sagepay_declined']);
+Route::post('/payment/redirect', ['as' => 'payment.redirect', 'uses' => 'BookingsController@sagepay_redirect']);
+Route::post('/payment/notify', ['as' => 'payment.notify', 'uses' => 'BookingsController@sagepay_notify']);
+
+
+//Attendee Routes
+Route::post('/attendees/{event}/save', ['as' =>'attendees.save', 'uses' => 'BookingsController@save_attendees']);
+Route::get('/attendees/{event}/add', ['as' =>'attendees.add', 'uses' => 'BookingsController@add_attendees']);
+Route::post('/attendees/{event}/book', ['as' => 'attendees.book', 'uses' => 'BookingsController@add_attendees_booking']);
+Route::get('/attendees/{event}/print', ['as' => 'attendees.print', 'uses' => 'EventsController@print_attendees']);
