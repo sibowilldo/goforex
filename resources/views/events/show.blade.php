@@ -137,7 +137,7 @@
                                             @if($booking->proof_of_payment == null)
                                                 <button id="booking-{{ $booking->id }}" type="button" value="{{ $booking->event_id }}" data-userid="{{ $booking->user_id }}" data-fullname="{{ $booking->user->firstname }} {{ $booking->user->lastname }}" data-toggle="modal" data-target="#proof-modal" class="btn btn-success btn-sm btn-social btn-proof"><i class="fa ion ion-social-usd"></i>Upload Proof</button>
                                             @else
-                                                <button class="btn btn-primary btn-xs" type="button" data-toggle="collapse" data-target="#collapse-{{ $booking->reference }}" aria-expanded="false" aria-controls="collapse-{{ $booking->reference }}">
+                                                <button class="btn btn-primary btn-xs btn-proof" type="button" data-toggle="collapse" data-target="#collapse-{{ $booking->reference }}" aria-expanded="false" aria-controls="collapse-{{ $booking->reference }}">
                                                 Proof of Payment
                                                 </button>
                                                 <div class="collapse" id="collapse-{{ $booking->reference }}">
@@ -300,10 +300,6 @@
     <script>
         $(document).ready(function() {
             $('#bookings').DataTable();
-        } );
-    </script>
-    <script>
-        jQuery(document).ready(function($) {
             $('.btn-proof').on('click', function(e){
                 var booking = $(this);
                 $('.modal-title').html('Upload Proof of Payment for <strong>' + booking.attr('data-fullname') + '</strong>');

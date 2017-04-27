@@ -8,6 +8,7 @@ use App\Item;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventsFormRequest;
 use Auth;
+use PDF;
 
 class EventsController extends Controller
 {
