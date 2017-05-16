@@ -151,7 +151,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <p class="client-part-haead wow fadeInDown delay-05">GoForex is a movement that aims on empowering
-                    people about Forex Trading, by teaching people what really works and all the secretes and techniques
+                    people about Forex Trading, by teaching people what really works and all the secrets and techniques
                     of trading the markets. We have empowered many people with our strategy called the Major Key that
                     was developed by one of our mentors and the strategy has changed many people's lives.
                 </p>
