@@ -33,7 +33,7 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				{!! Form::label('end_date', 'End Date:') !!}
-				{!! Form::text('end_date', null, ['class'=>'form-control eventdatepicker', 'placeholder' => 'Select Start Date first', 'disabled' => 'disabled']) !!}
+				{!! Form::text('end_date', null, ['class'=>'form-control eventdatepicker']) !!}
 			</div>
 		</div>
 	</div>

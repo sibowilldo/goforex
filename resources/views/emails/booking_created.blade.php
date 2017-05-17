@@ -13,7 +13,7 @@
         Branch Code : <b> 250655 </b><br><br>
     </p>
 
-    <b>NB: You are expected to make payment within 12 hours from the booking date/time, or your booking will be cancelled.</b><br><br>
+    <b>NB: You are expected to make payment, or your booking will be cancelled.</b><br><br>
 
     <p style="font-size: 12px; line-height: 15px;"><b>Booking Date/Time : {{ $booking_date_time }}</b></p>
 

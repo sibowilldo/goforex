@@ -59,6 +59,8 @@
         transform-origin: inherit !important;
       }    
     </style>
+<!-- jQuery 2.2.3 -->
+{!! Html::script('plugins/jQuery/jquery-2.2.3.min.js') !!}
 </head>
 <body class="hold-transition skin-gold sidebar-mini">
 
@@ -249,8 +251,6 @@
 <!-- ./wrapper -->
 </div>
 
-<!-- jQuery 2.2.3 -->
-{!! Html::script('plugins/jQuery/jquery-2.2.3.min.js') !!}
 {!! Html::script('js/jquery-ui.min.js') !!}
 
 <!-- Bootstrap 3.3.6 -->

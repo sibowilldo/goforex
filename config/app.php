@@ -241,6 +241,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Avatar' => Laravolt\Avatar\Facade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Btn' => App\Http\Controllers\BtnController::class,
     ],
 
 ];

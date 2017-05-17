@@ -131,11 +131,10 @@ class BookingsController extends Controller
                         Acc Holder : <b> AJ Hastibeer</b><br>
                         Acc Number : <b> 626-06406-909</b><br>
                         Branch Code : <b> 250655 </b></p>
-                    <p><b>NB: You are expected to make payment within 12 hours from the booking date/time, or your booking will be cancelled.</b></p>
                     <p><b>Booking Date/Time : '. $booking->created_at .'</b></p>';
 
         $this->saveNotification($message,'notification',Auth::user(), 'Booking Created');
-        flash("You have successfully created a booking, please make payment within 12 hours to complete your reservations.", "success");
+        flash("You have successfully created a booking, please make payment to complete your reservations.", "success");
 
         return back();
     }
@@ -339,6 +338,7 @@ class BookingsController extends Controller
             $bookings = Booking::whereIn('user_id', $attendees)->where('event_id', $event->id)->get();
 
             flash("Booking declined, and " . $user->firstname . " has been notified!", "success");
+            return back();
             return view('events.show', compact(['event', 'bookings']));
 
         }else {
@@ -471,10 +471,10 @@ class BookingsController extends Controller
             $message->to($email, $name)->subject('Booking created on your behalf!');
         });
         
-        if($booking->count() >= $event->number_of_seats AND $booking->where('status_is', 'Pending')->count() > 0 ){
+        if($bookings->count() >= $event->number_of_seats AND $booking->where('status_is', 'Pending')->count() > 0 ){
             flash('Booking created but ... Caution! This event is fully booked, with pending bookings.', 'info');
             return back();
-        }elseif($booking->count() >= $event->number_of_seats AND $booking->where('status_is', 'Pending')->count() == 0 ){
+        }elseif($bookings->count() >= $event->number_of_seats AND $booking->where('status_is', 'Pending')->count() == 0 ){
             flash('Event is fully booked, no further bookings allowed.', 'warning');
             return redirect('/home');
         }

@@ -119,14 +119,16 @@ class EventsController extends Controller
     {
         //
         if ($event->status_is == 'Pending'){
-            // Delete a account
-            $event->delete();
-            flash('Event has been deleted!', 'success');
-            $events = Event::get();
-            return view('events.index', compact(['events']));
+            // Delete an event
         }else{
             flash('You can only delete an event that\'s Pending', 'error');
         }
+            $event->delete();
+            flash('Event has been deleted!', 'success');
+
+        $events = Event::get();
+        $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
+        return view('events.index', compact(['events', 'bookings']));
     }
 
 
@@ -141,6 +143,7 @@ class EventsController extends Controller
 
         $events = Event::orderBy('created_at','desc')->get();
         $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
+        return redirect('/events');
         return view('events.index', compact(['events', 'bookings']));
     }
 

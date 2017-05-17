@@ -20,7 +20,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="box box-success">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Attendee</h3>
+                            <h3 class="box-title">Add Attendee</h3>  <a href="{{url('events/'.$event->id)}}" class="btn btn-primary btn-social pull-right"><i class="fa ion ion-person-stalker"></i> View Attendees</a>
                         </div>
                         <div class="event-header">
                             <img src="{{ url('img/section-bg1.jpg') }}" alt="" class="img-responsive">

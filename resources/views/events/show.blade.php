@@ -69,7 +69,13 @@
                                             <span class="event-description"><i class="fa fa-question-circle"></i> {{ $event->description }}</span>
                                             
                                 <div class="text-right">
-                                <a href="{{ url('events/'. $event->id .'/edit') }}" class="btn btn-danger btn-social btn-sm"><i class="fa ion ion-ios-compose-outline"></i>Edit Event</a>
+                                <a href="{{ url('events/'. $event->id .'/edit') }}" class="btn btn-default btn-social btn-sm"><i class="fa ion ion-ios-compose-outline"></i>Edit Event</a>
+                                
+                                @if($event->status_is == 'Pending')
+                                    {!! Btn::delete($event->id, $event->name)!!}
+                                @else
+                                {!! Btn::delete($event->id, $event->name, 'Any booking linked to this event will also be deleted!')!!}
+                                @endif
                                 </div>
                                         </div>
                                         

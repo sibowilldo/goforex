@@ -34,7 +34,7 @@
                                     <th>Host</th>
                                     <th>Attendees</th>
                                     <th>Event Dates</th>
-                                    <th>Created</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -48,7 +48,7 @@
 
                                         <td>{{ \Carbon\Carbon::parse($event->start_date)->format('F j') }} <strong>-</strong> 
                                         {{ \Carbon\Carbon::parse($event->end_date)->format('F j') }}</td>
-                                        <td>{{ $event->created_at->toFormattedDateString() }}</td>
+                                        <td>{{ $event->status_is }}</td>
                                         <td>
                                             <a href="{{ url('events', $event->id) }}" class="btn-sm btn btn-social btn-default" rel="tooltip" title="View">
                                                <i class="fa ion ion-ios-calendar-outline"></i>  View
@@ -67,6 +67,11 @@
                                                 rel="tooltip"
                                                 title="Published"><i class="fa fa-check-circle"></i> Published!
                                                 </span>
+                                            @endif
+                                            @if($event->status_is == 'Pending')
+                                             {!! Btn::delete($event->id, $event->name)!!}
+                                           @else
+                                            {!! Btn::delete($event->id, $event->name, 'Any booking linked to this event will also be deleted!')!!}
                                             @endif
                                         </td>
                                     </tr>

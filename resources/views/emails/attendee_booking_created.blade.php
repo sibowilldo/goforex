@@ -25,7 +25,7 @@
     </p>
 
     <p style="text-align: left; font-size: 12px"><strong>Already paid for this booking? </strong> <a href="{{ url('/view-event/'. $event->id) }}">Click here to Upload Proof of Payment</a></p>
-    <span  style="text-align: left; font-size: 12px" color="red">NB: You are expected to make payment and upload proof of payment within 12 hours from the booking date/time, or your booking will be cancelled.</span><br><br>
+    <span  style="text-align: left; font-size: 12px" color="red">NB: You are expected to make payment and upload proof of payment, or your booking will be cancelled.</span><br><br>
 
     <p style="font-size: 12px; line-height: 15px;"><b>Booking Date/Time : {{ $booking->created_at->toDayDateTimeString() }}</b></p>
 
