@@ -5866,7 +5866,7 @@ ul#event-wrap {
 }
 
 .event-counter {
-    background-image: url("{{url('img/boxed-bg.png')}}");
+    background-image: url('../img/boxed-bg.png');
     background-repeat: repeat;
     background-attachment: fixed;
     background-size: 10%;

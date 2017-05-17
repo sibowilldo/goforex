@@ -65,7 +65,7 @@ class EventsController extends Controller
         flash('You have successfully created an Event.', 'success');
 
         $events = Event::get();
-        return view('events.index', compact(['events']));
+        return redirect('events');
     }
 
     /**
@@ -139,8 +139,9 @@ class EventsController extends Controller
             flash('The event you are looking for is invalid.', 'error');
         }
 
-        $events = Event::get();
-        return view('events.index', compact(['events']));
+        $events = Event::orderBy('created_at','desc')->get();
+        $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
+        return view('events.index', compact(['events', 'bookings']));
     }
 
     /**

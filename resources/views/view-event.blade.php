@@ -17,14 +17,12 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
             @if($event->status_is == 'Open')
-                @if(in_array(Auth::user()->id,explode(',', $event->attendees)))
-                    @if($booking != null && $booking->proof_of_payment == null)
+                 @if($booking != null && $booking->proof_of_payment == null)
                         <div class="callout callout-danger animated fadeInDown">
                             <h4><i class="fa fa-info-circle"></i> Pending Important Document</h4>
 
                             <p>Hi there, we see you haven't uploaded your proof of payment as yet. Please make payment if not already made, and take a clear snapshot of your receipt and upload it on the "<a href='#proof' class='btn btn-xs btn-primary scroll'>Proof of Payment</a>" section below, you have limited time to do this.</p>
                         </div>
-                    @endif
                 @endif
             @endif
             </div>

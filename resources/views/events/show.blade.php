@@ -188,7 +188,7 @@
                     <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span></button>
+                        <span aria-hidden="true"><i class="fa ion ion-ios-close"></i></span></button>
                         <h4 class="modal-title"></h4>
                     </div>
                     {!! Form::open(['url' => 'imageUploadForm', 'id' => '#proof-form' , 'class' => 'form', 'novalidate' => 'novalidate', 'files' => true]) !!}     
@@ -299,7 +299,6 @@
 
     <script>
         $(document).ready(function() {
-            $('#bookings').DataTable();
             $('.btn-proof').on('click', function(e){
                 var booking = $(this);
                 $('.modal-title').html('Upload Proof of Payment for <strong>' + booking.attr('data-fullname') + '</strong>');
@@ -310,6 +309,7 @@
             $('.elevatezoom').elevateZoom({
                 zoomType: 'lens',
             });
+            $('#bookings').DataTable();
         });
     </script>
 @stop
