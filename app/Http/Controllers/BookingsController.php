@@ -192,7 +192,10 @@ class BookingsController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+        // Delete Booking
+        $booking->delete();
+        flash()->success('Booking has been deleted!');
+        return back();
     }
 
     /**
@@ -339,7 +342,6 @@ class BookingsController extends Controller
 
             flash("Booking declined, and " . $user->firstname . " has been notified!", "success");
             return back();
-            return view('events.show', compact(['event', 'bookings']));
 
         }else {
             flash("Failed to decline booking.", "error");
@@ -480,7 +482,7 @@ class BookingsController extends Controller
         }
 
         flash('Booking for ' . $user->firstname . ' ' . $user->lastname . ' was created successfully!', 'success');
-        return redirect('/attendees' . $event->id . '/add');
+        return redirect('/attendees/' . $event->id . '/add');
 
     }
     /**

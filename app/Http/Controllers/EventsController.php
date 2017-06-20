@@ -47,7 +47,8 @@ class EventsController extends Controller
     {
         //
         $items=Item::get()->pluck('item_name', 'id');
-        return view('events.create',compact('items'));
+        $statuses = Event::$statuses;
+        return view('events.create',compact('items', 'statuses'));
     }
 
     /**
@@ -91,7 +92,8 @@ class EventsController extends Controller
     {
         //
         $items=Item::get()->pluck('item_name', 'id');
-        return view('events.edit', compact('event','items'));
+        $statuses = Event::$statuses;
+        return view('events.edit', compact('event','items', 'statuses'));
     }
 
     /**

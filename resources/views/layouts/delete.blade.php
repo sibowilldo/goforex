@@ -1,5 +1,10 @@
-<button class="btn red btn-delete-{{ $id }} btn-sm btn btn-social btn-danger"><i class="fa ion ion-android-remove-circle"></i> Remove</button>
-{!! Form::open(['url' => url()->current().'/'.$id, 'id' => 'delete-form-'.$id, 'method' => 'POST', 'style' => 'display: inline-block;']) !!}
+@if($size)
+    <a class="btn btn-danger btn-delete-{{ $id }} btn-sm btn-social"><i class="fa ion ion-android-remove-circle"></i> Remove</a>
+@else
+    <a class="btn  btn-danger btn-delete-{{ $id }} btn-sm"><i class="fa fa-trash"></i></a>
+@endif
+
+{!! Form::open(['url' => $url.'/'.$id, 'id' => 'delete-form-'.$id, 'method' => 'POST', 'style' => 'display: inline-block;']) !!}
 <input type="hidden" name="_method" value="DELETE">
 @php $name = empty($name) ? 'item' : $name @endphp
 {!! Form::close() !!}
@@ -22,7 +27,6 @@ jQuery(document).ready(function(){
         function(isConfirm){
             if(isConfirm){
                 jQuery('#delete-form-{{$id}}').submit();
-                swal('Done!', '{{ $name }} was deleted successfully!', 'success');
             }else{
                 swal('Cancelled', 'Operation aborted', 'error');
             }

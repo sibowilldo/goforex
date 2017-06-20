@@ -18,15 +18,15 @@
             
             <!-- Main content --> 
             <section class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="alert alert-info alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon ion ion-ios-information-outline"></i> Important!</h4>
-                            Please note: Upon booking an event (reserving a seat) you are required to make payment and upload the proof of payment within <strong>12</strong> hours, otherwise your reservation will be cancelled and you will be required to make the reservation again should seats be available. Thank you!
-                        </div>
-                    </div>
-                </div>
+                {{--<div class="row">--}}
+                    {{--<div class="col-md-12">--}}
+                        {{--<div class="alert alert-info alert-dismissible">--}}
+                            {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>--}}
+                            {{--<h4><i class="icon ion ion-ios-information-outline"></i> Important!</h4>--}}
+                            {{--Please note: Upon booking an event (reserving a seat) you are required to make payment and upload the proof of payment within <strong>12</strong> hours, otherwise your reservation will be cancelled and you will be required to make the reservation again should seats be available. Thank you!--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="row">
                     <div class="col-md-9">
                         <div class="box box-success">
@@ -91,9 +91,22 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-12 event-status">
-                                                                <p>
-                                                                <span class="btn btn-sm btn-block {{ $event->status_is == 'Open' ? 'bg-green' : 'bg-red' }}">Event is {{$event->status_is}}</span>
-                                                                </p>
+                                                                {{--@if($event->number_of_seats == count(explode(',',$event->attendees)))--}}
+                                                                    {{--<div class="info-box bg-green">--}}
+                                                                        {{--<span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>--}}
+
+                                                                        {{--<div class="info-box-content">--}}
+                                                                            {{--<span class="info-box-text">Status</span>--}}
+                                                                            {{--<span class="info-box-number">{{$event->status_is}}</span>--}}
+                                                                        {{--</div>--}}
+                                                                        {{--<!-- /.info-box-content -->--}}
+                                                                    {{--</div>--}}
+                                                                {{--@else--}}
+                                                                    <p>
+                                                                        <span class="btn btn-sm btn-block {{ $event->status_is == 'Open' ? 'bg-green' : 'bg-red' }}">Event is {{$event->status_is}}</span>
+                                                                    </p>
+
+                                                                {{--@endif--}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -137,11 +150,18 @@
                                                             @endif                                         
                                                             @else
                                                             
-                                                            @if($event->status_is == 'FullyBooked' || $event->number_of_seats == count(explode(',',$event->attendees)))
+                                                            @if($event->status_is == 'FullyBooked'))
                                                                 <button type="button" class="btn btn-social btn-disabled btn-sm" disabled>
                                                                    <i class="fa ion ion-ios-checkmark"></i> Fully Booked
                                                                 </button>
-                                                            @elseif($event->status_is == 'Open')
+                                                                @elseif($event->number_of_seats == count(explode(',',$event->attendees)))
+                                                                        <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
+                                                                           class="btn btn-social btn-warning btn-sm"
+                                                                           rel="tooltip"
+                                                                           title="Edit">
+                                                                            <i class="ion ion-ios-compose-outline"></i> Add Me to Waiting List
+                                                                        </a>
+                                                                @elseif($event->status_is == 'Open')
                                                                 @if($bookings->where('user_id', Auth::id())->count() > 0)
                                                                     @foreach($bookings->where('user_id', Auth::id()) as $booking)
                                                                         @if($booking->event_id == $event->id)

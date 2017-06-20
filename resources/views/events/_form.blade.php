@@ -20,6 +20,10 @@
 		{!! Form::number('number_of_seats', null, ['class'=>'form-control', 'placeholder' => '']) !!}
 	</div>
 	<div class="form-group">
+		{!! Form::label('status_is', 'Status:') !!}
+		{!! Form::select('status_is', $statuses, null, ['class'=>'form-control']) !!}
+	</div>
+	<div class="form-group">
 		{!! Form::label('item_id', 'Item:') !!}
 		{!! Form::select('item_id', $items, null, ['class'=>'form-control']) !!}
 	</div>
