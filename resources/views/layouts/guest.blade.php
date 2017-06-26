@@ -49,6 +49,11 @@
         .white-text {
             color: #fff !important;
         }
+        @media only screen and (min-width: 767px){
+            .team-leader-box:first-child{
+                margin-left: 18%;
+            }
+        }
     </style>
 
 </head>
@@ -206,21 +211,6 @@
                     trading after learning the secret key and has been consistent. After seeing many people that were
                     struggling and consulting Ashley, Andile and others, they then decided to start the movement called
                     "The Major Key" and it has produced outstanding results.</p>
-            </div>
-            <div class="team-leader-box">
-                <div class="team-leader wow fadeInDown delay-09s">
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    {{ Html::image("img/joel_goforex.jpg", 'Joel') }}
-                    <ul>
-                        <li><a href="#" class="fa-facebook"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-09s">Joel</h3>
-                <span class="wow fadeInDown delay-09s">Marketing</span>
-                <p class="wow fadeInDown delay-09s">
-                    Joel Babandakana is a 24 year old very active and young professional from Congo that was inspired by
-                    the movement after struggling trading forex for many years. Joel now ensures that all GoForex
-                    activities are in order and ensures that every student's voice is heard even after training.</p>
             </div>
         </div>
     </div>
