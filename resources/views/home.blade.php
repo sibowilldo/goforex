@@ -197,7 +197,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3">  
+                        <!-- small box -->
+                        <div class="small-box">
+                            <div class="inner no-padding">
+                                <a href="https://secure.jpmarkets.co.za//Redirect?linkID=ioizk14992" target="_blank"><img src="{{ url('img/jpmarkets-logo.png') }}" alt="Open Live Account" class="img-responsive"></a>
+                            </div>
+                            <a href="https://secure.jpmarkets.co.za//Redirect?linkID=ioizk14992" target="_blank" class="small-box-footer black grey-text" style="text-transform: uppercase;"><strong>Click here to open Real Trading Account!</strong></a>
+                        </div>
+
                         <div class="info-box">
                             <span class="info-box-icon bg-green"><i class="fa fa-calendar-check-o"></i></span>
 
