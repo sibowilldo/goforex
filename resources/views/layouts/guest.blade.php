@@ -30,8 +30,15 @@
     {!! Html::script('/js/knight/classie.js') !!}
 
 <!-- SweetAlert -->
-    {{ Html::script('plugins/sweetalert/sweetalert.min.js') }}
-    {{ Html::style('plugins/sweetalert/sweetalert.css') }}
+    {{ Html::script('plugins/izitoast/js/izitoast.min.js') }}
+    {{ Html::style('plugins/izitoast/css/izitoast.min.css') }}
+    <script>
+        iziToast.settings({
+            latout: 2,
+            timeout: false,
+            position: 'topCenter'
+        });
+    </script>
 
     <style>
         * {
@@ -404,6 +411,14 @@
         <span class="copyright">&copy; GoForex. All Rights Reserved</span>
     </div>
 </footer>
+
+
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <?php $title = 'Sorry!'; $message = $error; $level = 'error';  ?>
+        @include('layouts.izitoast', compact('title', 'message', 'level'))
+    @endforeach
+@endif
 
 {!! Html::script('/js/main.js') !!}
 

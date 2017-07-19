@@ -6,11 +6,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Edit Profile
+        Edit {{ $user->firstname }}'s Profile
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Edit Profile</li>
+        <li class="active">Edit User Profile</li>
       </ol>
     </section>
 
@@ -21,81 +21,35 @@
                 <div class="box box-widget widget-user">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header bg-gold-active">
-                    <h3 class="widget-user-username">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h3>
-                    <h5 class="widget-user-desc">{{ Auth::user()->email }}</h5>
+                    <h3 class="widget-user-username">{{ $user->firstname }} {{ $user->lastname }}</h3>
+                    <h5 class="widget-user-desc">{{ $user->email }}</h5>
                     </div>
                     <div class="widget-user-image">
-                    <img class="img-circle" src="{{ url('img/all-white-bull-shield-logo.png') }}" alt="{{Auth::user()->firstname}}">
+                    <img class="img-circle" src="{{ url('img/all-white-bull-shield-logo.png') }}" alt="{{$user->firstname}}">
                     </div>
                     <div class="box-footer">
-                    <div class="row">
-                        <div class="col-sm-4 border-right">
-                        <div class="description-block">
-                            <h5 class="description-header">{{ count($bookings)}}</h5>
-                            <span class="description-text">Bookings</span>
-                        </div>
-                        <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-4 border-right">
-                        <div class="description-block">
-                            <h5 class="description-header">{{ $eventsCount }}</h5>
-                            <span class="description-text">Events</span>
-                        </div>
-                        <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-4">
-                        <div class="description-block">
-                            <h5 class="description-header">{{ Auth::user()->updated_at->diffForHumans() }}</h5>
-                            <span class="description-text">Last updated</span>
-                        </div>
-                        <!-- /.description-block -->
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
                     </div>
                 </div>
             <!-- /.widget-user -->
             </div>
         </div>
 
-        @if ($errors->has('password'))
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-danger">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </div>
-                </div>
-            </div>
-        @endif
-        @if ($errors->has('current_password'))
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-danger">
-                        <strong>{{ $errors->first('current_password') }}</strong>
-                    </div>
-                </div>
-            </div>
-        @endif
-        
         <div class="row">        
             <div class="col-md-6 col-md-offset-3">
                 <div class="nav-tabs-custom" id="profiletabs">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+                        <li class="active"><a href="#user" data-toggle="tab">Profile</a></li>
                         <li><a href="#password" data-toggle="tab">Password</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="profile">
+                        <div class="tab-pane active" id="user">
                         
-                                {!! Form::model($profile, ['method'=>'PATCH', 'url'=>'profile/'.$profile->id, 'class'=>'form-horizontal']) !!}
+                                {!! Form::model($user, ['method'=>'PATCH', 'url'=>'users/'.$user->id, 'class'=>'form-horizontal']) !!}
                                     {{ csrf_field() }}
                                     <div class="form-group row has-feedback{{ $errors->has('firstname') ? ' has-error' : '' }}">
                                         <div class="col-md-12">
                                             <label for="firsname">First Name</label>
-                                            <input id="firstname" type="text" class="form-control" placeholder="First Name" name="firstname" value="{{ $profile->firstname }}" required autofocus>
+                                            <input id="firstname" type="text" class="form-control" placeholder="First Name" name="firstname" value="{{ $user->firstname }}" required autofocus>
                                             <i class="glyphicon glyphicon-user form-control-feedback"></i>
                                             @if ($errors->has('firstname'))
                                                 <span class="help-block">
@@ -108,7 +62,7 @@
                                     <div class="form-group row has-feedback{{ $errors->has('lastname') ? ' has-error' : '' }}">
                                         <div class="col-md-12">
                                             <label for="lastname">Last Name</label>
-                                            <input id="lastname" type="text" class="form-control"  placeholder="Last Name" name="lastname" value="{{ $profile->lastname }}" required autofocus>
+                                            <input id="lastname" type="text" class="form-control"  placeholder="Last Name" name="lastname" value="{{ $user->lastname }}" required autofocus>
                                             <i class="glyphicon glyphicon-user form-control-feedback"></i>
                                             @if ($errors->has('lastname'))
                                                 <span class="help-block">
@@ -121,7 +75,7 @@
                                     <div class="form-group row has-feedback{{ $errors->has('username') ? ' has-error' : '' }}">
                                         <div class="col-md-12">
                                             <label for="username">Username</label>
-                                            <input id="username" type="text" class="form-control"  placeholder="Username" name="username" value="{{ $profile->username }}" {{ ($profile->username == $profile->email) ? '' : 'disabled' }} required autofocus>
+                                            <input id="username" type="text" class="form-control"  placeholder="Username" name="username" value="{{ $user->username }}" {{ ($user->username == $user->email) ? '' : 'disabled' }} required autofocus>
                                             <i class="glyphicon glyphicon-user form-control-feedback"></i>
                                             @if ($errors->has('username'))
                                                 <span class="help-block">
@@ -134,7 +88,7 @@
                                     <div class="form-group row has-feedback{{ $errors->has('cell') ? ' has-error' : '' }}">
                                         <div class="col-md-12">
                                             <label for="cell">Contact Number (Mobile)</label>
-                                            <input id="cell" type="text" class="form-control"  placeholder="Contact Number (Mobile)" name="cell" value="{{ $profile->cell }}" required autofocus>
+                                            <input id="cell" type="text" class="form-control"  placeholder="Contact Number (Mobile)" name="cell" value="{{ $user->cell }}" required autofocus>
                                             <i class="glyphicon glyphicon-phone form-control-feedback"></i>
                                             @if ($errors->has('cell'))
                                                 <span class="help-block">
@@ -147,7 +101,7 @@
                                     <div class="form-group row has-feedback{{ $errors->has('location') ? ' has-error' : '' }}">
                                         <div class="col-md-12">
                                             <label for="location">Location</label>
-                                            <input id="location" type="text" class="form-control"  placeholder="Location" name="location" value="{{ $profile->location }}" required autofocus>
+                                            <input id="location" type="text" class="form-control"  placeholder="Location" name="location" value="{{ $user->location }}" required autofocus>
                                             <i class="glyphicon glyphicon-pushpin form-control-feedback"></i>
                                             @if ($errors->has('location'))
                                                 <span class="help-block">
@@ -160,7 +114,7 @@
                                     <div class="form-group row has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <div class="col-md-12">
                                             <label for="email">Email Address</label>
-                                            <input id="email" type="email" class="form-control"  placeholder="E-Mail Address" name="email" value="{{ $profile->email }}" disabled required>
+                                            <input id="email" type="email" class="form-control"  placeholder="E-Mail Address" name="email" value="{{ $user->email }}" disabled required>
                                             <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -174,7 +128,7 @@
                                         <div class="col-md-12 text-center">
                                          <div class="checkbox icheck">
                                             <label>
-                                                <input type="checkbox" name="subscription" id="subscription" {{ ($profile->subscription) ? 'checked' : '' }}>
+                                                <input type="checkbox" name="subscription" id="subscription" {{ ($user->subscription) ? 'checked' : '' }}>
                                                 Subscribe to our email communications
                                             </label>
                                          </div>

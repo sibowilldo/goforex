@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/mentors', function () {
+    return view('mentors');
+});
 
 Auth::routes();
 //Logout route
@@ -53,14 +56,18 @@ Route::get('/process-bookings', 'CronsController@processBookings');
 // Verification function of HomeController
 Route::post('/verification', 'HomeController@verification');
 
-//ajax for knobs
-Route::get('/ajax/knobs', ['as'=>'ajax.knobs', 'uses' => 'HomeController@updateKnobs']);
+//ajax routes
+Route::prefix('ajax')->group(function () {
+    Route::get('knobs', ['as'=>'ajax.knobs', 'uses' => 'HomeController@updateKnobs']);
+    Route::post('verify', ['uses' => 'UsersController@updateVerify']);
+    Route::post('block', ['uses' => 'UsersController@updateBlockStatus']);
+});
 
 // Profile Resource routes
-Route::resource('/profile',  'UsersController');
+Route::resource('/profile',  'ProfilesController');
 
 // Password update
-Route::patch('/password/update/', ['as' => 'password.update', 'uses' => 'UsersController@updatePassword']);
+Route::patch('/password/update/', ['as' => 'password.update', 'uses' => 'ProfilesController@updatePassword']);
 
 // Notifications Resources
 Route::resource('notifications',  'NotificationsController');
@@ -101,3 +108,9 @@ Route::post('/attendees/{event}/save', ['as' =>'attendees.save', 'uses' => 'Book
 Route::get('/attendees/{event}/add', ['as' =>'attendees.add', 'uses' => 'BookingsController@add_attendees']);
 Route::post('/attendees/{event}/book', ['as' => 'attendees.book', 'uses' => 'BookingsController@add_attendees_booking']);
 Route::get('/attendees/{event}/print', ['as' => 'attendees.print', 'uses' => 'EventsController@print_attendees']);
+
+// Profile Resource routes
+Route::resource('/users',  'UsersController');
+
+
+//ajax 

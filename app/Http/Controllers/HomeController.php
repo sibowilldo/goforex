@@ -140,7 +140,7 @@ class HomeController extends Controller
     public function proofOfPayment($bookingID){
         $booking = Booking::where('id', $bookingID)->first();
 
-        $pic = Image::make($booking->proof_of_payment);
+        $pic = Image::make($booking->proof_of_payment)->resize(1920, 1080);
         $response = Response::make($pic->encode('jpg'));
 
         //setting content-type

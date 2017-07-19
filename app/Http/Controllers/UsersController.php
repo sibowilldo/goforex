@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ProfileFormRequest;
+use App\Http\Requests\UserFormRequest;
 use App\Http\Requests\PasswordFormRequest;
+use Illuminate\Support\Facades\Response; 
 
 use Auth;
 use Hash;
@@ -31,37 +32,91 @@ class UsersController extends Controller
 
     public function index()
     {
-        $profile = User::where('id', Auth::id())->get()->first();
-        $bookings = Booking::where('user_id', Auth::id())->get();
-        $eventsCount = Booking::where('user_id', Auth::id())->distinct('event_id')->count('event_id');
-        return view('user-profile', compact('profile', 'bookings', 'eventsCount'));
+        $users = User::all();
+        return view('users/index', compact('users'));
     }
 
-    public function store()
-    {
-        # code...
-    }
     /**
-    *
-    *
-    */
-    public function editProfile($id)
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        $profile = User::where('id', $id)->get()->first();
-        return response()->json(['data', $profile]);
+        // Create new user
+        return view('users.create');
     }
 
-    public function update(ProfileFormRequest $request, User $profile)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(UserFormRequest $request)
     {
-        $request['subscription'] = ($request['subscription'] == 'on' ? true : false);
-        $profile->update($request->all());
-        flash('Profile updated', 'success');
-        return redirect('profile');
+        $user = User::create($request->all());
+        flash('New user has been added!', 'success');
+        return redirect('users');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        // Show user of $id
+        return view('users.show', compact('user'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UserFormRequest $request, User $user)
+    {
+        // Update data
+        $request['subscription'] = ($request['subscription'] == 'on' ? true : false);
+        $user->update($request->all());
+        flash('Details updated!', 'success');
+        return redirect('users');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        // Delete a user
+        $user->delete();
+        flash('User has been deleted!', 'success');
+        return redirect('users');
+    }
+    
 
     public function editPassword($id)
     {
-        
+        //
     }
 
     public function updatePassword(Request $request)
@@ -81,5 +136,30 @@ class UsersController extends Controller
 
         flash('Your password was updated successfuly!', 'success');
         return redirect()->back();
+    }
+
+    public function updateVerify(Request $request)
+    {
+        $user =  User::findOrFail($request->id);
+        $user->update(['verified' => $request->state == 'true' ? 1 : 0]);
+        $title = 'All Done!';
+        $message = 'has been ' .( $user->verified ? 'verified' : 'unverified');
+        $level = 'success';
+        $data = $user->username;
+
+        return response()->json(['status'=> 'OK', 'data' => ['data'=>$data, 'title' => $title, 'message' => $message, 'level' => $level]]);
+    }
+
+    public function updateBlockStatus(Request $request)
+    {
+        $user =  User::findOrFail($request->id);
+        $user->update(['status_is' => $request->action == 'block' ? 'Blocked' : 'Active']);
+        $title = 'All Done!';
+        $message = 'has been ' .( $user->status_is == 'Blocked' ? 'Blocked' : 'Unblocked and Activated');
+        $level = 'success';
+        $data = ['username' => $user->username,
+                    'status' => $user->status_is];
+
+        return response()->json(['status'=> 'OK', 'data' => ['data'=>$data, 'title' => $title, 'message' => $message, 'level' => $level]]);
     }
 }

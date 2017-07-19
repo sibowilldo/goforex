@@ -29,7 +29,18 @@
 <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
 {{ Html::style('css/skins/skin-gold.css') }}
 
+
 <!-- SweetAlert -->
+{{ Html::script('plugins/izitoast/js/izitoast.min.js') }}
+{{ Html::style('plugins/izitoast/css/izitoast.min.css') }}
+<script>
+    iziToast.settings({
+        latout: 2,
+        timeout: false,
+        position: 'bottomCenter'
+    });
+</script>
+
 {{ Html::script('plugins/sweetalert/sweetalert.min.js') }} {{-- Sweet Alert JS needs to be loaded first, before using it on body--}}
 {{ Html::style('plugins/sweetalert/sweetalert.css') }}
 <!-- Animate CSS-->
@@ -204,6 +215,11 @@
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('/mentors')}}">
+                            <i class="fa fa-users"></i> <span>Mentors</span> <span class="label label-primary pull-right">New</span>
+                        </a>
+                    </li>
                     @if(Auth::user()->hasRole('admin'))
                         <li class="treeview">
                             <a href="#">
@@ -212,6 +228,7 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: none;">
+                                <li><a href="{{ url('/users') }}"><i class="fa fa-circle-o"></i> Users</a></li>
                                 <li><a href="{{ url('/events') }}"><i class="fa fa-circle-o"></i> Events</a></li>
                                 <li><a href="{{ url('/items') }}"><i class="fa fa-circle-o"></i> Items</a></li>
                                 <li><a href="{{ url('/invoices') }}"><i class="fa fa-circle-o"></i> Invoices</a></li>
