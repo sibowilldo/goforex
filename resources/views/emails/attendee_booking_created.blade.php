@@ -10,8 +10,8 @@
         <strong>Please make a direct deposit or EFT Payment of a total of <strong>R{{ $event->item->price }}</strong> to the following bank details:</strong><br>
         <strong>Amount:</strong> R{{ $event->item->price }}<br>
         <strong>Bank:</strong> First National Bank<br>
-        <strong>Acc Holder:</strong> AJ Hastibeer<br>
-        <strong>Acc Number:</strong> 626-06406-909<br>
+        <strong>Acc Holder:</strong> Forex Wealth Creation SA<br>
+        <strong>Acc Number:</strong> 62715445658<br>
         <strong>Branch Code: </strong>250655<br>
     </p>
     <h4 style="text-align: left;">Event Details</h4>

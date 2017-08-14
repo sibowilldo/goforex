@@ -32,9 +32,9 @@
                     <address>
                         <strong>Payment Method:</strong><br>
                         Deposit to: <br>
-                        AJ HASTIBEER<br>
+                        Go Forex Wealth Creation SA<br>
                         FIRST NATIONAL BANK<br>
-                        626-06406-909<br>
+                        62715445658<br>
                         250-655
                     </address>
                 </div>

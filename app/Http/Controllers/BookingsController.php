@@ -128,8 +128,8 @@ class BookingsController extends Controller
                     <br/>
                     <p><i>Banking Details :</i><br>
                         Bank : <b> First National Bank</b><br>
-                        Acc Holder : <b> AJ Hastibeer</b><br>
-                        Acc Number : <b> 626-06406-909</b><br>
+                        Acc Holder : <b> Go Forex Wealth Creation SA</b><br>
+                        Acc Number : <b> 62715445658</b><br>
                         Branch Code : <b> 250655 </b></p>
                     <p><b>Booking Date/Time : '. $booking->created_at .'</b></p>';
 

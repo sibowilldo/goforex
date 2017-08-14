@@ -34,7 +34,7 @@
 							<strong>Payment Method:</strong><br>
 							Deposit to: <br>
 							First National Bank<br>
-							622390929382<br>
+							62715445658<br>
 							250655
 						</address>
 					</div>

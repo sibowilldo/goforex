@@ -8,8 +8,8 @@
     <p style="font-size: 12px; line-height: 15px;">
         <i>Banking Details :</i><br>
         Bank : <b> First National Bank</b><br>
-        Acc Holder : <b> AJ Hastibeer</b><br>
-        Acc Number : <b> 626-06406-909</b><br>
+        Acc Holder : <b> Forex Wealth Creation SA</b><br>
+        Acc Number : <b> 62715445658</b><br>
         Branch Code : <b> 250655 </b><br><br>
     </p>
 

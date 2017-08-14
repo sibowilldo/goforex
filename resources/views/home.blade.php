@@ -417,7 +417,6 @@
         setInterval(function () {
             if (document.hasFocus()) {
                 $.get('/ajax/knobs', function (data) {
-                    console.log(data);
                     $.each(data.data, function (i, v) {
                         $('#knob-' + v.id).val(v.number_of_seats - v.attendees).trigger('change');
                     });

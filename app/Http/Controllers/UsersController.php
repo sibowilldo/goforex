@@ -134,7 +134,7 @@ class UsersController extends Controller
         $user->password = Hash::make($request['password']);
         $user->save();
 
-        flash('Your password was updated successfuly!', 'success');
+        flash('Your password was updated successfully!', 'success');
         return redirect()->back();
     }
 
