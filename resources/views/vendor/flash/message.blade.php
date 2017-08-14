@@ -5,19 +5,19 @@
                 
                 switch(level){
                     case 'success': 
-                        iziToast.success({title: "{{ session('flash_notification.title') }}",message: "{!! session('flash_notification.message') !!}"}); 
+                        toastr.success("{{ session('flash_notification.message') }}","{!! session('flash_notification.title')!!}"); 
                         break;
                     case 'warning': 
-                        iziToast.warning({title: "{{ session('flash_notification.title') }}",message: "{!! session('flash_notification.message') !!}"}); 
+                        toastr.warning("{{ session('flash_notification.message') }}","{!! session('flash_notification.title')!!}"); 
                         break;
                     case 'danger': 
-                        iziToast.error({title: "{{ session('flash_notification.title') }}",message: "{!! session('flash_notification.message') !!}"}); 
+                        toastr.error("{{ session('flash_notification.message') }}","{!! session('flash_notification.title')!!}");  
                         break;
                     case 'error': 
-                        iziToast.error({title: "{{ session('flash_notification.title') }}",message: "{!! session('flash_notification.message') !!}"}); 
+                        toastr.error("{{ session('flash_notification.message') }}","{!! session('flash_notification.title')!!}");  
                         break;
                     default: 
-                        iziToast.info({title: "{{ session('flash_notification.title') }}",message: "{!! session('flash_notification.message') !!}"}); 
+                        toastr.info("{{ session('flash_notification.message') }}","{!! session('flash_notification.title')!!}");  
                         break;
 
                 }

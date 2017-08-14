@@ -80,7 +80,6 @@
 
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
-    {{ Html::style('plugins/izitoast/css/izitoast.min.css') }}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css">
 @stop
@@ -92,7 +91,6 @@
     {{ Html::script('https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js') }}
     {{ Html::script('https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js') }}
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js') }}
-    {{ Html::script('plugins/izitoast/js/izitoast.min.js') }}
 
     <script>
         $(document).ready(function() {
@@ -114,18 +112,12 @@
                             "X-CSRF-TOKEN": t
                         },
                         success: function(e) {
-                            iziToast.settings({
-                                layout: 2,
-                                timeout: false,
-                                position: 'topCenter'
-                            });
-
                             switch ((e = e.data).level) {
                                 case "success":
-                                    iziToast.success({title: e.title,message: e.data + ' ' + e.message});
+                                    toastr.success(e.data + ' ' + e.message,e.title);
                                     break;
                                 case "warning":
-                                    iziToast.warning({title: e.title,message: e.data + ' ' + e.message});
+                                    toastr.warning(e.data + ' ' + e.message,e.title);
                                     break;
                             }
                         },
@@ -152,18 +144,30 @@
                             "X-CSRF-TOKEN": t
                         },
                         success: function(e) {
-                            iziToast.settings({
-                                layout: 2,
-                                timeout: false,
-                                position: 'topCenter'
-                            });
+                           toastr.options = {
+                                "closeButton": true,
+                                "debug": false,
+                                "newestOnTop": true,
+                                "progressBar": false,
+                                "positionClass": "toast-top-center",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                }
 
                             switch ((e = e.data).level) {
                                 case "success":
-                                    iziToast.success({title: e.title,message: e.data.username + ' ' + e.message});
+                                    toastr.success(e.data.username + ' ' + e.message,e.title);
                                     break;
                                 case "warning":
-                                    iziToast.warning({title: e.title,message: e.data.username + ' ' + e.message});
+                                    toastr.warning(e.data.username + ' ' + e.message,e.title);
                                     break;
                             }
 

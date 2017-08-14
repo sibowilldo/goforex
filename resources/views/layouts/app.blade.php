@@ -30,16 +30,6 @@
 {{ Html::style('css/skins/skin-gold.css') }}
 
 
-<!-- SweetAlert -->
-{{ Html::script('plugins/izitoast/js/izitoast.min.js') }}
-{{ Html::style('plugins/izitoast/css/izitoast.min.css') }}
-<script>
-    iziToast.settings({
-        latout: 2,
-        timeout: false,
-        position: 'bottomCenter'
-    });
-</script>
 
 {{ Html::script('plugins/sweetalert/sweetalert.min.js') }} {{-- Sweet Alert JS needs to be loaded first, before using it on body--}}
 {{ Html::style('plugins/sweetalert/sweetalert.css') }}
@@ -73,7 +63,31 @@
         }
     </style>
     <!-- jQuery 2.2.3 -->
-    {!! Html::script('plugins/jQuery/jquery-2.2.3.min.js') !!}
+    {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js') !!}
+    
+<!-- Toastr --> 
+    {{ Html::style('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css') }}
+    {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
 </head>
 <body class="hold-transition skin-gold sidebar-mini">
 

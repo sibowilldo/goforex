@@ -21,24 +21,38 @@
 
     {{--<!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->--}}
 
-    {!! Html::script('/js/knight/jquery.1.8.3.min.js') !!}
+    <!-- jQuery 2.2.3 -->
+    {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js') !!}
+    
+<!-- Toastr --> 
+    {{ Html::style('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css') }}
+    {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
     {!! Html::script('/js/knight/bootstrap.js') !!}
     {!! Html::script('/js/knight/jquery-scrolltofixed.js') !!}
     {!! Html::script('/js/knight/jquery.easing.1.3.js') !!}
     {!! Html::script('/js/knight/jquery.isotope.js') !!}
     {!! Html::script('/js/knight/wow.js') !!}
     {!! Html::script('/js/knight/classie.js') !!}
-
-<!-- SweetAlert -->
-    {{ Html::script('plugins/izitoast/js/izitoast.min.js') }}
-    {{ Html::style('plugins/izitoast/css/izitoast.min.css') }}
-    <script>
-        iziToast.settings({
-            latout: 2,
-            timeout: false,
-            position: 'topCenter'
-        });
-    </script>
 
     <style>
         * {
@@ -416,7 +430,7 @@
 @if ($errors->any())
     @foreach ($errors->all() as $error)
         <?php $title = 'Sorry!'; $message = $error; $level = 'error';  ?>
-        @include('layouts.izitoast', compact('title', 'message', 'level'))
+        @include('layouts.toastr', compact('title', 'message', 'level'))
     @endforeach
 @endif
 
