@@ -79,7 +79,7 @@ class EventsController extends Controller
     {
         //
         $bookings = Booking::where('event_id', $event->id)->get();
-        return view('events.show', compact(['event', 'bookings']));
+        return view('events.show', compact('event', 'bookings'));
     }
 
     /**

@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/mentors', function () {
+Route::get('backup/mentors', function () {
     return view('mentors');
 });
 
@@ -29,6 +29,8 @@ Route::resource('items','ItemsController');
 Route::resource('invoices','InvoicesController');
 
 Route::resource('bookings','BookingsController');
+
+Route::resource('mentors','MentorsController', ['except' => ['show']]);
 
 Route::get('booking/{bookingId}/approve','BookingsController@approve');
 
