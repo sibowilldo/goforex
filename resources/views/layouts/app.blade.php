@@ -231,7 +231,7 @@
                     </li>
                     <li>
                         <a href="{{ url('/mentors')}}">
-                            <i class="fa fa-address-book"></i> <span>Mentors</span> <span class="label label-primary pull-right">New</span>
+                            <i class="fa fa-users"></i> <span>Mentors</span> <span class="label label-primary pull-right">New</span>
                         </a>
                     </li>
                     @if(Auth::user()->hasRole('admin'))
@@ -242,11 +242,10 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: none;">
-                                <li><a href="{{ url('/users') }}"><i class="fa fa-user"></i> Users</a></li>
-                                <li><a href="{{ url('/events') }}"><i class="fa fa-calendar-o"></i> Events</a></li>
+                                <li><a href="{{ url('/users') }}"><i class="fa fa-circle-o"></i> Users</a></li>
+                                <li><a href="{{ url('/events') }}"><i class="fa fa-circle-o"></i> Events</a></li>
                                 <li><a href="{{ url('/items') }}"><i class="fa fa-circle-o"></i> Items</a></li>
                                 <li><a href="{{ url('/invoices') }}"><i class="fa fa-circle-o"></i> Invoices</a></li>
-                                <li><a href="{{ url('/mentors/create') }}"><i class="fa fa-address-book"></i> Add Mentor</a></li>
                             </ul>
                         </li>
                     @endif
