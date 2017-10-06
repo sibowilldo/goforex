@@ -19,8 +19,8 @@
                 <tr>
                     <th>Full Name</th>
                     <th>Email</th>
+                    <th>Contact No.</th>
                     <th>Date</th>
-                    <th>Status</th>
                     <th>Signature</th>
                 </tr>
             </thead>
@@ -29,8 +29,8 @@
                     <tr>
                         <td>{{ $booking->user->firstname }} {{ $booking->user->lastname }}</td>
                         <td>{{ $booking->user->email }}</td>
+                        <td>{{ $booking->user->cell }}</td>
                         <td>{{ $booking->created_at->toFormattedDateString() }}</td>
-                        <td>{{ ($booking->status_is == 'Paid') ? 'Confirmed' : '' }}</td>
                         <td></td>
                     </tr>
                 @endforeach

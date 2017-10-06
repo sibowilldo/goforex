@@ -165,11 +165,12 @@
                                                             class="fa ion ion-social-usd"></i>Upload Proof
                                                 </button>
                                             @else
-                                                <button class="btn btn-primary btn-xs btn-proof" type="button"
+                                                <button class="btn btn-default btn-sm btn-proof" type="button"
                                                         data-toggle="collapse"
                                                         data-target="#collapse-{{ $booking->reference }}"
                                                         aria-expanded="false"
-                                                        aria-controls="collapse-{{ $booking->reference }}">
+                                                        aria-controls="collapse-{{ $booking->reference }}"><i
+                                                            class="fa ion ion-android-attach"></i>
                                                     Proof of Payment
                                                 </button>
                                                 <div class="collapse" id="collapse-{{ $booking->reference }}">
