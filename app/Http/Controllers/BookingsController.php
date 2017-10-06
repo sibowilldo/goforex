@@ -75,7 +75,7 @@ class BookingsController extends Controller
             flash('You\'ve already booked a seat for this event!', 'info');
             return back();
         }
-        if ($bookings->count() == $event->number_of_seats || $event->status_is == "FullyBooked"){
+        if ($bookings->count() == $event->number_of_seats && $event->status_is == "FullyBooked"){
             flash("Sorry this event is fully booked.","error");
             return redirect('/home');
         }
