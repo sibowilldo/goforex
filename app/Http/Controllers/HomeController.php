@@ -10,6 +10,7 @@ use App\Http\Requests\ContactFormRequest;
 use Auth;
 use App\Event;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 use Image;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
@@ -45,10 +46,17 @@ class HomeController extends Controller
         if(Auth::user()->verified==0){
             return view('auth.verification');
         }
-        $events = Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
-        $bookings = Booking::get();
+        $events = Cache::get('events', function(){
+            return Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
+        });
+        if($events->count() > 0){
+            $bookings = Cache::get('bookings', function(){
+                return Booking::get();
+            });
+        }
 
-        return view('home', compact(['events', 'bookings']));
+
+        return view('home', compact('events', 'bookings'));
     }
 
     /**
@@ -106,7 +114,7 @@ class HomeController extends Controller
         $event = Event::where('id', $eventId)->first();
         $booking = Booking::where(['event_id'=> $eventId, 'user_id' => Auth::id()])->first();
 
-        return view('view-event', compact(['event', 'booking', 'img']));
+        return view('view-event', compact('event', 'booking', 'img'));
     }
 
     public function updateProofOfPayment(Request $request)

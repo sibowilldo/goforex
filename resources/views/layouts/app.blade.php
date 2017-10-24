@@ -231,7 +231,7 @@
                     </li>
                     <li>
                         <a href="{{ url('/mentors')}}">
-                            <i class="fa fa-users"></i> <span>Mentors</span> <span class="label label-primary pull-right">New</span>
+                            <i class="fa fa-users"></i> <span>Mentors</span>
                         </a>
                     </li>
                     @if(Auth::user()->hasRole('admin'))
