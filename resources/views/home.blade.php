@@ -188,6 +188,7 @@
                                                 </a>
                                             @else
                                                 <button class="btn btn-warning btn-sm disabled btn-disabled btn-social" data-placement="left" data-toggle="tooltip" data-original-title="You're booked for this event"><i class="ion ion-android-done-all"></i>Booked</button>
+                                                @if($event->bookings()->where('user_id', Auth::id())->first()->status_is != 'Paid')
                                                 <button id="booking-{{ $event->bookings()->where('user_id', Auth::id())->first()->id }}" type="button"
                                                         value="{{ $event->id }}"
                                                         data-userid="{{ Auth::id()}}"
@@ -195,6 +196,7 @@
                                                         class="btn btn-success btn-sm btn-social btn-proof"><i
                                                             class="fa ion ion-android-clipboard"></i>{{ $event->bookings()->where('user_id', Auth::id())->first()->proof_of_payment == null ? 'Attach' : 'Update' }} Payment Receipt
                                                 </button>
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
