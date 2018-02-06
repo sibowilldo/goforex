@@ -31,11 +31,8 @@
                 <div class="col-sm-4 invoice-col">
                     <address>
                         <strong>Payment Method:</strong><br>
-                        Deposit to: <br>
-                        Go Forex Wealth Creation SA<br>
-                        FIRST NATIONAL BANK<br>
-                        62715445658<br>
-                        250-655
+
+                        Please check booking confirmation email for corresponding banking details.
                     </address>
                 </div>
                 <!-- /.col -->

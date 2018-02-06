@@ -51,7 +51,7 @@
                                 {!! Btn::delete($booking->id, url('bookings'),'', true,  '', 'This is a permanent operation, process with absolute certainty! ')!!}
                         @elseif($booking->status_is == 'Approve')
                         @elseif($booking->status_is == 'Paid')
-                                <span class="text-green">Your booking was approved! Contact our offices to cancel this booking.</span>
+                                <span class="text-green">Booking approved! Please contact our offices to cancel.</span>
                         @endif
 
                         </td>

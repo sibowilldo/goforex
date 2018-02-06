@@ -32,10 +32,8 @@
 					<div class="col-xs-6">
 						<address>
 							<strong>Payment Method:</strong><br>
-							Deposit to: <br>
-							First National Bank<br>
-							62715445658<br>
-							250655
+							Please check booking confirmation email for corresponding banking details.
+
 						</address>
 					</div>
 					<div class="col-xs-6 text-right">

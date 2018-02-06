@@ -65,10 +65,7 @@
             <div class="notice">An unpaid Invoice will be removed from the system after 14 days.<br><br>
                 Payment should be made via direct deposit or EFT to:
                 <div id="project">
-                    <span>Holder:</span> Go Forex Wealth Creation SA<br>
-                    <span>Bank:</span> First National Bank,<br>
-                    <span>Account:</span> 62715445658<br>
-                    <span>Branch:</span> 250-655
+                    Please check booking confirmation email for corresponding banking details.
                 </div>
             </div>
         </div>

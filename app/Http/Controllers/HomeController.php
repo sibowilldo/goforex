@@ -46,17 +46,7 @@ class HomeController extends Controller
         if(Auth::user()->verified==0){
             return view('auth.verification');
         }
-        $events = Cache::get('events', function(){
-            return Event::whereNotIn('status_is', ['Pending'])->orderBy('created_at','desc')->get();
-        });
-        if($events->count() > 0){
-            $bookings = Cache::get('bookings', function(){
-                return Booking::get();
-            });
-        }
-
-
-        return view('home', compact('events', 'bookings'));
+        return view('home')->with('events', Event::where('status_is', 'Open')->orderBy('created_at','desc')->paginate(12));
     }
 
     /**
