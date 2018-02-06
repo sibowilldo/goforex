@@ -24,6 +24,10 @@
 		{!! Form::select('status_is', $statuses, null, ['class'=>'form-control']) !!}
 	</div>
 	<div class="form-group">
+		{!! Form::label('bank_account_id', 'Status:') !!}
+		{!! Form::select('bank_account_id', $bank_accounts, null, ['class'=>'form-control']) !!}
+	</div>
+	<div class="form-group">
 		{!! Form::label('item_id', 'Item:') !!}
 		{!! Form::select('item_id', $items, null, ['class'=>'form-control']) !!}
 	</div>

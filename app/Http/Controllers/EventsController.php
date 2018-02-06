@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BankAccount;
 use App\Booking;
 use App\Event;
 use App\Item;
@@ -48,7 +49,8 @@ class EventsController extends Controller
         //
         $items=Item::get()->pluck('item_name', 'id');
         $statuses = Event::$statuses;
-        return view('events.create',compact('items', 'statuses'));
+        $bank_accounts = BankAccount::pluck('account_holder', 'id');
+        return view('events.create',compact('items', 'statuses', 'bank_accounts'));
     }
 
     /**
@@ -95,7 +97,8 @@ class EventsController extends Controller
         //
         $items=Item::get()->pluck('item_name', 'id');
         $statuses = Event::$statuses;
-        return view('events.edit', compact('event','items', 'statuses'));
+        $bank_accounts = BankAccount::pluck('account_holder', 'id');
+        return view('events.edit', compact('event','items', 'statuses','bank_accounts'));
     }
 
     /**

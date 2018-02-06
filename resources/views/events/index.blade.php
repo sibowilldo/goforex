@@ -32,6 +32,7 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Linked Bank Acc.</th>
                                         <th>Host</th>
                                         <th>Attendees</th>
                                         <th>Event Dates</th>
@@ -43,6 +44,7 @@
                                     @foreach($events as $event)
                                         <tr>
                                             <td>{{ $event->name }}</td>
+                                            <td>{{ $event->bank_account->account_holder }}</td>
                                             <td>{{ $event->host }}</td>
                                             <td>{{ $bookings->where('event_id', $event->id)->count() }}
                                                 / {{ $event->number_of_seats }}</td>

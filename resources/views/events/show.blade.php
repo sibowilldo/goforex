@@ -72,6 +72,9 @@
                                                     <br>
                                                     <span class="event-description"><i
                                                                 class="fa fa-question-circle"></i> {{ $event->description }}</span>
+                                                    <br>
+                                                    <span class="event-description"><i
+                                                                class="fa fa-bank"></i> {{ $event->bank_account->account_holder }}</span>
 
                                                     <div class="text-right">
                                                         <a href="{{ url('events/'. $event->id .'/edit') }}"
