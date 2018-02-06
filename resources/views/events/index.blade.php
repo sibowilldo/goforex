@@ -42,9 +42,7 @@
                                     <tbody>
                                     @foreach($events as $event)
                                         <tr>
-                                            <td>{{ $event->name }} <span
-                                                        class="label label-{{ ($event->status_is == 'Open') ? 'success' : 'danger'}}">{{ $event->status_is }}</span>
-                                            </td>
+                                            <td>{{ $event->name }}</td>
                                             <td>{{ $event->host }}</td>
                                             <td>{{ $bookings->where('event_id', $event->id)->count() }}
                                                 / {{ $event->number_of_seats }}</td>
@@ -52,11 +50,12 @@
                                             <td>{{ \Carbon\Carbon::parse($event->start_date)->format('F j') }}
                                                 <strong>-</strong>
                                                 {{ \Carbon\Carbon::parse($event->end_date)->format('F j') }}</td>
-                                            <td>{{ $event->status_is }}</td>
+                                            <td><span
+                                                        class="label label-{{ ($event->status_is == 'Open') ? 'success' : 'danger'}}">{{ $event->status_is }}</span></td>
                                             <td>
                                                 <div class="btn-group btn-group-sm">
-                                                    <button type="button" class="btn btn-default">Choose Action</button>
-                                                    <button type="button" class="btn btn-default dropdown-toggle"
+                                                    <button type="button" class="btn btn-default btn-sm">Choose Action</button>
+                                                    <button type="button" class="btn btn-default dropdown-toggle btn-sm"
                                                             data-toggle="dropdown">
                                                         <span class="caret"></span>
                                                         <span class="sr-only">Toggle Dropdown</span>
@@ -99,9 +98,9 @@
 
 
                                                 @if($event->status_is == 'Pending')
-                                                    {!! Btn::delete($event->id, url('events'), true, $event->name)!!}
+                                                    {!! Btn::delete($event->id, url('events'), '',true, $event->name)!!}
                                                 @else
-                                                    {!! Btn::delete($event->id, url('events'), true,  $event->name, 'Any booking linked to this event will also be deleted!')!!}
+                                                    {!! Btn::delete($event->id, url('events'), '', true,  $event->name, 'Any booking linked to this event will also be deleted!')!!}
                                                 @endif
                                             </td>
                                         </tr>

@@ -37,24 +37,24 @@
                         <!-- /.box-body -->
                     </div>
                 </div>
-                {{--<div class="col-xs-12 col-sm-12 col-md- col-lg-4">--}}
-                    {{--<div class="box box-primary">--}}
-                        {{--<div class="box-body box-profile">--}}
-                            {{--<img class="profile-user-img img-responsive img-circle" src="{{ url('/img/mentors/Anele-Gasa.jpg') }}" alt="User profile picture">--}}
+                <div class="col-xs-12 col-sm-12 col-md- col-lg-4">
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" src="{{ url('/img/mentors/Anele-Gasa.jpg') }}" alt="User profile picture">
 
-                            {{--<h3 class="profile-username text-center">Anele Gasa</h3>--}}
+                            <h3 class="profile-username text-center">Anele Gasa</h3>
 
-                            {{--<p class="text-muted text-center">Pretoria and Mpumalanga Branch</p>--}}
+                            <p class="text-muted text-center">Pretoria and Mpumalanga Branch</p>
 
-                            {{--<ul class="list-group list-group-unbordered">--}}
-                                {{--<li class="list-group-item">--}}
-                                    {{--<b><span class="fa fa-phone"></span> </b> <a class="pull-right">+27 (83) 2463189</a>--}}
-                                 {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                        {{--<!-- /.box-body -->--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b><span class="fa fa-phone"></span> </b> <a class="pull-right">+27 (83) 2463189</a>
+                                 </li>
+                            </ul>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
                 {{--<div class="col-xs-12 col-sm-12 col-md- col-lg-4">--}}
                     {{--<div class="box box-primary">--}}
                         {{--<div class="box-body box-profile">--}}
@@ -73,42 +73,42 @@
                         {{--<!-- /.box-body -->--}}
                     {{--</div>--}}
                 {{--</div>--}}
-                {{--<div class="col-xs-12 col-sm-12 col-md- col-lg-4">--}}
-                    {{--<div class="box box-primary">--}}
-                        {{--<div class="box-body box-profile">--}}
-                            {{--<img class="profile-user-img img-responsive img-circle" src="{{ url('/img/mentors/Mbuso-Gumede.jpg') }}" alt="User profile picture">--}}
+                <div class="col-xs-12 col-sm-12 col-md- col-lg-4">
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" src="{{ url('/img/mentors/Mbuso-Gumede.jpg') }}" alt="User profile picture">
 
-                            {{--<h3 class="profile-username text-center">Mbuso Gumede</h3>--}}
+                            <h3 class="profile-username text-center">Mbuso Gumede</h3>
 
-                            {{--<p class="text-muted text-center">Pretoria and Limpopo Branch</p>--}}
+                            <p class="text-muted text-center">Pretoria and Limpopo Branch</p>
 
-                            {{--<ul class="list-group list-group-unbordered">--}}
-                                {{--<li class="list-group-item">--}}
-                                    {{--<b><span class="fa fa-phone"></span> </b> <a class="pull-right">+27 (78) 2701486</a>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                        {{--<!-- /.box-body -->--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-xs-12 col-sm-12 col-md- col-lg-4">--}}
-                    {{--<div class="box box-primary">--}}
-                        {{--<div class="box-body box-profile">--}}
-                            {{--<img class="profile-user-img img-responsive img-circle" src="{{ url('/img/mentors/Msizi-Mbele.jpg') }}" alt="User profile picture">--}}
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b><span class="fa fa-phone"></span> </b> <a class="pull-right">+27 (78) 2701486</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md- col-lg-4">
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" src="{{ url('/img/mentors/Msizi-Mbele.jpg') }}" alt="User profile picture">
 
-                            {{--<h3 class="profile-username text-center">Msizi Mbele</h3>--}}
+                            <h3 class="profile-username text-center">Msizi Mbele</h3>
 
-                            {{--<p class="text-muted text-center">Pretoria and Mpumalanga Branch</p>--}}
+                            <p class="text-muted text-center">Pretoria and Mpumalanga Branch</p>
 
-                            {{--<ul class="list-group list-group-unbordered">--}}
-                                {{--<li class="list-group-item">--}}
-                                    {{--<b><span class="fa fa-phone"></span> </b> <a class="pull-right">+27 (71) 8335634</a>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                        {{--<!-- /.box-body -->--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b><span class="fa fa-phone"></span> </b> <a class="pull-right">+27 (71) 8335634</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md- col-lg-4">
                     <div class="box box-primary">
                         <div class="box-body box-profile">

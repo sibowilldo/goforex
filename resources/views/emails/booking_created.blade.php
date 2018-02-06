@@ -7,10 +7,11 @@
 
     <p style="font-size: 12px; line-height: 15px;">
         <i>Banking Details :</i><br>
-        Bank : <b> First National Bank</b><br>
-        Acc Holder : <b> Forex Wealth Creation SA</b><br>
-        Acc Number : <b> 62715445658</b><br>
-        Branch Code : <b> 250655 </b><br><br>
+        <strong>Bank:</strong> {{ $event->bank_account->bank }}<br>
+        <strong>Acc Holder:</strong> {{ $event->bank_account->account_holder }}<br>
+        <strong>Acc Number:</strong> {{ $event->bank_account->account_number }}<br>
+        <strong>Branch Code: </strong>{{ $event->bank_account->branch }}<br>
+        <strong>Reference: </strong>{{ $booking_ref }}<br>
     </p>
 
     <b>NB: You are expected to make payment, or your booking will be cancelled.</b><br><br>

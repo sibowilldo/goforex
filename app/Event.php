@@ -14,6 +14,7 @@ class Event extends Model
      */
 
     protected $fillable = [
+        'bank_account_id',
         'reference',
         'name',
         'host',
@@ -40,6 +41,12 @@ class Event extends Model
         'Open' => 'Open', // green
         'Closed' => 'Closed', // grey
     ];
+
+
+    public function bank_account()
+    {
+        return $this->belongsTo('App\BankAccount');
+    }
 
     // A Booking belongsTo User
     public function user()

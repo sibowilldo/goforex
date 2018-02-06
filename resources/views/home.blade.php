@@ -27,401 +27,254 @@
                         {{--</div>--}}
                     {{--</div>--}}
                 {{--</div>--}}
+
                 <div class="row">
-                    <div class="col-md-9">
-                        <div class="box box-success">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">
-                                EVENTS
-                                </h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                    </button>
-                                    @if(Auth::user()->hasRole('admin'))
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fa fa-wrench"></i></button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="{{ url('events/create') }}"> Create Event</a></li>
-                                                <li><a href="{{ url('events/') }}">Show All events</a></li>
-                                            </ul>
-                                    </div>
-                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    @endif
-                                </div>{{-- box-tools pull-right --}}
-                            </div> 
-                            <div class="box-body"> 
-                                <p class="btn-group btn-group-sm pull-right" id="filters">
-                                    <span class="btn btn-default">Filter</span>
-                                    <a href="#!" data-filter="*"  class="btn btn-danger">All</a> 
-                                    <a href="#!" data-filter=".Open"  class="btn btn-danger active">Open</a>
-                                    <a href="#!" data-filter=".FullyBooked"  class="btn btn-danger">Fully Booked</a>
-                                    <a href="#!" data-filter=".Closed"  class="btn btn-danger">Closed</a>            
-                                </p>  
+                    <div class="col-sm 12 col-md-6 col-lg-3">
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <h3>{{ Auth::user()->booking()->count() }}</h3>
+
+                                <p>Booked Events</p>
                             </div>
-                            <div class="box-body no-padding">
+                            <div class="icon">
+                                <i class="ion ion-ios-calendar-outline"></i>
+                            </div>
+                            <a href="{{ url('bookings') }}" class="small-box-footer">
+                                View Bookings
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm 12 col-md-6 col-lg-3">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <h3>{{ Auth::user()->booking()->where('proof_of_payment', null)->count() }}</h3>
+
+                                <p>Unpaid Bookings</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-ios-time-outline"></i>
+                            </div>
+                            <a href="{{ url('bookings') }}" class="small-box-footer">
+                                View Bookings
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm 12 col-md-6 col-lg-3">
+                        <div class="small-box bg-blue">
+                            <div class="inner">
+                                <h3>{{ count(\App\Notification::where(['user_id' => \Auth::id(), 'viewed' => 0])->get()) .' of '. count(\App\Notification::where('user_id', \Auth::id())->get()) }}</h3>
+
+                                <p>Unread Notifications</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-ios-bell-outline"></i>
+                            </div>
+                            <a href="{{ url('notifications') }}" class="small-box-footer">
+                                View Notifications
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm 12 col-md-6 col-lg-3">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <h3>{{ \Auth::user()->updated_at->diffForHumans()}}</h3>
+
+                                <p>Profile Last Updated</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-ios-reload"></i>
+                            </div>
+                            <a href="{{ url('profile') }}" class="small-box-footer">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    @foreach($events as $event)
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="box box-{{ $event->status_is == 'Open' ? 'success  direct-chat-success' : 'danger  direct-chat-danger' }} direct-chat">
+                            <div class="box-header with-border">
+                                <span class="label label-{{ $event->status_is == 'Open' ? 'success' : 'danger' }}">
+                                    {{ strtoupper($event->status_is) }}
+                                </span>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="ion ion-android-remove"></i>
+                                    </button>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                                <i class="ion ion-ios-gear"></i></button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                @if(Auth::user()->hasRole('admin'))
+                                                @if($event->status_is == 'Open')
+                                                    <li>
+                                                        <a href="{{ url('attendees/'. $event->id . '/add') }}">
+                                                            <i class="fa ion-person-add"></i> Add Attendee
+                                                        </a>
+                                                    </li>
+                                                @endif
+                                                <li><a href="{{ url('events/') }}">
+                                                        <i class="ion ion-ios-list-outline"></i> All Events</a></li>
+                                                <li><a href="{{ url('events/create') }}">
+                                                        <i class="ion ion-plus-round"></i> Create Event</a></li>
+                                                <li><a href="{{ url('events/'. $event->id) }}">
+                                                        <i class="fa fa-calendar-check-o"></i>View Bookings</a>
+                                                </li>
+                                                @endif
+                                                <li>
+                                                    <a href="{{ url('view-event', $event->id) }}"
+                                                       class=""
+                                                       rel="tooltip" title="View">
+                                                        <i class="ion ion-eye"></i> View Event
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                </div>
+                                <!-- /.box-tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="">
+                                <div class="direct-chat-messages">
+                                <h4 class="event-title">{{ $event->name }}
+                                </h4>
+                                <h3 class="event-title">R{{number_format($event->item->price, 2, '.', '')}}
+                                </h3>
+                                <div class="event-meta" style="overflow: hidden">
+                                    <p class="event-description text-truncate"><i class="fa ion-ios-paper-outline"></i> {{ $event->description }}</p>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+                                            <span><i class="fa ion ion-calendar"></i> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%a, %d %b %y') }} - {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%a, %d %b %y') }}</span>
+                                            <br>
+                                            <span><i class="fa ion ion-clock"></i> {{ $event->start_time }} - {{ $event->end_time }}</span>
+                                            <br>
+
+                                            <span><i class="fa ion ion-person"></i> {{ $event->host }}</span>
+                                            <br>
+                                            <span><i class="fa ion ion-location"></i> {{ $event->address }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
-                                    <div class="col-xs-12">
-                                        <ul class="list-group isotope" id="event-wrap">
-                                        @foreach($events as $event)
-                                            <li class="list-group-item event-item {{ $event->status_is}} isotope-item">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-3 text-center">
-                                                        <div class="row">
-                                                            <div class="col-xs-12">
-                                                                <div class="event-chart event-seats">
-                                                                    @if($event->status_is == "Open")
-                                                                        <input id="knob-{{ $event->id }}" type="text"
-                                                                                class="knob"
-                                                                                value="{{($event->number_of_seats - $bookings->where('event_id', $event->id)->where('status_is', 'Paid')->count())}}"
-                                                                                data-thickness="0.1" data-width="80"
-                                                                                data-min="0"
-                                                                                data-max="{{ $event->number_of_seats }}"
-                                                                                data-height="80" data-fgColor="#13BAFF"
-                                                                                data-readonly="true">
-                                                                    @else
-                                                                        <input id="knob-{{ $event->id }}" type="text"
-                                                                                class="knob" value="0" data-thickness="0.1"
-                                                                                data-width="80" data-min="0"
-                                                                                data-max="{{ $event->number_of_seats }}"
-                                                                                data-height="80" data-fgColor="#13BAFF"
-                                                                                data-readonly="true">
-                                                                    @endif
-                                                                    <p class="knob-label"><strong>Available Seats</strong></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xs-12 event-status">
-                                                                {{--@if($event->number_of_seats == count(explode(',',$event->attendees)))--}}
-                                                                    {{--<div class="info-box bg-green">--}}
-                                                                        {{--<span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>--}}
+                                    <div class="col-sm-12">
+                                        <div class="progress progress-md" style="margin-top: 10px; border-radius: 3px">
 
-                                                                        {{--<div class="info-box-content">--}}
-                                                                            {{--<span class="info-box-text">Status</span>--}}
-                                                                            {{--<span class="info-box-number">{{$event->status_is}}</span>--}}
-                                                                        {{--</div>--}}
-                                                                        {{--<!-- /.info-box-content -->--}}
-                                                                    {{--</div>--}}
-                                                                {{--@else--}}
-                                                                    <p>
-                                                                        <span class="btn btn-sm btn-block {{ $event->status_is == 'Open' ? 'bg-green' : 'bg-red' }}">Event is {{$event->status_is}}</span>
-                                                                    </p>
-
-                                                                {{--@endif--}}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-9">
-                                                        <div class="event-info {{ $event->status_is }}">
-                                                            <span class="label bg-red pull-right">{{ $event->reference }}</span>
-                                                            <h3 class="event-title">{{ $event->name }} <strong>@</strong> R{{number_format($event->item->price, 2, '.', '')}}
-                                                            </h3>
-                                                            <p class="event-meta">
-                                                                <span><i class="fa ion ion-calendar"></i> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%A, %d %B %Y') }}</span>
-                                                                <span><i class="fa ion ion-clock"></i> {{ $event->start_time }} - {{ $event->end_time }}</span>
-                                                                <span><i class="fa ion ion-person"></i> {{ $event->host }}</span>
-                                                                <br>
-                                                                <span><i class="fa ion ion-location"></i> {{ $event->address }}</span>
-                                                                <br>
-                                                                <span class="event-description"><i class="fa fa-question-circle"></i> {{ $event->description }}</span>
-                                                            </p>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-md-9 col-md-offset-3 text-right">
-                                                    
-                                                        <div class="event-action">
-                                                            <a href="{{ url('view-event', $event->id) }}"
-                                                                                    class="btn btn-social btn-default btn-sm"
-                                                                                    rel="tooltip" title="View">
-                                                                <i class="ion ion-ios-calendar-outline"></i> View Event
-                                                            </a>
-                                                            @if(Auth::user()->hasRole('admin'))
-                                                            <a href="{{ url('events/'. $event->id) }}"
-                                                                                    class="btn btn-social btn-default btn-sm"
-                                                                                    rel="tooltip" title="View">
-                                                                <i class="fa fa-calendar-check-o"></i> View Bookings
-                                                            </a>
-                                                            @if($event->status_is == 'Open' AND $bookings->where('event_id', $event->id)->count() < $event->number_of_seats)
-                                                                <a href="{{ url('attendees/'. $event->id . '/add') }}"
-                                                                                        class="btn btn-social btn-primary btn-sm"
-                                                                                        rel="tooltip" title="View">
-                                                                    <i class="fa ion-person-add"></i> Add Attendee
-                                                                </a>
-                                                            @endif                                         
-                                                            @else
-                                                            
-                                                            @if($event->status_is == 'FullyBooked'))
-                                                                <button type="button" class="btn btn-social btn-disabled btn-sm" disabled>
-                                                                   <i class="fa ion ion-ios-checkmark"></i> Fully Booked
-                                                                </button>
-                                                                @elseif($event->number_of_seats == count(explode(',',$event->attendees)))
-                                                                        <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
-                                                                           class="btn btn-social btn-warning btn-sm"
-                                                                           rel="tooltip"
-                                                                           title="Edit">
-                                                                            <i class="ion ion-ios-compose-outline"></i> Add Me to Waiting List
-                                                                        </a>
-                                                                @elseif($event->status_is == 'Open')
-                                                                @if($bookings->where('user_id', Auth::id())->count() > 0)
-                                                                    @foreach($bookings->where('user_id', Auth::id()) as $booking)
-                                                                        @if($booking->event_id == $event->id)
-                                                                            @if($booking->status_is == 'Paid')
-                                                                                <span class="btn btn-social btn-success btn-disabled btn-sm" disabled><i class="ion ion-ios-checkmark-outline"></i> Booking Approved</span>
-                                                                            @elseif($booking->status_is == 'Pending')
-                                                                                <a class="btn btn-social btn-success btn-sm" href="{{ url('view-event', $event->id) }}" title="Proof of Payment" data-toggle="tooltip" data-placement="top"><i class="ion ion-social-usd"></i> {{ $booking->proof_of_payment == null ? 'Upload of Payment' : 'Update file'}}</a>
-                                                                            @else
-                                                                                <span class="btn btn-social btn-danger btn-disabled btn-sm" disabled><i class="ion ion-ios-clock-outline"></i> Booking {{ $booking->status_is }}</span>
-                                                                            @endif
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endif
-                                                                    
-                                                                @if($bookings->where('event_id', $event->id)->where('user_id', Auth::id())->count() == 0)
-                                                                    <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
-                                                                        class="btn btn-social btn-danger btn-sm"
-                                                                        rel="tooltip"
-                                                                        title="Edit">
-                                                                        <i class="ion ion-ios-compose-outline"></i> Book Event
-                                                                    </a>
-                                                                @endif
-                                                            @endif
-                                                            @endif
-                                                        </div>
-                                                    </div>
+                                            @if($event->status_is == "Open")
+                                                <div class="progress-bar progress-bar-green progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{($event->number_of_seats - $bookings->where('event_id', $event->id)->where('status_is', 'Paid')->count())*10}}%">
+                                                    {{($event->number_of_seats - $bookings->where('event_id', $event->id)->where('status_is', 'Paid')->count())}} of {{$event->number_of_seats}} Seats Available
                                                 </div>
-                                            </li>
-                                        @endforeach
-                                        </ul>
+                                            @else
+                                                <div class="progress-bar progress-bar-red" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                    Event is {{ strtoupper($event->status_is) }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12 text-right">
+                                            @if($event->bookings()->where('user_id', Auth::id())->count() == 0)
+                                                <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
+                                                   class="btn btn-social btn-success btn-sm"
+                                                   data-toggle="tooltip"
+                                                   data-original-title="Book a seat for this event" data-placement="left">
+                                                    <i class="ion ion-android-done"></i> Book Event
+                                                </a>
+                                            @else
+                                                <button class="btn btn-warning btn-sm disabled btn-disabled btn-social" data-placement="left" data-toggle="tooltip" data-original-title="You're booked for this event"><i class="ion ion-android-done-all"></i>Booked</button>
+                                                <button id="booking-{{ $event->bookings()->where('user_id', Auth::id())->first()->id }}" type="button"
+                                                        value="{{ $event->id }}"
+                                                        data-userid="{{ Auth::id()}}"
+                                                        data-toggle="modal" data-target="#proof-modal"
+                                                        class="btn btn-success btn-sm btn-social btn-proof"><i
+                                                            class="fa ion ion-android-clipboard"></i>{{ $event->bookings()->where('user_id', Auth::id())->first()->proof_of_payment == null ? 'Attach' : 'Update' }} Payment Receipt
+                                                </button>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">  
-                        <!-- small box -->
-                        {{--<div class="small-box">--}}
-                            {{--<div class="inner no-padding">--}}
-                                {{--<a href="https://secure.jpmarkets.co.za//Redirect?linkID=ioizk14992" target="_blank"><img src="{{ url('img/jpmarkets-logo.png') }}" alt="Open Live Account" class="img-responsive"></a>--}}
-                            {{--</div>--}}
-                            {{--<a href="https://secure.jpmarkets.co.za//Redirect?linkID=ioizk14992" target="_blank" class="small-box-footer black grey-text" style="text-transform: uppercase;"><strong>Click here to open Real Trading Account!</strong></a>--}}
-                        {{--</div>--}}
-
-                        <div class="info-box">
-                            <span class="info-box-icon bg-green"><i class="fa fa-calendar-check-o"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Booked Events</span>
-                                <span class="info-box-number">{{ $bookings->where('user_id', \Auth::id())->count() }}</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <div class="info-box">
-                            <span class="info-box-icon bg-orange"><i class="fa ion ion-clock"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Unpaid Bookings</span>
-                                <span class="info-box-number">{{ $bookings->where('user_id', \Auth::id())->where('status_is', 'Pending')->count() }}</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <div class="info-box">
-                            <span class="info-box-icon bg-blue"><i class="fa fa-bell-o"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Notifications</span>
-                                <span class="info-box-number">{{ count(\App\Notification::where(['user_id' => \Auth::id(), 'viewed' => 0])->get()) .'/'. count(\App\Notification::where('user_id', \Auth::id())->get()) }} unread</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <div class="info-box">
-                            <span class="info-box-icon bg-gray-light"><i class="fa fa-user text-gray"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Profile Last Updated</span>
-                                <span class="info-box-number">{{ \Auth::user()->updated_at->diffForHumans()}}</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-
             </section>
             <!-- /.content -->
         </div>
     @endif
 
+
+    <div class="modal fade" id="proof-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fa ion ion-ios-close"></i></span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                {!! Form::open(['url' => 'imageUploadForm', 'id' => '#proof-form' , 'class' => 'form', 'novalidate' => 'novalidate', 'files' => true]) !!}
+                <div class="modal-body">
+                    <div class="form-group">
+                        {!! Form::file('image', ['class' => 'inputfile well', 'accept' => '.jpeg, .jpg, .png', 'style' => 'width: 100%']) !!}
+                    </div>
+                    <div class="form-group" hidden>
+                        {!! Form::label('eventId') !!}
+                        {!! Form::hidden('eventId', $event->id, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group" hidden>
+                        {!! Form::label('userId') !!}
+                        {!! Form::hidden('userId', Auth::id(), ['class'=>'form-control']) !!}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" id="upload-proof" class="btn btn-md btn-primary">Upload selected file
+                    </button>
+                </div>
+                {!! Form::close() !!}
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
 
 @section('styles')
     <!-- isotope -->
-    <style> 
-        /*Event Isotope Transitions */	
-        .isotope, .isotope .isotope-item {
-            -webkit-transition-duration: 0.8s;
-            -moz-transition-duration: 0.8s;
-            -ms-transition-duration: 0.8s;
-            -o-transition-duration: 0.8s;
-            transition-duration: 0.8s;
+    <style>
+        .text-truncate {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
-        
-        .isotope {
-            -webkit-transition-property: height, width;
-            -moz-transition-property: height, width;
-            -ms-transition-property: height, width;
-            -o-transition-property: height, width;
-            transition-property: height, width;
-        }
-        
-        .isotope .isotope-item {
-        -webkit-transition-property: left, opacity;
-        -moz-transition-property: left, opacity;
-        -ms-transition-property: left, opacity;
-        -o-transition-property: left, opacity;
-            transition-property: left, opacity;
-        }
-        
-        .isotope.no-transition, .isotope.no-transition .isotope-item, .isotope .isotope-item.no-transition {
-            -webkit-transition-duration: 0s;
-            -moz-transition-duration: 0s;
-            -ms-transition-duration: 0s;
-            -o-transition-duration: 0s;
-            transition-duration: 0s;
-        }
-        .event-item.isotope-item{
-            width: 100%
+        .small-box h3 {
+            font-size: 38px;
+            font-weight: 100;
+            margin: 0 0 10px 0;
+            white-space: nowrap;
+            padding: 0;
         }
     </style>
 @stop
 
 @section('javascript')
-    <!-- jQuery Knob -->
-    {!! Html::script('plugins/knob/jquery.knob.js') !!}
-    <!-- ChartJS 1.0.1 -->
-    {!! Html::script('plugins/chartjs/Chart.min.js') !!}
-    <!-- jQuery Countdown -->
-    {!! Html::script('plugins/jcountdown/jquery.countdown.min.js') !!}
-    <!-- jQuery isotope -->
-    {!! Html::script('plugins/isotope/jquery.isotope.js') !!}
-    {!! Html::script('plugins/isotope/isotope.pkgd.js') !!}
-    {!! Html::script('plugins/isotope/vertical.js') !!}
+
     <script>
-
-        window.onload = function(){
-            $('[data-countdown]').each(function() {
-                var $this = $(this), finalDate = $(this).data('countdown');
-                // if (event.strftime('%D days %H:%M:%S') == '00 days 00:00:00'){
-                //     // call ajax method to block user
-                // }else {
-                $this.countdown(finalDate, function (event) {
-                    $this.html(event.strftime('%H:%M:%S'));
-                });
-                // }
-            });
-        };
-
-
-        jQuery(document).ready(function($) {
-            // Event Isotope
-            var container = $('#event-wrap');
-
-
-            container.isotope({
-                animationEngine: 'best-available',
-                animationOptions: {
-                    duration: 200,
-                    queue: false
-                },
-                layoutMode: 'vertical', 
-                gutter: 2
-            });
-
-            container.isotope({
-                filter: $('#filters').find('a.active').attr('data-filter')
-            });
-            
-            $('#filters a').click(function() {
-                $('#filters a').removeClass('active');
-                $(this).addClass('active');
-                var selector = $(this).attr('data-filter');
-                container.isotope({
-                    filter: selector,
-                });
-                
-                return false;
+        $(document).ready(function () {
+            $('.btn-proof').on('click', function (e) {
+                var booking = $(this);
+                $('.modal-title').html('Upload Proof of Payment');
+                $('#eventId').val(booking.attr('value'));
+                $('#userId').val(booking.attr('data-userid'));
             });
         });
-
-
-        $(function () {
-            /* jQueryKnob */
-            $(".knob").knob({
-                /*change : function (value) {
-                 //console.log("change : " + value);
-                 },
-                 release : function (value) {
-                 console.log("release : " + value);
-                 },
-                 cancel : function () {
-                 console.log("cancel : " + this.value);
-                 },*/
-                draw: function () {
-
-                    // "tron" case
-                    if (this.$.data('skin') == 'tron') {
-
-                        var a = this.angle(this.cv) // Angle
-                            ,
-                            sa = this.startAngle // Previous start angle
-                            ,
-                            sat = this.startAngle // Start angle
-                            ,
-                            ea // Previous end angle
-                            , eat = sat + a // End angle
-                            ,
-                            r = true;
-
-                        this.g.lineWidth = this.lineWidth;
-
-                        this.o.cursor &&
-                        (sat = eat - 0.3) &&
-                        (eat = eat + 0.3);
-
-                        if (this.o.displayPrevious) {
-                            ea = this.startAngle + this.angle(this.value);
-                            this.o.cursor &&
-                            (sa = ea - 0.3) &&
-                            (ea = ea + 0.3);
-                            this.g.beginPath();
-                            this.g.strokeStyle = this.previousColor;
-                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
-                            this.g.stroke();
-                        }
-
-                        this.g.beginPath();
-                        this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
-                        this.g.stroke();
-
-                        this.g.lineWidth = 2;
-                        this.g.beginPath();
-                        this.g.strokeStyle = this.o.fgColor;
-                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-                        this.g.stroke();
-
-                        return false;
-                    }
-                }
-            });
-            /* END JQUERY KNOB */
-        });
-
-        //update knobs
-        setInterval(function () {
-            if (document.hasFocus()) {
-                $.get('/ajax/knobs', function (data) {
-                    $.each(data.data, function (i, v) {
-                        $('#knob-' + v.id).val(v.number_of_seats - v.attendees).trigger('change');
-                    });
-                });
-            }
-        }, 3000);
     </script>
 @stop

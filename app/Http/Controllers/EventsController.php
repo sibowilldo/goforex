@@ -35,7 +35,7 @@ class EventsController extends Controller
         $events = Event::orderBy('created_at','desc')->get();
         $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
 
-        return view('events.index', compact(['events', 'bookings']));
+        return view('events.index', compact('events', 'bookings'));
     }
 
     /**
@@ -59,6 +59,8 @@ class EventsController extends Controller
      */
     public function store(EventsFormRequest $request)
     {
+        $request['attendees'] = '';
+
         $event = $request->all();
         $event['status_is'] = 'Pending';
         $event['reference'] = str_random(7);
@@ -79,7 +81,7 @@ class EventsController extends Controller
     {
         //
         $bookings = Booking::where('event_id', $event->id)->get();
-        return view('events.show', compact(['event', 'bookings']));
+        return view('events.show', compact('event', 'bookings'));
     }
 
     /**
@@ -122,15 +124,15 @@ class EventsController extends Controller
         //
         if ($event->status_is == 'Pending'){
             // Delete an event
+            $event->delete();
+            flash('Event has been deleted!', 'success');
         }else{
             flash('You can only delete an event that\'s Pending', 'error');
         }
-            $event->delete();
-            flash('Event has been deleted!', 'success');
 
         $events = Event::get();
         $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
-        return view('events.index', compact(['events', 'bookings']));
+        return view('events.index', compact('events', 'bookings'));
     }
 
 

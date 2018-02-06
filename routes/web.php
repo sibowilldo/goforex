@@ -22,6 +22,8 @@ Auth::routes();
 //Logout route
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+Route::resource('bank_accounts', 'BankAccountController');
+
 Route::resource('events','EventsController');
 
 Route::resource('items','ItemsController');

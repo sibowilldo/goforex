@@ -42,10 +42,13 @@ class BookingsController extends Controller
     public function index()
     {
         //
-        $bookings = Booking::where('user_id', Auth::id())->get();
         if(Auth::user()->hasRole('admin')){
-            $bookings = Booking::get();
+            $bookings = Booking::paginate(15);
+        }else{
+
+            $bookings = Auth::user()->booking()->paginate(15);
         }
+
 
        return view('bookings.index', compact('bookings'));
     }
@@ -92,6 +95,7 @@ class BookingsController extends Controller
             'username' => Auth::user()->username,
             'callout_button' => 'View Booking',
             'callout_url' => url('/view-event/'.$eventId),
+            'event' => $event,
             'booking_ref' => $booking->reference,
             'booking_date_time' => $booking->created_at,
             'user' => Auth::user()
@@ -127,10 +131,11 @@ class BookingsController extends Controller
                     <p>Please make a payment to below details, and update your online booking by uploading proof of payment:</p>
                     <br/>
                     <p><i>Banking Details :</i><br>
-                        Bank : <b> First National Bank</b><br>
-                        Acc Holder : <b> Go Forex Wealth Creation SA</b><br>
-                        Acc Number : <b> 62715445658</b><br>
-                        Branch Code : <b> 250655 </b></p>
+                        Bank : <b>' . $booking->event->bank_account->bank.'</b><br>
+                        Acc Holder : <b> ' . $booking->event->bank_account->account_holder.'</b><br>
+                        Acc Number : <b> ' . $booking->event->bank_account->account_number.'</b><br>
+                        Branch Code : <b> ' . $booking->event->bank_account->branch.' </b></p><br>
+                        Reference : <b> ' . $booking->reference.' </b></p>
                     <p><b>Booking Date/Time : '. $booking->created_at .'</b></p>';
 
         $this->saveNotification($message,'notification',Auth::user(), 'Booking Created');
@@ -194,7 +199,7 @@ class BookingsController extends Controller
     {
         // Delete Booking
         $booking->delete();
-        flash()->success('Booking has been deleted!');
+        flash('Booking has been deleted!', 'success');
         return back();
     }
 
@@ -276,6 +281,8 @@ class BookingsController extends Controller
         $invoice = Invoice::create([
             'user_id'=>$booking->user->id,
             'amount'=>$booking->event->item->price,
+            'discount' => 0,
+            'notes' => '',
             'status_is'=>'Paid',
         ]);
 

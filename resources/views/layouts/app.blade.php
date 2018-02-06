@@ -67,6 +67,7 @@
     
 <!-- Toastr --> 
     {{ Html::style('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css') }}
+    {{ Html::style('css/toastr-custom.css') }}
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}
 
     <script>
@@ -75,17 +76,17 @@
             "debug": false,
             "newestOnTop": true,
             "progressBar": false,
-            "positionClass": "toast-top-center",
+            "positionClass": "toast-top-full-width",
             "preventDuplicates": false,
             "onclick": null,
             "showDuration": "300",
             "hideDuration": "1000",
             "timeOut": "5000",
-            "extendedTimeOut": "1000",
+            "extendedTimeOut": "5000",
             "showEasing": "swing",
             "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
         }
     </script>
 </head>
@@ -201,21 +202,21 @@
                     </div>
                 </div>
                 <!-- search form -->
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                  </button>
-                </span>
-                    </div>
-                </form>
+                {{--<form action="#" method="get" class="sidebar-form">--}}
+                    {{--<div class="input-group">--}}
+                        {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+                        {{--<span class="input-group-btn">--}}
+                  {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+                  {{--</button>--}}
+                {{--</span>--}}
+                    {{--</div>--}}
+                {{--</form>--}}
 
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" style="">
                     <li>
                         <a href="{{ url('/')}}">
-                            <i class="fa fa-home"></i>
+                            <i class="ion ion-planet"></i>
                             <span>Main site</span>
                         </a>
                     </li>
@@ -226,12 +227,12 @@
                     <li class="header">Main Navigation</li>
                     <li>
                         <a href="{{ url('/home')}}">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            <i class="ion ion-ios-albums"></i> <span>Dashboard</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/mentors')}}">
-                            <i class="fa fa-users"></i> <span>Mentors</span>
+                            <i class="ion ion-android-people"></i> <span>Mentors</span>
                         </a>
                     </li>
                     @if(Auth::user()->hasRole('admin'))
@@ -246,24 +247,25 @@
                                 <li><a href="{{ url('/events') }}"><i class="fa fa-circle-o"></i> Events</a></li>
                                 <li><a href="{{ url('/items') }}"><i class="fa fa-circle-o"></i> Items</a></li>
                                 <li><a href="{{ url('/invoices') }}"><i class="fa fa-circle-o"></i> Invoices</a></li>
+                                <li><a href="{{ route('bank_accounts.index') }}"><i class="fa fa-circle-o"></i> Bank Accounts</a></li>
                             </ul>
                         </li>
                     @endif
                     <li>
                         <a href="{{ url('/profile')}}">
-                            <i class="fa fa-user"></i>
+                            <i class="ion ion-android-person"></i>
                             <span>My Profile</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/my-invoices')}}">
-                            <i class="fa fa-money"></i>
+                            <i class="ion ion-document-text"></i>
                             <span>My Invoices</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/bookings')}}" id="bookings-mi">
-                            <i class="fa fa-calendar-check-o"></i>
+                            <i class="ion ion-android-calendar"></i>
                             <span>{{ Auth::user()->hasRole('user') || Auth::user()->hasRole('member')  ? "My " : "" }}
                                 Bookings
               <small class="label pull-right bg-red"><span>{{ \App\Booking::where(['user_id' => \Auth::id(), 'status_is' => 'Pending', 'proof_of_payment' => null])->count() }}</span> unpaid</small>
@@ -273,7 +275,7 @@
                     </li>
                     <li>
                         <a href="{{ url('/notifications')}}">
-                            <i class="fa fa-bell"></i>
+                            <i class="ion ion-ios-bell"></i>
                             <span>Notifications</span>
                         </a>
                     </li>
@@ -306,6 +308,7 @@
 
 {!! Html::script('js/app.js') !!}
 @yield('javascript')
+@yield('deleteJS')
 {!! Html::script('js/messages.js') !!}
 
 </body>

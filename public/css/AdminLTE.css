@@ -1,12 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+@import url(https://fonts.googleapis.com/css?family=Muli:300,400,700);
 
-/*!
- *   AdminLTE v2.3.12
- *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
- *   License: Open source - MIT
- *           Please visit http://opensource.org/licenses/MIT for more information
-!*/
 
 html,
 body {
@@ -19,8 +12,8 @@ body {
 }
 
 body {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-family: 'Muli', sans-serif;
+  font-weight: 300;
   overflow-x: hidden;
 }
 
@@ -176,7 +169,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Source Sans Pro', sans-serif
+  font-family: 'Muli', sans-serif
 }
 
 a {
@@ -325,7 +318,7 @@ a:focus {
   line-height: 50px;
   text-align: center;
   width: 230px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Muli", sans-serif;
   padding: 0 15px;
   font-weight: 300;
   overflow: hidden
@@ -361,15 +354,15 @@ a:focus {
 }
 
 .content-header>.breadcrumb {
-  float: right;
+  /*float: right;*/
   background: transparent;
-  margin-top: 0;
+  margin-top: 10px;
   margin-bottom: 0;
-  font-size: 12px;
+  font-size: 13px;
   padding: 7px 5px;
-  position: absolute;
-  top: 15px;
-  right: 10px;
+  /*position: absolute;*/
+  /*top: 15px;*/
+  /*right: 10px;*/
   border-radius: 2px
 }
 
@@ -583,7 +576,8 @@ a:focus {
 .sidebar-menu>li>a>.fa,
 .sidebar-menu>li>a>.glyphicon,
 .sidebar-menu>li>a>.ion {
-  width: 20px
+    width: 30px;
+    font-size: 1.5em;
 }
 
 .sidebar-menu>li .label,
@@ -624,7 +618,7 @@ a:focus {
 }
 
 .sidebar-menu li.active>.treeview-menu {
-  display: block
+  display: block;
 }
 
 .sidebar-menu .treeview-menu {
@@ -1047,6 +1041,7 @@ a:focus {
 .dropdown-menu {
   box-shadow: none;
   border-color: #eee;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
 }
 
 .dropdown-menu>li>a {
@@ -5898,6 +5893,9 @@ ul#event-wrap {
   animation-timing-function: ease-in
 }
 
+div, span, input, a, button, select, .form-control, option{
+    border-radius: 0 !important;
+}
 
 /* The animation code */
 

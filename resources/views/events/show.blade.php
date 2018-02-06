@@ -221,7 +221,7 @@
                                                 </ul>
                                             </div>
                                             @if(Auth::user()->hasRole('admin'))
-                                                {!! Btn::delete($booking->id, url('bookings'), false, '' , 'Are you sure you want to remove ' . $booking->user->firstname . '?')!!}
+                                                {!! Btn::delete($booking->id, url('bookings'), '', true, 'Are you sure you want to remove ' . $booking->user->firstname . '?')!!}
                                             @endif
                                         </td>
                                     </tr>

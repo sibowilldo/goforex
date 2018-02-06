@@ -41,7 +41,6 @@
 								</thead>
 								<tbody>
 								@foreach($users as $user)
-                                    @if( $user != Auth::user())
 									<tr>
 										<td>
 											<input class="bstoggle verify" type="checkbox" data-onstyle="success" data-offstyle="danger" data-on="<i class='fa fa-check'><i>" data-off="<i class='fa fa-times'><i>" data-size="mini" data-toggle="toggle" name="rd-{{ $user->id }}" data-id="{{ $user->id }}"  {{ $user->verified ? 'checked' : ''}}></td>
@@ -65,11 +64,13 @@
 											</div>
 										</td>
 									</tr>
-                                    @endif
 								@endforeach
 								</tbody>
 							</table>
 						</div>
+                        <div class="box-footer">
+                            {{ $users->links() }}
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -94,7 +95,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#users').DataTable({responsive: true}).on('click','.toggle-group' , function(e){
+            $('#users').DataTable({responsive: true, paging: false}).on('click','.toggle-group' , function(e){
                 $('.bstoggle.verify').on('change', function(ev){
                     var source = this;
                     var formData = {

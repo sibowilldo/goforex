@@ -85,6 +85,12 @@ class User extends Authenticatable
     // A User has many Events
     public function event()
     {
-        return $this->hasMany('App\Events');
+        return $this->hasMany('App\Event');
+    }
+
+    // A User has many Events
+    public function invoice()
+    {
+        return $this->hasMany('App\Invoice');
     }
 }

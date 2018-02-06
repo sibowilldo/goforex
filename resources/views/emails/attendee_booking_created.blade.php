@@ -9,10 +9,11 @@
     <p style="text-align: left; font-size: 12px">
         <strong>Please make a direct deposit or EFT Payment of a total of <strong>R{{ $event->item->price }}</strong> to the following bank details:</strong><br>
         <strong>Amount:</strong> R{{ $event->item->price }}<br>
-        <strong>Bank:</strong> First National Bank<br>
-        <strong>Acc Holder:</strong> Forex Wealth Creation SA<br>
-        <strong>Acc Number:</strong> 62715445658<br>
-        <strong>Branch Code: </strong>250655<br>
+        <strong>Bank:</strong> {{ $event->bank_account->bank }}<br>
+        <strong>Acc Holder:</strong> {{ $event->bank_account->account_holder }}<br>
+        <strong>Acc Number:</strong> {{ $event->bank_account->account_number }}<br>
+        <strong>Branch Code: </strong>{{ $event->bank_account->branch }}<br><br>
+        <strong>Reference: </strong>{{ $booking->reference }}<br>
     </p>
     <h4 style="text-align: left;">Event Details</h4>
     <p style="text-align: left; font-size: 12px">
