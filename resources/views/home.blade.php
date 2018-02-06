@@ -121,6 +121,11 @@
                                                         <i class="ion ion-ios-list-outline"></i> All Events</a></li>
                                                 <li><a href="{{ url('events/create') }}">
                                                         <i class="ion ion-plus-round"></i> Create Event</a></li>
+                                                    <li><a href="{{ url('events/'.$event->id.'/edit') }}"
+                                                           rel="tooltip"
+                                                           title="Edit"><i
+                                                                    class="fa ion ion-ios-compose-outline"></i> Edit Event
+                                                        </a></li>
                                                 <li><a href="{{ url('events/'. $event->id) }}">
                                                         <i class="fa fa-calendar-check-o"></i>View Bookings</a>
                                                 </li>
@@ -163,15 +168,20 @@
                                     <div class="col-sm-12">
                                         <div class="progress progress-md" style="margin-top: 10px; border-radius: 3px">
 
+                                            @if(max($event->number_of_seats - $event->bookings()->where('status_is', 'Paid')->count(), 0) == 0)
+                                                <p class="text-white text-center bg-red"> {{(max($event->number_of_seats - $event->bookings()->where('status_is', 'Paid')->count(), 0))}} of {{$event->number_of_seats}} Seats Available</p>
+                                            @endif
                                             @if($event->status_is == "Open")
-                                                <div class="progress-bar progress-bar-green progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{($event->number_of_seats - $event->bookings()->where('status_is', 'Paid')->count())*10}}%">
-                                                    {{($event->number_of_seats - $event->bookings()->where('status_is', 'Paid')->count())}} of {{$event->number_of_seats}} Seats Available
+                                                <div class="progress-bar progress-bar-green progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                                     style="width: {{((max($event->number_of_seats - $event->bookings()->where('status_is', 'Paid')->count(), 0)) / $event->number_of_seats)*100}}%">
+                                                    {{(max($event->number_of_seats - $event->bookings()->where('status_is', 'Paid')->count(), 0))}} of {{$event->number_of_seats}} Seats Available
                                                 </div>
                                             @else
                                                 <div class="progress-bar progress-bar-red" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                                                     Event is {{ strtoupper($event->status_is) }}
                                                 </div>
                                             @endif
+
                                         </div>
                                     </div>
                                 </div>
