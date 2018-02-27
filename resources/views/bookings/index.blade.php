@@ -48,7 +48,7 @@
                         <td>{{ $booking->created_at->toFormattedDateString() }}</td>
                         <td>
                         @if($booking->status_is == 'Pending' OR $booking->status_is == 'Declined')
-                                {!! Btn::delete($booking->id, url('bookings'),'', true,  '', 'This is a permanent operation, process with absolute certainty! ')!!}
+                                {!! Btn::delete($booking->id, url('bookings'),'', true,  '', 'This is a permanent operation, proceed with absolute certainty! ')!!}
                         @elseif($booking->status_is == 'Approve')
                         @elseif($booking->status_is == 'Paid')
                                 <span class="text-green">Booking approved! Please contact our offices to cancel.</span>

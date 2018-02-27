@@ -18,6 +18,13 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
+                    <div class="alert alert-info alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4>New Feature! <small class="white-text">28 Feb 2018 1:00am</small></h4>
+                        <p>Now you can update event status directly from the list of events. Simply click the event status, select the desired status and click the check [<i class="fa fa-check"></i>] button to confirm.
+                            <br>
+                            <em>Hint: An event must be Closed or Pending in order to delete it and remember, bookings linked to that event will also be deleted!</em>
+                        </p>
+                    </div>
                     <div class="box box-default">
                         <div class="box-header with-border">
                             <a href="{{ url('events/create') }}" class="btn btn-sm btn-social pull-right btn-primary"
@@ -49,57 +56,46 @@
                                             <td>{{ $bookings->where('event_id', $event->id)->count() }}
                                                 / {{ $event->number_of_seats }}</td>
 
-                                            <td>{{ \Carbon\Carbon::parse($event->start_date)->format('F j') }}
+                                            <td>{{ \Carbon\Carbon::parse($event->start_date)->format('d M Y') }}
                                                 <strong>-</strong>
-                                                {{ \Carbon\Carbon::parse($event->end_date)->format('F j') }}</td>
-                                            <td><span
-                                                        class="label label-{{ ($event->status_is == 'Open') ? 'success' : 'danger'}}">{{ $event->status_is }}</span></td>
+                                                {{ \Carbon\Carbon::parse($event->end_date)->format('d M Y') }}</td>
+                                            <td>
+
+                                                {{ Form::open(['route' =>['events.status', $event->id], 'method' =>'patch', 'id' => 'form-event-status-'.$event->id]) }}
+                                                    <div class="input-group input-group-sm input-group-select">
+                                                    {{ Form::select('status_is', \App\Event::$statuses, $event->status_is, ['class' => 'form-control']) }}
+                                                        <div class="input-group-btn">
+
+                                                            <button class="btn btn-icon btn- btn-sm"><i class="fa fa-check"></i></button>
+                                                        </div>
+                                                    </div>
+                                                {{ Form::close() }}
+                                            </td>
                                             <td>
                                                 <div class="btn-group btn-group-sm">
-                                                    <button type="button" class="btn btn-default btn-sm">Choose Action</button>
-                                                    <button type="button" class="btn btn-default dropdown-toggle btn-sm"
-                                                            data-toggle="dropdown">
-                                                        <span class="caret"></span>
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li>
-                                                            <a href="{{ url('attendees/'. $event->id . '/add') }}"
-                                                               rel="tooltip" title="View">
-                                                                <i class="fa ion-person-add"></i> Add Attendee
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="{{ url('events', $event->id) }}"
-                                                               rel="tooltip"
-                                                               title="View">
-                                                                <i class="fa ion ion-ios-calendar-outline"></i> View Event
-                                                            </a></li>
-                                                        <li><a href="{{ url('events/'.$event->id.'/edit') }}"
-                                                               rel="tooltip"
-                                                               title="Edit"><i
-                                                                        class="fa ion ion-ios-compose-outline"></i> Edit Event
-                                                            </a></li>
-                                                        <li class="divider"></li>
-                                                        @if($event->status_is == 'Pending')
-                                                            <li><a href="{{ url('events/'.$event->id.'/submitEvent') }}"
-                                                                   rel="tooltip"
-                                                                   title="Publish"><i
-                                                                            class="fa fa-send-o blue-text"></i> Publish Event
-                                                                </a></li>
-                                                        @else
 
-                                                            <li class="disabled"><a href="javascript:;"
-                                                                                          class="grey-text"
-                                                                                          rel="tooltip"
-                                                                                          title="Published"><i
-                                                                            class="fa ion ion-information-circled"></i> {{ $event->status_is }}
-                                                                </a></li>
-                                                        @endif
-                                                    </ul>
+                                                    <a href="{{ url('attendees/'. $event->id . '/add') }}"
+                                                       data-toggle="tooltip" data-original-title="Add Guest" class="btn btn-sm btn-default">
+                                                        <i class="fa ion-person-add"></i>
+                                                    </a>
+                                                    <a href="{{ url('events', $event->id) }}"
+                                                       data-toggle="tooltip" data-original-title="View Event" data-placement="left"  class="btn btn-sm btn-default">
+                                                        <i class="fa ion ion-ios-calendar-outline"></i>
+                                                    </a>
+                                                    <a href="{{ url('events/'.$event->id.'/edit') }}"
+                                                       data-toggle="tooltip" data-original-title="Edit Event" data-placement="left" class="btn btn-sm btn-default"><i
+                                                                class="fa ion ion-ios-compose-outline"></i>
+                                                    </a>
+                                                    @if($event->status_is == 'Pending')
+                                                        <a href="{{ url('events/'.$event->id.'/submitEvent') }}"
+                                                           data-toggle="tooltip" data-original-title="Publish Event" data-placement="left"  class="btn btn-sm btn-default"><i
+                                                                        class="fa fa-send-o blue-text"></i>
+                                                            </a>
+                                                    @endif
                                                 </div>
 
 
-                                                @if($event->status_is == 'Pending')
+                                                @if($event->bookings()->count() == 0)
                                                     {!! Btn::delete($event->id, url('events'), '',true, $event->name)!!}
                                                 @else
                                                     {!! Btn::delete($event->id, url('events'), '', true,  $event->name, 'Any booking linked to this event will also be deleted!')!!}

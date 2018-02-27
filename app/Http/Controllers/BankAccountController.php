@@ -108,6 +108,13 @@ class BankAccountController extends Controller
     public function destroy(BankAccount $bankAccount)
     {
         //
+        $events = $bankAccount->event();
+        if($events->count() > 0){
+            foreach ($events->get() as $event){
+                $event->bank_account_id = BankAccount::get()->first()->id;
+                $event->save();
+            }
+        }
         $bankAccount->delete();
         flash('Bank Account deleted successfully', 'success');
         return redirect(route('bank_accounts.index'));

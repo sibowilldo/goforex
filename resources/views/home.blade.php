@@ -92,7 +92,7 @@
                 </div>
 
 
-
+                @if($events->count() > 0)
                 <div class="row">
                     @foreach($events as $event)
                     <div class="col-sm-12 col-md-6 col-lg-4">
@@ -152,15 +152,10 @@
                                     <p class="event-description text-truncate"><i class="fa ion-ios-paper-outline"></i> {{ $event->description }}</p>
                                     <div class="row">
                                         <div class="col-sm-12">
-
                                             <span><i class="fa ion ion-calendar"></i> {{ Carbon\Carbon::parse($event->start_date)->formatLocalized('%a, %d %b %y') }} - {{ Carbon\Carbon::parse($event->end_date)->formatLocalized('%a, %d %b %y') }}</span>
-                                            <br>
                                             <span><i class="fa ion ion-clock"></i> {{ $event->start_time }} - {{ $event->end_time }}</span>
-                                            <br>
-
                                             <span><i class="fa ion ion-person"></i> {{ $event->host }}</span>
-                                            <br>
-                                            <span><i class="fa ion ion-location"></i> {{ $event->address }}</span>
+                                            <p class="text-truncate"><i class="fa ion ion-location"></i> {{ $event->address }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +183,16 @@
                                 <!-- /.box-body -->
                                 <div class="box-footer">
                                     <div class="row">
-                                        <div class="col-sm-12 text-right">
+                                        @if(Auth::user()->hasRole('admin'))
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            @if($event->bookings()->count() == 0)
+                                                {!! Btn::delete($event->id, url('events'), '',true, $event->name)!!}
+                                            @else
+                                                {!! Btn::delete($event->id, url('events'), '', true,  $event->name, 'Any booking linked to this event will also be deleted!')!!}
+                                            @endif
+                                        </div>
+                                        @endif
+                                        <div class="{{ Auth::user()->hasRole('admin')? 'col-lg-8 col-md-8 ' : '' }}col-sm-12 text-right">
                                             @if($event->bookings()->where('user_id', Auth::id())->count() == 0)
                                                 <a href="{{ url('booking/create-event-booking/'.$event->id) }}"
                                                    class="btn btn-social btn-success btn-sm"
@@ -204,7 +208,7 @@
                                                         data-userid="{{ Auth::id()}}"
                                                         data-toggle="modal" data-target="#proof-modal"
                                                         class="btn btn-success btn-sm btn-social btn-proof"><i
-                                                            class="fa ion ion-android-clipboard"></i>{{ $event->bookings()->where('user_id', Auth::id())->first()->proof_of_payment == null ? 'Attach' : 'Update' }} Payment Receipt
+                                                            class="fa ion ion-android-clipboard"></i>{{ $event->bookings()->where('user_id', Auth::id())->first()->proof_of_payment == null ? 'Attach' : 'Update' }} Receipt
                                                 </button>
                                                 @endif
                                             @endif
@@ -221,6 +225,7 @@
                         {{ $events->links() }}
                     </div>
                 </div>
+                @endif
             </section>
             <!-- /.content -->
         </div>
@@ -242,7 +247,7 @@
                     </div>
                     <div class="form-group" hidden>
                         {!! Form::label('eventId') !!}
-                        {!! Form::hidden('eventId', $event->id, ['class'=>'form-control']) !!}
+                        <input type="hidden" name="eventId" id="eventId" value="">
                     </div>
                     <div class="form-group" hidden>
                         {!! Form::label('userId') !!}

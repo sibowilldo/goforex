@@ -67,7 +67,7 @@ class EventsController extends Controller
         $event['status_is'] = 'Pending';
         $event['reference'] = str_random(7);
         Event::create($event);
-        flash('You have successfully created an Event.', 'success');
+        flash('Event successfully created. Publish this event to make it public!', 'success');
 
         $events = Event::get();
         return redirect('events');
@@ -117,6 +117,20 @@ class EventsController extends Controller
     }
 
     /**
+     * Update event status
+     *
+     * @param Request $request
+     * @param Event $event
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateStatus(Request $request, Event $event)
+    {
+        $event->update($request->all());
+
+        flash('Status updated successfully', 'success');
+        return back();
+    }
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Event  $event
@@ -125,17 +139,17 @@ class EventsController extends Controller
     public function destroy(Event $event)
     {
         //
-        if ($event->status_is == 'Pending'){
+        if ($event->status_is != 'Open'){
             // Delete an event
             $event->delete();
             flash('Event has been deleted!', 'success');
+            $events = Event::get();
+            $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
+            return view('events.index', compact('events', 'bookings'));
         }else{
-            flash('You can only delete an event that\'s Pending', 'error');
+            flash('This event is open, please update event status to either Pending OR Closed, and try deleting again!', 'error');
+            return back();
         }
-
-        $events = Event::get();
-        $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
-        return view('events.index', compact('events', 'bookings'));
     }
 
 
@@ -149,9 +163,8 @@ class EventsController extends Controller
         }
 
         $events = Event::orderBy('created_at','desc')->get();
-        $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
+//        $bookings = Booking::whereIn('event_id', $events->pluck('id'))->select('id', 'user_id', 'event_id', 'status_is', 'created_at', 'updated_at')->get();
         return redirect('/events');
-        return view('events.index', compact(['events', 'bookings']));
     }
 
     /**

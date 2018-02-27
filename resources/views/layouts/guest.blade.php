@@ -26,6 +26,7 @@
     
 <!-- Toastr --> 
     {{ Html::style('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css') }}
+    {{ Html::style('css/toastr-custom.css') }}
     {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}
 
     <script>
@@ -34,17 +35,17 @@
             "debug": false,
             "newestOnTop": true,
             "progressBar": false,
-            "positionClass": "toast-top-center",
+            "positionClass": "toast-top-full-width",
             "preventDuplicates": false,
             "onclick": null,
             "showDuration": "300",
             "hideDuration": "1000",
             "timeOut": "5000",
-            "extendedTimeOut": "1000",
+            "extendedTimeOut": "5000",
             "showEasing": "swing",
             "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
         }
     </script>
     {!! Html::script('/js/knight/bootstrap.js') !!}

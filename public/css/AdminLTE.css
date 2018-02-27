@@ -1436,7 +1436,13 @@ a:focus {
 .form-group.has-success label {
   color: #00a65a
 }
+.input-group.input-group-select {
+  border: 1px solid #ccc;
+}
 
+.input-group select.form-control {
+  border: 0;
+}
 .form-group.has-success .form-control,
 .form-group.has-success .input-group-addon {
   border-color: #00a65a;
@@ -5718,9 +5724,9 @@ ul#event-wrap {
   font-weight: 300;
 }
 
-.event-meta span {
-  margin: 0 1em .5em 0;
-  display: inline-block;
+.event-meta span, .event-meta p {
+  margin: 0 1em .3em 0;
+  display: block;
 }
 
 .event-action {
@@ -5752,7 +5758,7 @@ ul#event-wrap {
   height: 150px;
 }
 
-.event-meta span i {
+.event-meta span i, .event-meta p i {
   color: #BDBDBD;
   width: 20px;
   text-align: center;
