@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Traits\NotificationTraits;
 use App\Notification;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class CronsController extends Controller
 {
@@ -80,5 +81,27 @@ class CronsController extends Controller
 
             }
         }
+    }
+
+    public function purge_unverified_users()
+    {
+        $users = User::where('verified', false)->get();
+        Log::notice('Found  '.$users->count() . ' unverified users');
+
+        if($users->count()){
+            foreach ($users as $user){
+                $now = new \DateTime();
+                if($user->created_at->diff($now)->days > 30 ){
+                    Log::info('Removing user with id:'.$user->id . ' email is ' . $user->email . ' user was created '. $user->created_at->diffForHumans());
+                    $user->delete();
+                    Log::info('Removed successfully');
+                }else{
+                    Log::info('User not removed. RESEAON: user is not 30 days old...');
+                }
+            }
+        }else{
+            Log::info('Nothing to purge');
+        }
+        Log::notice('Purge completed...');
     }
 }
