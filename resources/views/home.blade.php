@@ -47,7 +47,7 @@
                     <div class="col-sm 12 col-md-6 col-lg-3">
                         <div class="small-box bg-yellow">
                             <div class="inner">
-                                <h3>{{ Auth::user()->booking()->where('proof_of_payment', null)->count() }}</h3>
+                                <h3>{{ Auth::user()->booking()->where('payment_attachment', null)->count() }}</h3>
 
                                 <p>Unpaid Bookings</p>
                             </div>
@@ -208,7 +208,7 @@
                                                         data-userid="{{ Auth::id()}}"
                                                         data-toggle="modal" data-target="#proof-modal"
                                                         class="btn btn-success btn-sm btn-social btn-proof"><i
-                                                            class="fa ion ion-android-clipboard"></i>{{ $event->bookings()->where('user_id', Auth::id())->first()->proof_of_payment == null ? 'Attach' : 'Update' }} Receipt
+                                                            class="fa ion ion-android-clipboard"></i>{{ $event->bookings()->where('user_id', Auth::id())->first()->payment_attachment == null ? 'Attach' : 'Update' }} Receipt
                                                 </button>
                                                 @endif
                                             @endif

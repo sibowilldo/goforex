@@ -32,7 +32,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        return view('users.index')->with('users', User::paginate(15));
+        return view('users.index')->with('users', User::where('verified', false)->OrderBy('created_at', 'desc')->paginate(1000));
     }
 
     /**

@@ -73,6 +73,9 @@ Route::post('/unsubscribe/{id}/{verification}', function($id, $verification){
 });//unsuscribe post Route
 
 
+Route::post('/bookings/{booking}/attachment/upload', 'BookingsController@upload')->name('attachment.upload');
+
+
 
 //ajax routes group
 Route::prefix('ajax')->group(function () {
@@ -94,4 +97,5 @@ Route::post('/payment/notify', ['as' => 'payment.notify', 'uses' => 'BookingsCon
 
 
 
-//ajax 
+//cron routes
+Route::get('/cron/purge-unverified-users', 'CronsController@purge_unverified_users');

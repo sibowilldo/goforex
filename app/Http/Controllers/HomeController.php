@@ -19,6 +19,7 @@ use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use App\Notification;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -191,4 +192,5 @@ class HomeController extends Controller
         $invoices = Invoice::where('user_id', Auth::user()->id)->get();
         return view('user-invoices', compact('invoices'));
     }
+
 }

@@ -17,7 +17,7 @@ class Booking extends Model
         'reference',
         'user_id',
         'event_id',
-        'proof_of_payment',
+        'payment_attachment',
         'mime_type',
         'status_is',
     ];

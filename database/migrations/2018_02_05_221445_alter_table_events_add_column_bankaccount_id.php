@@ -40,3 +40,4 @@ class AlterTableEventsAddColumnBankaccountId extends Migration
         Schema::enableForeignKeyConstraints();
     }
 }
+

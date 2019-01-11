@@ -268,7 +268,7 @@
                             <i class="ion ion-android-calendar"></i>
                             <span>{{ Auth::user()->hasRole('user') || Auth::user()->hasRole('member')  ? "My " : "" }}
                                 Bookings
-              <small class="label pull-right bg-red"><span>{{ \App\Booking::where(['user_id' => \Auth::id(), 'status_is' => 'Pending', 'proof_of_payment' => null])->count() }}</span> unpaid</small>
+              <small class="label pull-right bg-red"><span>{{ \App\Booking::where(['user_id' => \Auth::id(), 'status_is' => 'Pending', 'payment_attachment' => null])->count() }}</span> unpaid</small>
               
               </span>
                         </a>

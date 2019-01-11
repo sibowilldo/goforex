@@ -152,25 +152,16 @@
                                             @endif
                                         @else
                                             @if($booking->status_is != 'Paid')
-                                            {!! Form::open(['url' => 'imageUploadForm', 'class' => 'form', 'novalidate' => 'novalidate', 'files' => true]) !!}
-                                                <div class="form-group">
-                                                    {!! Form::file('image', ['class' => 'inputfile well', 'accept' => '.jpeg, .jpg, .png', 'style' => 'width: 100%']) !!}
-                                                </div>
 
-                                                <div class="form-group" hidden>
-                                                    {!! Form::label('eventId') !!}
-                                                    {!! Form::text('eventId', $event->id, ['class'=>'form-control']) !!}
+                                                <div class="panel panel-bordered">
+                                                    <span class="ribbon ribbon-reverse ribbon-{{ $booking->payment_attachment != null ? 'success' : 'danger'}}">
+                                                        <span class="ribbon-inner">{{ $booking->payment_attachment !=null ? 'Has Attachment' : 'No Attachment'}}</span>
+                                                    </span>
+                                                    <div class="panel-body">
+                                                        {!! Form::open(['method'=> 'post',  'url' => '/bookings/'. $booking->id .'/attachment/upload', 'id' => '#upload-form' , 'class' => 'form mb-0 dropzone', 'novalidate' => 'novalidate', 'files' => true, 'enctype'=>'multipart/form-data']) !!}
+                                                        {!! Form::close() !!}
+                                                    </div>
                                                 </div>
-
-                                                <div class="form-group" hidden>
-                                                    {!! Form::label('userId') !!}
-                                                    {!! Form::text('userId', Auth::id(), ['class'=>'form-control']) !!}
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-md btn-danger"><i class="ion ion-ios-cloud-upload-outline"></i> Upload selected file</button>
-                                                </div>
-                                            {!! Form::close() !!}
                                             @endif
                                         @endif
                                     @else
@@ -201,7 +192,71 @@
 
 
 @section('styles')
+    {!! Html::style("https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/basic.min.css") !!}
+    {!! Html::style("https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css") !!}
+    <style>
+        .avatar-lg {
+            width: 100px;
+        }
+        .page-user .page-content form {
+            margin-bottom: 40px;
+        }
 
+        .page-user .page-content .list-group-item {
+            padding: 25px 0;
+            border-top-color: #e0e0e0;
+        }
+
+        .page-user .page-content .list-group-item:first-child {
+            border-top-color: transparent;
+        }
+
+        .page-user .page-content .list-group-item:last-child {
+            border-bottom-color: #e0e0e0;
+        }
+
+        .page-user .page-content .list-group-item .media-heading > small {
+            margin-left: 10px;
+        }
+
+        .page-user .page-content .list-group-item p {
+            margin-bottom: 5px;
+        }
+
+        .page-user .page-content .nav-tabs-horizontal {
+            position: relative;
+        }
+
+        .page-user .page-content .page-user-sortlist {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            z-index: 2;
+        }
+
+        @media (max-width: 991px) {
+            .page-user .page-content .page-user-sortlist {
+                top: -15px;
+            }
+        }
+
+        @media (max-width: 479px) {
+            .page-user .page-content .list-group-item .media-body {
+                display: block;
+                text-align: center;
+            }
+            .page-user .page-content .list-group-item .media-body {
+                width: auto;
+            }
+            .page-user .page-content .list-group-item .media-body {
+                margin-top: 15px;
+            }
+            .page-user .page-content .tab-content nav {
+                text-align: center;
+            }
+        }
+
+    </style>
 @stop
 
 @section('javascript')
@@ -294,6 +349,36 @@
                 }
             });
             /* END JQUERY KNOB */
+        });
+    </script>
+
+
+    {!! Html::script("https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js") !!}
+    <script type="text/javascript">
+        Dropzone.autoDiscover = false;
+        Dropzone.options.uploadForm = {}
+
+        $(document).ready(function(){
+
+            $('.dropzone').dropzone({
+                dictDefaultMessage: '<h5>Upload attachment...</h5> <br> Accepted file types (.jpg, .jpeg, .png, .gif, .pdf)',
+                acceptedFiles: 'image/*, application/pdf',
+                maxFilesize: 2,
+                maxFiles : 1,
+                init: function() {
+                    this.on("success", function(file, response) {
+                        toastr.success('Attachment uploaded successfully!');
+                        $('#download_link').attr('disabled', 'disabled').addClass('disabled').text('Link updated, Please refresh page');
+                    }),
+                        this.on("error", function(file, response, errorMessage) {
+                            console.log('file '+file + ' Response: ' + response + ' ErrorMessage: ' + errorMessage );
+                            toastr.error(response, 'Could not upload attachment');
+                        }),
+                        this.on("info", function(file, response) {
+                            toastr.info(response);
+                        })
+                }
+            });
         });
     </script>
 @stop

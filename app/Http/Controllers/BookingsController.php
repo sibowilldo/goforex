@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Traits\NotificationTraits;
 use App\Notification;
+use Storage;
+use Carbon\Carbon;
 
 class BookingsController extends Controller
 {
@@ -43,10 +45,10 @@ class BookingsController extends Controller
     {
         //
         if(Auth::user()->hasRole('admin')){
-            $bookings = Booking::paginate(15);
+            $bookings = Booking::orderBy('created_at', 'desc')->paginate(15);
         }else{
 
-            $bookings = Auth::user()->booking()->paginate(15);
+            $bookings = Auth::user()->orderBy('created_at')->booking()->paginate(15);
         }
 
 
@@ -592,4 +594,47 @@ class BookingsController extends Controller
 
         return response()->json(['status' => 'OK']);
     }
+
+    /**
+     * Uploads attachments
+     *
+     * @param Request $request
+     *
+     */
+    public function upload(Request $request, Booking $booking)
+    {
+
+//        if(Gate::denies('owner-or-admin', $booking->user->id)) {
+//            flash('Unauthorized access attempt!', 'error');
+//            return redirect('/dashboard');
+//        }
+
+        if($request['file'] == null){
+            flash('Please select a file!', 'warning');
+            return back();
+        }
+        $extension = $request->file->extension();
+        $filename = Carbon::now()->timestamp.'.'.$extension;
+        $path = 'bookings/'.$booking->event->id.'/'.$booking->user->id;
+
+        $resource = $request->file('file')->storeAs($path, $filename, 'local');
+
+        if($booking->payment_attachment != null){
+            Storage::disk('local')->delete($path.'/'.$booking->payment_attachment);
+        }
+        $booking->update(['payment_attachment' => $path.'/'. $filename]);
+
+        //Notify Booking Owner via Email & Notification
+//        SendAttachmentUploadedEmail::dispatch($booking->user, $booking);
+//        $booking->user->notify(new NotifyAttachmentUploaded($booking));
+//
+//        //Get Administrators
+//        $administrators = User::whereHas('role', function ($query) { $query->where('name', '=', 'admin'); })->get();
+//
+//        //Notify info mail
+//        SendAttachmentUploadedAdminEmail::dispatch($booking);
+
+        return back();
+    }
+
 }
