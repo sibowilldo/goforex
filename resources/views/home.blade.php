@@ -206,6 +206,7 @@
                                                 <button id="booking-{{ $event->bookings()->where('user_id', Auth::id())->first()->id }}" type="button"
                                                         value="{{ $event->id }}"
                                                         data-userid="{{ Auth::id()}}"
+                                                        data-url="{{ route('attachment.upload', $event->id) }}"
                                                         data-toggle="modal" data-target="#proof-modal"
                                                         class="btn btn-success btn-sm btn-social btn-proof"><i
                                                             class="fa ion ion-android-clipboard"></i>{{ $event->bookings()->where('user_id', Auth::id())->first()->payment_attachment == null ? 'Attach' : 'Update' }} Receipt
@@ -240,7 +241,7 @@
                         <span aria-hidden="true"><i class="fa ion ion-ios-close"></i></span></button>
                     <h4 class="modal-title"></h4>
                 </div>
-                {!! Form::open(['url' => 'imageUploadForm', 'id' => '#proof-form' , 'class' => 'form', 'novalidate' => 'novalidate', 'files' => true]) !!}
+                {!! Form::open(['id' => '#proof-form' , 'class' => 'form', 'novalidate' => 'novalidate', 'files' => true]) !!}
                 <div class="modal-body">
                     <div class="form-group">
                         {!! Form::file('image', ['class' => 'inputfile well', 'accept' => '.jpeg, .jpg, .png', 'style' => 'width: 100%']) !!}

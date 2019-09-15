@@ -19,42 +19,16 @@
     {{ Html::style('css/knight/responsive.css') }}
     {{ Html::style('css/knight/animate.css') }}
 
-    {{--<!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
-    <!-- jQuery 2.2.3 -->
-    {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js') !!}
-    
-<!-- Toastr --> 
+    <!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->
+
     {{ Html::style('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css') }}
     {{ Html::style('css/toastr-custom.css') }}
-    {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}
 
-    <script>
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": false,
-            "positionClass": "toast-top-full-width",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "5000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "slideDown",
-            "hideMethod": "slideUp"
-        }
-    </script>
-    {!! Html::script('/js/knight/bootstrap.js') !!}
-    {!! Html::script('/js/knight/jquery-scrolltofixed.js') !!}
-    {!! Html::script('/js/knight/jquery.easing.1.3.js') !!}
-    {!! Html::script('/js/knight/jquery.isotope.js') !!}
-    {!! Html::script('/js/knight/wow.js') !!}
-    {!! Html::script('/js/knight/classie.js') !!}
-
+    {{-- jquery 1.8.3 --}}
+    {!! Html::script('/js/knight/jquery.1.8.3.min.js') !!}
     <style>
         * {
             -moz-transform-origin: inherit !important;
@@ -106,7 +80,6 @@
                     {{ Html::image('img/All-Black-Bull-Shield-LOGO-1.png',config('app.name')) }}
                 </a>
             </li>
-            {{--<li><a href="#Portfolio">Portfolio</a></li>--}}
             <li><a href="#team">Our Team</a></li>
             <li><a href="#contact">Contact</a></li>
             @if(!Auth::check())
@@ -184,125 +157,57 @@
                 </p>
             </div>
         </div>
-        {{--<ul class="client wow fadeIn delay-05s">--}}
-        {{--<li><a href="#">--}}
-        {{--<img src="img/client-pic1.jpg" alt="">--}}
-        {{--<h3>James Bond</h3>--}}
-        {{--<span>License To Drink Inc.</span>--}}
-        {{--</a></li>--}}
-        {{--</ul>--}}
     </div>
 </section><!--main-section client-part-end-->
 
 <section class="main-section team" id="team"><!--main-section team-start-->
-    <div class="container">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
         <h2>Our Team</h2>
-        <h6>Take a closer look into our amazing team. <br/>We won’t bite :)</h6>
-        <div class="team-leader-block clearfix">
-            <div class="team-leader-box">
-                <div class="team-leader wow fadeInDown delay-03s">
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    {{ Html::image("img/ashley_goforex.jpg", 'Joel') }}
-                    <ul>
-                        <li><a href="https://www.facebook.com/rowan.jnr" class="fa-facebook" target="_blank"></a></li>
-                    </ul>
+        <h6>Take a closer look. We won’t bite 😄</h6>
+            <div id="testimonial-slider" class="owl-carousel">
+                <div class="testimonial">
+                    <div class="testimonial-review">
+                        <p>
+                        A young professional Forex Trader from Richards Bay, that is 24 years old, passion driven and who wishes to see everyone doing well in life through Trading Forex. Ashley studied I.T at Durban University of Technology and started trading Forex in his final year. He has been very consistent after developing a new technique for himself around May 2016 that works of which is called "The Major Key". He eventually decided to release his working strategy to the public after seeing his friends that he helped in 2016 doing extremely well in Trading Forex. Ashley and his team have helped many people with their trading careers and aim on taking the Major Key movement very far with the support from GFX Family.    
+                        </p>
+                    </div>
+                    <div class="pic">
+                    {{ Html::image("img/ashley_goforex.jpg", 'Ash') }}
+                        <h4 class="testimonial-title">Ashley 
+                            <small>Mentor</small>
+                        </h4>
+                    </div>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Ashley</h3>
-                <span class="wow fadeInDown delay-03s">Mentor</span>
-                <p class="wow fadeInDown delay-03s">A young professional Forex Trader from Richards Bay, that is 24
-                    years old, passion driven and who wishes to see everyone doing well in life through Trading Forex.
-                    Ashley studied I.T at Durban University of Technology and started trading Forex in his final year.
-                    He has been very consistent after developing a new technique for himself around May 2016 that works
-                    of which is called "The Major Key". He eventually decided to release his working strategy to the
-                    public after seeing his friends that he helped in 2016 doing extremely well in Trading Forex. Ashley
-                    and his team have helped many people with their trading careers and aim on taking the Major Key
-                    movement very far with the support from GFX Family.</p>
-            </div>
-            <div class="team-leader-box">
-                <div class="team-leader  wow fadeInDown delay-06s">
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    {{ Html::image("img/andile_goforex.jpg", 'Joel') }}
-                    <ul>
-                        <li><a href="#" class="fa-facebook"></a></li>
-                    </ul>
+                <div class="testimonial">
+                    <div class="testimonial-review">
+                        <p>
+                        Andile Tshona from Lusikisiki Eastern Cape is a mentor that also studied I.T at Durban University of Technology. Andile produced extreme results in his first week of trading after learning the secret key and has been consistent. After seeing many people that were  struggling and consulting Ashley, Andile and others, they then decided to start the movement called "The Major Key" and it has produced outstanding results.    
+                         </p>
+                    </div>
+                    <div class="pic">
+                    {{ Html::image("img/andile_goforex.jpg", 'Andile') }}
+                        <h4 class="testimonial-title">Andile
+                            <small>Mentor</small>
+                        </h4>
+                    </div>
                 </div>
-                <h3 class="wow fadeInDown delay-06s">Andile</h3>
-                <span class="wow fadeInDown delay-06s">Mentor</span>
-                <p class="wow fadeInDown delay-06s">Andile Tshona from Lusikisiki Eastern Cape is a mentor that also
-                    studied I.T at Durban University of Technology. Andile produced extreme results in his first week of
-                    trading after learning the secret key and has been consistent. After seeing many people that were
-                    struggling and consulting Ashley, Andile and others, they then decided to start the movement called
-                    "The Major Key" and it has produced outstanding results.</p>
             </div>
         </div>
     </div>
+</div>
 </section><!--main-section team-end-->
 
 
 <div class="c-logo-part"><!--c-logo-part-start-->
     <div class="container">
         <ul>
-
-            {{--<h2 class="no-margin">Coming Soon! <br><small class="white-text">Brokers Recommended by us</small></h2>--}}
             <h2>Keep In Touch!</h2>
-            {{--<li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>--}}
-            {{--<li><a href="#"><img src="img/c-liogo2.png" alt=""></a></li>--}}
-            {{--<li><a href="#"><img src="img/c-liogo3.png" alt=""></a></li>--}}
-            {{--<li><a href="#"><img src="img/c-liogo4.png" alt=""></a></li>--}}
-            {{--<li><a href="#"><img src="img/c-liogo5.png" alt=""></a></li>--}}
         </ul>
     </div>
 </div><!--c-logo-part-end-->
-
-
-{{--<section class="main-section paddind" id="Portfolio"><!--main-section-start-->--}}
-{{--<div class="container">--}}
-{{--<h2>Portfolio</h2>--}}
-{{--<h6>Fresh portfolio of designs that will keep you wanting more.</h6>--}}
-{{--<div class="portfolioFilter">--}}
-{{--<ul class="Portfolio-nav wow fadeIn delay-02s">--}}
-{{--<li><a href="#" data-filter="*" class="current">All</a></li>--}}
-{{--<li><a href="#" data-filter=".branding">Branding</a></li>--}}
-{{--<li><a href="#" data-filter=".webdesign">Web design</a></li>--}}
-{{--<li><a href="#" data-filter=".printdesign">Print design</a></li>--}}
-{{--<li><a href="#" data-filter=".photography">Photography</a></li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-
-{{--</div>--}}
-{{--<div class="portfolioContainer wow fadeInUp delay-04s">--}}
-{{--<div class=" Portfolio-box printdesign">--}}
-{{--<a href="#"><img src="img/Portfolio-pic1.jpg" alt=""></a>--}}
-{{--<h3>Foto Album</h3>--}}
-{{--<p>Print Design</p>--}}
-{{--</div>--}}
-{{--<div class="Portfolio-box webdesign">--}}
-{{--<a href="#"><img src="img/Portfolio-pic2.jpg" alt=""></a>--}}
-{{--<h3>Luca Theme</h3>--}}
-{{--<p>Web Design</p>--}}
-{{--</div>--}}
-{{--<div class=" Portfolio-box branding">--}}
-{{--<a href="#"><img src="img/Portfolio-pic3.jpg" alt=""></a>--}}
-{{--<h3>Uni Sans</h3>--}}
-{{--<p>Branding</p>--}}
-{{--</div>--}}
-{{--<div class=" Portfolio-box photography">--}}
-{{--<a href="#"><img src="img/Portfolio-pic4.jpg" alt=""></a>--}}
-{{--<h3>Vinyl Record</h3>--}}
-{{--<p>Photography</p>--}}
-{{--</div>--}}
-{{--<div class=" Portfolio-box branding">--}}
-{{--<a href="#"><img src="img/Portfolio-pic5.jpg" alt=""></a>--}}
-{{--<h3>Hipster</h3>--}}
-{{--<p>Branding</p>--}}
-{{--</div>--}}
-{{--<div class=" Portfolio-box photography">--}}
-{{--<a href="#"><img src="img/Portfolio-pic6.jpg" alt=""></a>--}}
-{{--<h3>Windmills</h3>--}}
-{{--<p>Photography</p>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</section><!--main-section-end-->--}}
 
 <div class="container">
     <section class="main-section contact" id="contact">
@@ -427,6 +332,56 @@
     </div>
 </footer>
 
+{{-- Owl Carousel Script --}}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+{{-- Toast --}}
+    {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}
+{{-- Theme Vendor Scripts  --}}
+    {!! Html::script('/js/knight/bootstrap.js') !!}
+    {!! Html::script('/js/knight/jquery-scrolltofixed.js') !!}
+    {!! Html::script('/js/knight/jquery.easing.1.3.js') !!}
+    {!! Html::script('/js/knight/jquery.isotope.js') !!}
+    {!! Html::script('/js/knight/wow.js') !!}
+    {!! Html::script('/js/knight/classie.js') !!}
+
+{{-- Main Script  --}}
+{!! Html::script('/js/main.js') !!}
+   <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-full-width",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "5000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+        }</script>
+        <script>
+    $(document).ready(function(){
+        $("#testimonial-slider").owlCarousel({
+            items:1,
+            itemsDesktop:[1199,1],
+            itemsDesktopSmall:[980,1],
+            itemsTablet:[768,1],
+            pagination:true,
+            navigation:true,
+            loop: true,
+            autoplay: true,
+            autoplayHoverPause:true,
+            autoplayTimeout: 5000,
+        });
+    });
+    </script>
+
+
 
 @if ($errors->any())
     @foreach ($errors->all() as $error)
@@ -434,8 +389,5 @@
         @include('layouts.toastr', compact('title', 'message', 'level'))
     @endforeach
 @endif
-
-{!! Html::script('/js/main.js') !!}
-
 </body>
 </html>
